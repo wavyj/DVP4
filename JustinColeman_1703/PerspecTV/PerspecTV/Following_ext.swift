@@ -109,6 +109,7 @@ extension FollowingViewController{
                     self.activitySpinner.stopAnimating()
                     self.collectionView.reloadData()
                 }
+                return
             })
             //MARK: UserLoggedInTask
             //Downloads every channel the user follows
@@ -156,6 +157,8 @@ extension FollowingViewController{
                     }
                     index += 1
                 }
+                //Clears after use
+                self.channelsToDownload.removeAll()
                 if self.isLive == true{
                 self.downloadandParse(urlString: "https://api.twitch.tv/kraken/streams/?channel=\(string)&oauth_token=\(self.currentUser.authToken)&stream_type=live&client_id=\(self.appDelegate.consumerID)&\(self.appDelegate.apiVersion)", downloadTask: "Channel")
                 }else{

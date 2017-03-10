@@ -16,6 +16,8 @@ class FollowingViewController: UIViewController , UICollectionViewDelegate, UICo
     //MARK: - Outlets
     @IBOutlet weak var activitySpinner: UIActivityIndicatorView!
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var viewAllBtn: UIButton!
+    @IBOutlet weak var viewLiveBtn: UIButton!
     
     //MARK: - Variables
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -45,11 +47,31 @@ class FollowingViewController: UIViewController , UICollectionViewDelegate, UICo
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func viewAll(){
-        //Get all channels the user follows
-        isLive = false
+    @IBAction func viewAll(_ sender: UIButton){
+        if sender.tag == 0{
+            sender.isEnabled = false
+            viewLiveBtn.isEnabled = true
+            sender.isHidden = true
+            viewLiveBtn.isHidden = false
+            sender.isUserInteractionEnabled = false
+            viewLiveBtn.isUserInteractionEnabled = true
+            channels.removeAll()
+            collectionView.reloadData()
+            //Get all channels the user follows
+            isLive = false
+        }else{
+            sender.isEnabled = false
+            viewAllBtn.isEnabled = true
+            sender.isHidden = true
+            viewAllBtn.isHidden = false
+            sender.isUserInteractionEnabled = false
+            viewLiveBtn.isUserInteractionEnabled = true
+            channels.removeAll()
+            collectionView.reloadData()
+            isLive = true
+        }
         //The download string is handled inside the 'UserLoggedInTask'
-        downloadandParse(urlString: "", downloadTask: "User Followed")
+        downloadandParse(urlString: "https://api.twitch.tv/kraken/users/\(currentUser.id)/follows/channels?client_id=\(appDelegate.consumerID)&\(appDelegate.apiVersion)", downloadTask: "User Followed")
     }
     
     //MARK: - Collection View Data Source
