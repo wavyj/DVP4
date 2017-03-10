@@ -10,6 +10,12 @@ import UIKit
 
 class SettingsTableViewController: UITableViewController {
 
+    //MARK: - Outlets
+    
+    //MARK: - Variables
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    var currentUser: User!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -18,6 +24,12 @@ class SettingsTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        
+        //Register Xib with Identifier
+        let headerNib = UINib(nibName: "ProfileHeader", bundle: nil)
+        tableView.register(headerNib, forHeaderFooterViewReuseIdentifier: "header")
+        
+        currentUser = appDelegate.currentUser
     }
 
     override func didReceiveMemoryWarning() {
@@ -43,6 +55,25 @@ class SettingsTableViewController: UITableViewController {
         // Configure the cell...
 
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        var header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "header")as! ProfileHeaderFooterView
+        header.username.text = "\(currentUser?.username)"
+        if currentUser!.bio == ""{
+            header.bio.text = "This user has not provided a bio."
+        }else{
+            header.bio.text = "\(currentUser?.bio)"
+        }
+        if currentUser!.image != nil{
+            header.profilePic.image = currentUser!.image
+        }
+        
+        return header
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 235
     }
 
     /*

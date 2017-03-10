@@ -62,10 +62,11 @@ class LoginViewController: UIViewController, UIWebViewDelegate {
         userLoggedIn = UserDefaults.standard.bool(forKey: "LoggedIn")
         if userLoggedIn == false {
             loginBtn.isHidden = false
-        }
-        currentUser = User(authToken: UserDefaults.standard.integer(forKey: "AuthKey").description)
-        if let url = UserDefaults.standard.url(forKey: "UserLink"){
-            downloadandParse(urlString: url.absoluteString)
+        }else{
+            currentUser = User(authToken: UserDefaults.standard.integer(forKey: "AuthKey").description)
+            if let url = UserDefaults.standard.url(forKey: "UserLink"){
+                downloadandParse(urlString: url.absoluteString)
+            }
         }
     }
 

@@ -10,6 +10,13 @@ import UIKit
 
 class ProfileHeaderFooterView: UITableViewHeaderFooterView {
 
+    //Outlets
+    @IBOutlet weak var profilePic: UIImageView!
+    @IBOutlet weak var username: UILabel!
+    @IBOutlet weak var bio: UITextView!
+    @IBOutlet weak var bioLabel: UILabel!
+    
+    
     /*
     // Only override draw() if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.
