@@ -21,18 +21,22 @@ class FollowingViewController: UIViewController , UICollectionViewDelegate, UICo
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     var currentUser: User!
     var channels = [Channel]()
-    var userLoggedIn: Bool!
+    var userLoggedIn = false
+    var channelsToDownload = [String]()
+    var isLive = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        self.navigationController?.viewControllers.remove(at: 0)
+        if let nav = self.navigationController{
+            nav.viewControllers.remove(at: 0)
+        }
         currentUser = appDelegate.currentUser
         if userLoggedIn == true{
-            downloadandParse(urlString: "https://api.twitch.tv/kraken/users/\(currentUser.id)/follows/channels?client_id=\(appDelegate.consumerID)&\(appDelegate.apiVersion)")
+            downloadandParse(urlString: "https://api.twitch.tv/kraken/users/\(currentUser.id)/follows/channels?client_id=\(appDelegate.consumerID)&\(appDelegate.apiVersion)", downloadTask: "User Followed")
         }else{
-            downloadandParse(urlString: "https://api.twitch.tv/kraken/streams/followed?oauth_token=\(currentUser.authToken)&stream_type=live&client_id=\(appDelegate.consumerID)&\(appDelegate.apiVersion)")
+            downloadandParse(urlString: "https://api.twitch.tv/kraken/streams/followed?oauth_token=\(currentUser.authToken)&stream_type=live&client_id=\(appDelegate.consumerID)&\(appDelegate.apiVersion)", downloadTask: "Followed Live")
         }
     }
 
@@ -43,7 +47,9 @@ class FollowingViewController: UIViewController , UICollectionViewDelegate, UICo
     
     @IBAction func viewAll(){
         //Get all channels the user follows
-        downloadandParse(urlString: "https://api.twitch.tv/kraken/streams/followed?oauth_token=\(currentUser.authToken)&stream_type=all&client_id=\(appDelegate.consumerID)&\(appDelegate.apiVersion)")
+        isLive = false
+        //The download string is handled inside the 'UserLoggedInTask'
+        downloadandParse(urlString: "", downloadTask: "User Followed")
     }
     
     //MARK: - Collection View Data Source

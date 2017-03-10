@@ -74,14 +74,17 @@ class LoginViewController: UIViewController, UIWebViewDelegate {
         }
     }
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let FVC = segue.destination as! FollowingViewController
-        FVC.userLoggedIn = true
+        if segue.identifier == "toFollowing" {
+            let Tab = segue.destination as! UITabBarController
+            let FVC = Tab.viewControllers?.first as! FollowingViewController
+            FVC.userLoggedIn = true
+        }
     }
-    */
+    
 
 }
