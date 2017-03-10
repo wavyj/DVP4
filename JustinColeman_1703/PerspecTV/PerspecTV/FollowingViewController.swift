@@ -28,9 +28,6 @@ class FollowingViewController: UIViewController , UICollectionViewDelegate, UICo
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        if let nav = self.navigationController{
-            nav.viewControllers.remove(at: 0)
-        }
         currentUser = appDelegate.currentUser
         if userLoggedIn == true{
             downloadandParse(urlString: "https://api.twitch.tv/kraken/users/\(currentUser.id)/follows/channels?limit=100&client_id=\(appDelegate.consumerID)&\(appDelegate.apiVersion)", downloadTask: "User Followed")
