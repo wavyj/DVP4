@@ -24,7 +24,7 @@
                         <subviews>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="aYm-hV-Nfe">
                                 <rect key="frame" x="169" y="315" width="37" height="37"/>
-                                <color key="color" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="color" white="0.14596896700000001" alpha="1" colorSpace="calibratedWhite"/>
                             </activityIndicatorView>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ME5-ow-Shf">
                                 <rect key="frame" x="121.5" y="307" width="131.5" height="53"/>
@@ -38,7 +38,7 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="0.1459689670138889" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="ME5-ow-Shf" firstAttribute="width" secondItem="2pg-me-iJU" secondAttribute="width" multiplier="0.35" id="JvA-xq-6NX"/>
                             <constraint firstItem="aYm-hV-Nfe" firstAttribute="centerY" secondItem="2pg-me-iJU" secondAttribute="centerY" id="Lcf-x5-c8q"/>
