@@ -1,0 +1,87 @@
+//
+//  ViewController.swift
+//  PerspecTV
+//
+//  Created by Justin Coleman on 3/8/17.
+//  Copyright © 2017 Justin Coleman. All rights reserved.
+//
+
+import UIKit
+import SafariServices
+import OAuthSwift
+
+class LoginViewController: UIViewController, UIWebViewDelegate {
+
+    //MARK: - Outlets
+    @IBOutlet weak var userNameLabel: UILabel!
+    @IBOutlet weak var activitySpinner: UIActivityIndicatorView!
+    @IBOutlet weak var profilePic: UIImageView!
+    @IBOutlet weak var welcomeView: UIView!
+    @IBOutlet weak var loginBtn: UIButton!
+    
+    //MARK: - Variables
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    var svc: SFSafariViewController!
+    var oauth: OAuth2Swift!
+    var currentUser: User!
+    var userLoggedIn: Bool!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        // Do any additional setup after loading the view.
+        oauth = OAuth2Swift(consumerKey: appDelegate.consumerID, consumerSecret: appDelegate.secret, authorizeUrl: "https://api.twitch.tv/kraken/oauth2/authorize", responseType: "token")
+        
+        loginBtn.layer.cornerRadius = 6
+        welcomeView.layer.cornerRadius = 6
+        
+        //load()
+    }
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    @IBAction func twitchAuth(){
+        oauth.authorizeURLHandler = SafariURLHandler(viewController: self, oauthSwift: oauth)
+        let _ = oauth.authorize(withCallbackURL: appDelegate.redirectUrl, scope: "user_read+chat_login+user_subscriptions", state: generateState(withLength: 0), success: { (Credential, response, params) in
+            self.currentUser = User(authToken: Credential.oauthToken)
+            self.getUser()
+        }, failure: nil)
+    }
+    
+    //MARK: - Methods
+    func getUser(){
+        downloadandParse(urlString: "https://api.twitch.tv/kraken/user?oauth_token=\(currentUser.authToken)&client_id=\(appDelegate.consumerID)&\(appDelegate.apiVersion)")
+    }
+    
+    func save(){
+        UserDefaults.standard.set(true, forKey: "LoggedIn")
+        UserDefaults.standard.set(URL(string: "https://api.twitch.tv/kraken/user?oauth_token=\(currentUser.authToken)&client_id=\(appDelegate.consumerID)&\(appDelegate.apiVersion)") , forKey: "UserLink")
+        UserDefaults.standard.set(Int(currentUser.authToken), forKey: "AuthKey")
+    }
+    
+    func load(){
+        userLoggedIn = UserDefaults.standard.bool(forKey: "LoggedIn")
+        if userLoggedIn == true {
+            loginBtn.isHidden = true
+            welcomeView.isHidden = true
+        }
+        currentUser = User(authToken: UserDefaults.standard.integer(forKey: "AuthKey").description)
+        if let url = UserDefaults.standard.url(forKey: "UserLink"){
+            downloadandParse(urlString: url.absoluteString)
+        }
+    }
+
+    /*
+    // MARK: - Navigation
+
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
+    }
+    */
+
+}
