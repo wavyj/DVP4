@@ -39,12 +39,19 @@ class LoginViewController: UIViewController, UIWebViewDelegate {
         // Dispose of any resources that can be recreated.
     }
     
+    //MARK: - Storyboard Actions
     @IBAction func twitchAuth(){
         oauth.authorizeURLHandler = SafariURLHandler(viewController: self, oauthSwift: oauth)
         let _ = oauth.authorize(withCallbackURL: appDelegate.redirectUrl, scope: "user_read+chat_login+user_subscriptions", state: generateState(withLength: 100), success: { (Credential, response, params) in
             self.currentUser = User(authToken: Credential.oauthToken)
             self.getUser()
         }, failure: nil)
+    }
+    
+    @IBAction func userLoggedOut(for segue: UIStoryboardSegue){
+        //Calls Authentication to login user
+        loginBtn.isHidden = false
+        twitchAuth()
     }
     
     //MARK: - Methods

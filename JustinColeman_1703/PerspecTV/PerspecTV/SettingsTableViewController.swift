@@ -38,7 +38,6 @@ class SettingsTableViewController: UITableViewController {
     }
 
     // MARK: - Table view data source
-
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
@@ -46,11 +45,11 @@ class SettingsTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
 
         // Configure the cell...
 
@@ -58,7 +57,7 @@ class SettingsTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "header") as! ProfileHeaderFooterView
+            let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "header") as! ProfileHeaderFooterView
         header.username.text = "\(currentUser!.username)"
         if currentUser!.bio == ""{
             header.bio.text = "This user has not provided a bio."
@@ -74,7 +73,25 @@ class SettingsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 235
     }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.row == 0{
+            removeUser()
+        }
+    }
 
+    //Methods
+    func removeUser(){
+        appDelegate.currentUser = nil
+        
+        //Removes User data from UserDefaults
+        UserDefaults.standard.set(false, forKey: "LoggedIn")
+        UserDefaults.standard.removeObject(forKey: "AuthToken")
+        UserDefaults.standard.removeObject(forKey: "UserLink")
+        
+        //unwind back to login screen
+        performSegue(withIdentifier: "loggedOut", sender: self)
+    }
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {

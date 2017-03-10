@@ -82,7 +82,7 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell" id="gLZ-J7-Dqt" customClass="ChannelCollectionViewCell" customModule="PerspecTV" customModuleProvider="target">
-                                        <rect key="frame" x="13" y="10" width="350" height="170"/>
+                                        <rect key="frame" x="12.5" y="10" width="350" height="170"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="350" height="170"/>
@@ -179,17 +179,34 @@
         <scene sceneID="EfD-Kg-G6B">
             <objects>
                 <tableViewController id="pp1-tl-49F" customClass="SettingsTableViewController" customModule="PerspecTV" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="Bhc-9E-Chu">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" id="Bhc-9E-Chu">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="gSQ-um-7VD">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="60" id="gSQ-um-7VD">
+                                <rect key="frame" x="0.0" y="28" width="375" height="60"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gSQ-um-7VD" id="duH-mf-tuI">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="59"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Logout" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1U4-wz-L8o">
+                                            <rect key="frame" x="58" y="19" width="309" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="first" translatesAutoresizingMaskIntoConstraints="NO" id="uUC-iO-LbE">
+                                            <rect key="frame" x="10" y="1" width="30" height="57.5"/>
+                                        </imageView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="uUC-iO-LbE" firstAttribute="leading" secondItem="duH-mf-tuI" secondAttribute="leading" constant="10" id="eGj-xF-7gG"/>
+                                        <constraint firstAttribute="bottom" secondItem="uUC-iO-LbE" secondAttribute="bottom" constant="1" id="gYz-zl-S3k"/>
+                                        <constraint firstItem="uUC-iO-LbE" firstAttribute="top" secondItem="duH-mf-tuI" secondAttribute="top" constant="1" id="mLa-DR-C6i"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>
@@ -200,10 +217,14 @@
                         </connections>
                     </tableView>
                     <tabBarItem key="tabBarItem" tag="2" title="Settings" image="SettingsIcon" id="LNA-2y-NlP"/>
+                    <connections>
+                        <segue destination="XWM-4V-1Js" kind="unwind" identifier="loggedOut" unwindAction="userLoggedOutFor:" id="1Pr-Vp-zQX"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EIh-kL-jdL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="XWM-4V-1Js" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="3484" y="-146"/>
+            <point key="canvasLocation" x="3484" y="-146.17691154422789"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="AtP-BR-x2O">
@@ -228,5 +249,6 @@
     <resources>
         <image name="HeartIcon" width="24" height="24"/>
         <image name="SettingsIcon" width="24" height="24"/>
+        <image name="first" width="30" height="30"/>
     </resources>
 </document>
