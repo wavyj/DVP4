@@ -27,7 +27,7 @@ class LoginViewController: UIViewController, UIWebViewDelegate {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        oauth = OAuth2Swift(consumerKey: appDelegate.consumerID, consumerSecret: appDelegate.secret, authorizeUrl: "https://api.twitch.tv/kraken/oauth2/authorize", responseType: "token")
+        oauth = OAuth2Swift(consumerKey: appDelegate.consumerID, consumerSecret: appDelegate.secret, authorizeUrl: "https://api.twitch.tv/kraken/oauth2/authorize?force_verify=true", responseType: "token")
         
         loginBtn.layer.cornerRadius = 6
         
