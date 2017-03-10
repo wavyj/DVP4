@@ -195,12 +195,11 @@
                             <constraint firstItem="Mao-bB-Xvl" firstAttribute="leading" secondItem="gQw-EM-KFV" secondAttribute="leading" id="tlj-7b-awH"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Following" image="HeartIcon" id="RUD-kY-gAI"/>
+                    <tabBarItem key="tabBarItem" tag="1" title="Following" image="HeartIcon" id="RUD-kY-gAI"/>
                     <navigationItem key="navigationItem" title="Following" id="r2N-mp-I4K"/>
                     <connections>
                         <outlet property="activitySpinner" destination="Kou-CZ-Hvt" id="ZJa-ob-cFa"/>
                         <outlet property="collectionView" destination="Mao-bB-Xvl" id="9Dt-18-Opl"/>
-                        <segue destination="CmG-b6-nUR" kind="show" identifier="toSettings" id="eFF-8S-d8z"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="55L-93-617" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -220,7 +219,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" tag="1" title="Settings" id="gQ4-1a-hn0"/>
+                    <tabBarItem key="tabBarItem" tag="2" title="Settings" image="SettingsIcon" id="gQ4-1a-hn0"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8ny-rK-4CY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -239,6 +238,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="9Qh-Wg-vnB" kind="relationship" relationship="viewControllers" id="pVJ-uL-XEv"/>
+                        <segue destination="CmG-b6-nUR" kind="relationship" relationship="viewControllers" id="oyX-h3-B8p"/>
                     </connections>
                 </tabBarController>
             </objects>
@@ -247,5 +247,6 @@
     </scenes>
     <resources>
         <image name="HeartIcon" width="24" height="24"/>
+        <image name="SettingsIcon" width="24" height="24"/>
     </resources>
 </document>
