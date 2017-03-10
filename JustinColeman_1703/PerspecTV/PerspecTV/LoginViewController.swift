@@ -13,10 +13,7 @@ import OAuthSwift
 class LoginViewController: UIViewController, UIWebViewDelegate {
 
     //MARK: - Outlets
-    @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var activitySpinner: UIActivityIndicatorView!
-    @IBOutlet weak var profilePic: UIImageView!
-    @IBOutlet weak var welcomeView: UIView!
     @IBOutlet weak var loginBtn: UIButton!
     
     //MARK: - Variables
@@ -33,7 +30,6 @@ class LoginViewController: UIViewController, UIWebViewDelegate {
         oauth = OAuth2Swift(consumerKey: appDelegate.consumerID, consumerSecret: appDelegate.secret, authorizeUrl: "https://api.twitch.tv/kraken/oauth2/authorize", responseType: "token")
         
         loginBtn.layer.cornerRadius = 6
-        welcomeView.layer.cornerRadius = 6
         
         load()
     }
@@ -64,9 +60,8 @@ class LoginViewController: UIViewController, UIWebViewDelegate {
     
     func load(){
         userLoggedIn = UserDefaults.standard.bool(forKey: "LoggedIn")
-        if userLoggedIn == true {
-            loginBtn.isHidden = true
-            welcomeView.isHidden = true
+        if userLoggedIn == false {
+            loginBtn.isHidden = false
         }
         currentUser = User(authToken: UserDefaults.standard.integer(forKey: "AuthKey").description)
         if let url = UserDefaults.standard.url(forKey: "UserLink"){

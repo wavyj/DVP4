@@ -64,10 +64,6 @@ extension LoginViewController{
                 self.save()
                 DispatchQueue.main.async {
                     self.activitySpinner.stopAnimating()
-                    self.welcomeView.isHidden = false
-                    self.userNameLabel.text = "Welcome \(self.currentUser.username)"
-                    self.profilePic.image = self.currentUser.image
-                    
                     self.performSegue(withIdentifier: "toFollowing", sender: self)
                 }
             })
