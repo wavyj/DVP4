@@ -68,6 +68,11 @@
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="bio" destination="hoW-wt-oGZ" id="fRd-pi-x9d"/>
+                <outlet property="profilePic" destination="OqW-tk-jH7" id="paV-So-hAJ"/>
+                <outlet property="username" destination="4Jc-0Z-yPt" id="QHr-Q7-F3j"/>
+            </connections>
             <point key="canvasLocation" x="26" y="117"/>
         </view>
     </objects>

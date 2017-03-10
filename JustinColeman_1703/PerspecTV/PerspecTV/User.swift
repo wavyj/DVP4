@@ -23,7 +23,9 @@ class User{
         self.id = id
         self.bio = bio
         self.logoUrl = logoUrl
-        
+    }
+    
+    func downloadImage(){
         if let url = URL(string: logoUrl){
             do{
                 let data = try Data(contentsOf: url)

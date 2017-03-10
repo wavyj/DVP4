@@ -58,17 +58,16 @@ class SettingsTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        var header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "header")as! ProfileHeaderFooterView
-        header.username.text = "\(currentUser?.username)"
+        let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "header") as! ProfileHeaderFooterView
+        header.username.text = "\(currentUser!.username)"
         if currentUser!.bio == ""{
             header.bio.text = "This user has not provided a bio."
         }else{
-            header.bio.text = "\(currentUser?.bio)"
+            header.bio.text = "\(currentUser!.bio)"
         }
         if currentUser!.image != nil{
             header.profilePic.image = currentUser!.image
         }
-        
         return header
     }
     

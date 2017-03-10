@@ -52,6 +52,7 @@ extension LoginViewController{
                                 //Model object
                                 self.currentUser.id = id
                                 self.currentUser.username = username
+                                self.currentUser.downloadImage()
                                 self.appDelegate.currentUser = self.currentUser
                                 
                             }else{ print(json) }
