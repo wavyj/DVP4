@@ -5,6 +5,6 @@ username: apptestlogin
 password: testpass
 
 - Following
+- User Defaults (Fixed)
 
 Features Not Working:
-- User Defaults (saving the logged in user)
