@@ -87,16 +87,19 @@ extension FollowingViewController{
                                 else{ continue }
                             
                             for object in objects{
-                                guard let preview = object["preview"] as? [String: Any],
-                                    let previewUrl = preview["large"] as? String,
-                                    let channel = object["channel"] as? [String: Any],
+                                guard let channel = object["channel"] as? [String: Any],
                                     let id = channel["_id"] as? Int,
                                     let username = channel["display_name"] as? String,
                                     let game = channel["game"] as? String,
                                     let viewers = object["viewers"] as? Int
                                     else{ print(object); continue }
-                                
-                                self.channels.append(Channel(id: id.description, username: username, game: game, previewUrl: previewUrl, viewers: viewers))
+                                if let preview = object["preview"] as? [String: Any],
+                                    let previewUrl = preview["large"] as? String{
+                                    self.channels.append(Channel(id: id.description, username: username, game: game, previewUrl: previewUrl, viewers: viewers))
+                                }else{
+                                    self.channels.append(Channel(id: id.description, username: username, game: game,viewers: viewers))
+                                }
+                    
                             }
                         }
                     }
@@ -159,11 +162,9 @@ extension FollowingViewController{
                 }
                 //Clears after use
                 self.channelsToDownload.removeAll()
-                if self.isLive == true{
+                
+                //Downloads each Channel's info for each channel ID
                 self.downloadandParse(urlString: "https://api.twitch.tv/kraken/streams/?channel=\(string)&oauth_token=\(self.currentUser.authToken)&stream_type=live&client_id=\(self.appDelegate.consumerID)&\(self.appDelegate.apiVersion)", downloadTask: "Channel")
-                }else{
-                    self.downloadandParse(urlString: "https://api.twitch.tv/kraken/streams/?channel=\(string)&stream_type=all&oauth_token=\(self.currentUser.authToken)&stream_type=live&client_id=\(self.appDelegate.consumerID)&\(self.appDelegate.apiVersion)", downloadTask: "Channel")
-                }
             })
             
             if downloadTask == "User Followed"{

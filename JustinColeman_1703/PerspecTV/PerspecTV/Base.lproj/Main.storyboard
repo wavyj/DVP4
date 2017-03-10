@@ -103,7 +103,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Mao-bB-Xvl">
-                                <rect key="frame" x="0.0" y="64" width="375" height="484"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="15" minimumInteritemSpacing="10" id="Fac-bT-Dhx">
                                     <size key="itemSize" width="350" height="170"/>
@@ -181,26 +181,6 @@
                                     <outlet property="delegate" destination="9Qh-Wg-vnB" id="Cfs-ln-4xJ"/>
                                 </connections>
                             </collectionView>
-                            <button hidden="YES" opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BZF-5A-iUL">
-                                <rect key="frame" x="0.0" y="568" width="375" height="30"/>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
-                                <state key="normal" title="View Live">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="viewAll" destination="9Qh-Wg-vnB" eventType="touchUpInside" id="6zn-rJ-ys5"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fRn-L5-Pj4">
-                                <rect key="frame" x="0.0" y="568" width="375" height="30"/>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
-                                <state key="normal" title="View All">
-                                    <color key="titleColor" white="0.14596896700000001" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="viewAll:" destination="9Qh-Wg-vnB" eventType="touchUpInside" id="l8t-ID-zqa"/>
-                                </connections>
-                            </button>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="Kou-CZ-Hvt">
                                 <rect key="frame" x="169" y="315" width="37" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -210,15 +190,8 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Mao-bB-Xvl" firstAttribute="top" secondItem="B7c-LK-DZi" secondAttribute="bottom" id="0uv-E8-KGL"/>
-                            <constraint firstAttribute="trailing" secondItem="BZF-5A-iUL" secondAttribute="trailing" id="97Z-8c-77j"/>
-                            <constraint firstItem="BZF-5A-iUL" firstAttribute="centerY" secondItem="fRn-L5-Pj4" secondAttribute="centerY" id="Fif-db-hEs"/>
-                            <constraint firstItem="BZF-5A-iUL" firstAttribute="centerX" secondItem="fRn-L5-Pj4" secondAttribute="centerX" id="GZW-px-MwH"/>
-                            <constraint firstItem="EfI-Uo-0Sx" firstAttribute="top" secondItem="fRn-L5-Pj4" secondAttribute="bottom" constant="20" id="OVf-aa-15G"/>
-                            <constraint firstItem="BZF-5A-iUL" firstAttribute="leading" secondItem="gQw-EM-KFV" secondAttribute="leading" id="W13-Y4-okp"/>
-                            <constraint firstAttribute="trailing" secondItem="fRn-L5-Pj4" secondAttribute="trailing" id="Y2D-td-ARC"/>
-                            <constraint firstItem="fRn-L5-Pj4" firstAttribute="leading" secondItem="gQw-EM-KFV" secondAttribute="leading" id="cjG-eC-dFQ"/>
-                            <constraint firstItem="fRn-L5-Pj4" firstAttribute="top" secondItem="Mao-bB-Xvl" secondAttribute="bottom" constant="20" id="gCo-0i-V74"/>
                             <constraint firstAttribute="trailing" secondItem="Mao-bB-Xvl" secondAttribute="trailing" id="hwT-Bj-c7B"/>
+                            <constraint firstItem="EfI-Uo-0Sx" firstAttribute="top" secondItem="Mao-bB-Xvl" secondAttribute="bottom" id="mP7-Bs-xZK"/>
                             <constraint firstItem="Mao-bB-Xvl" firstAttribute="leading" secondItem="gQw-EM-KFV" secondAttribute="leading" id="tlj-7b-awH"/>
                         </constraints>
                     </view>
@@ -227,8 +200,6 @@
                     <connections>
                         <outlet property="activitySpinner" destination="Kou-CZ-Hvt" id="ZJa-ob-cFa"/>
                         <outlet property="collectionView" destination="Mao-bB-Xvl" id="9Dt-18-Opl"/>
-                        <outlet property="viewAllBtn" destination="fRn-L5-Pj4" id="tRI-pf-IQl"/>
-                        <outlet property="viewLiveBtn" destination="BZF-5A-iUL" id="Gqa-lU-mV9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="55L-93-617" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -19,7 +19,7 @@ class Channel{
     let title: String
     var previewImage: UIImage!
     
-    init(id: String, username: String, game: String, mature: Bool = false, previewUrl: String, viewers: Int, title: String = ""){
+    init(id: String, username: String, game: String, mature: Bool = false, previewUrl: String = "", viewers: Int, title: String = ""){
         self.id = id
         self.username = username
         self.game = game
