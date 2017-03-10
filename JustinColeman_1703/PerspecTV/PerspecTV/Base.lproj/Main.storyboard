@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Login-->
+        <!--Login View Controller-->
         <scene sceneID="fG4-wt-5VD">
             <objects>
                 <viewController storyboardIdentifier="Login" id="DCl-hJ-CL2" customClass="LoginViewController" customModule="PerspecTV" customModuleProvider="target" sceneMemberID="viewController">
@@ -76,7 +76,7 @@
                             <constraint firstItem="bbq-Sf-Cht" firstAttribute="centerY" secondItem="2pg-me-iJU" secondAttribute="centerY" id="zVF-g8-fCW"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Login" id="EzY-sN-URV"/>
+                    <navigationItem key="navigationItem" id="EzY-sN-URV"/>
                     <connections>
                         <outlet property="activitySpinner" destination="aYm-hV-Nfe" id="icq-Nc-S7Z"/>
                         <outlet property="loginBtn" destination="ME5-ow-Shf" id="2NI-S4-nDt"/>
@@ -195,7 +195,7 @@
                             <constraint firstItem="Mao-bB-Xvl" firstAttribute="leading" secondItem="gQw-EM-KFV" secondAttribute="leading" id="tlj-7b-awH"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" tag="1" title="Following" image="second" id="RUD-kY-gAI"/>
+                    <tabBarItem key="tabBarItem" tag="1" title="Following" image="HeartIcon" id="RUD-kY-gAI"/>
                     <navigationItem key="navigationItem" title="Following" id="r2N-mp-I4K"/>
                     <connections>
                         <outlet property="activitySpinner" destination="Kou-CZ-Hvt" id="ZJa-ob-cFa"/>
@@ -204,11 +204,30 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="55L-93-617" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2860" y="-146.17691154422789"/>
+            <point key="canvasLocation" x="2764" y="-146"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="ddH-Kh-LUj">
+            <objects>
+                <viewController id="CmG-b6-nUR" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="m42-aZ-uMo"/>
+                        <viewControllerLayoutGuide type="bottom" id="NFa-MI-6j7"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="yz7-sc-eH8">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8ny-rK-4CY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3502" y="-146"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="h0d-oK-o0V">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tUO-F5-0bt" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Hrp-bd-P2A" sceneMemberID="viewController">
                     <toolbarItems/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
@@ -222,17 +241,21 @@
                         </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="26o-go-7gS">
+                        <rect key="frame" x="0.0" y="623" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
                     <connections>
                         <segue destination="DCl-hJ-CL2" kind="relationship" relationship="rootViewController" id="dWs-Kg-emc"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="tUO-F5-0bt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="236" y="-146.17691154422789"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="AtP-BR-x2O">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yi2-rQ-NOL" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="N5z-cZ-cH1" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="Im8-DV-00B">
@@ -244,12 +267,11 @@
                         <segue destination="9Qh-Wg-vnB" kind="relationship" relationship="viewControllers" id="pVJ-uL-XEv"/>
                     </connections>
                 </tabBarController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="yi2-rQ-NOL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1920.8" y="-146.17691154422789"/>
         </scene>
     </scenes>
     <resources>
-        <image name="second" width="30" height="30"/>
+        <image name="HeartIcon" width="24" height="24"/>
     </resources>
 </document>
