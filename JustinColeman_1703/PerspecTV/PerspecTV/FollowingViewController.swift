@@ -21,6 +21,7 @@ class FollowingViewController: UIViewController , UICollectionViewDelegate, UICo
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     var currentUser: User!
     var channels = [Channel]()
+    var userLoggedIn: Bool!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,12 +29,21 @@ class FollowingViewController: UIViewController , UICollectionViewDelegate, UICo
         // Do any additional setup after loading the view.
         self.navigationController?.viewControllers.remove(at: 0)
         currentUser = appDelegate.currentUser
-        downloadandParse(urlString: "https://api.twitch.tv/kraken/streams/followed?oauth_token=\(currentUser.authToken)&stream_type=live&client_id=\(appDelegate.consumerID)&\(appDelegate.apiVersion)")
+        if userLoggedIn == true{
+            downloadandParse(urlString: "https://api.twitch.tv/kraken/users/\(currentUser.id)/follows/channels?client_id=\(appDelegate.consumerID)&\(appDelegate.apiVersion)")
+        }else{
+            downloadandParse(urlString: "https://api.twitch.tv/kraken/streams/followed?oauth_token=\(currentUser.authToken)&stream_type=live&client_id=\(appDelegate.consumerID)&\(appDelegate.apiVersion)")
+        }
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    @IBAction func viewAll(){
+        //Get all channels the user follows
+        downloadandParse(urlString: "https://api.twitch.tv/kraken/streams/followed?oauth_token=\(currentUser.authToken)&stream_type=all&client_id=\(appDelegate.consumerID)&\(appDelegate.apiVersion)")
     }
     
     //MARK: - Collection View Data Source

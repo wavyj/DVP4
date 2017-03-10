@@ -187,6 +187,9 @@
                                 <state key="normal" title="View All">
                                     <color key="titleColor" white="0.14596896700000001" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="viewAll" destination="9Qh-Wg-vnB" eventType="touchUpInside" id="cpQ-ss-fdf"/>
+                                </connections>
                             </button>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="Kou-CZ-Hvt">
                                 <rect key="frame" x="169" y="315" width="37" height="37"/>
@@ -219,7 +222,6 @@
         <!--Navigation Controller-->
         <scene sceneID="h0d-oK-o0V">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="tUO-F5-0bt" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Hrp-bd-P2A" sceneMemberID="viewController">
                     <toolbarItems/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
@@ -237,6 +239,7 @@
                         <segue destination="DCl-hJ-CL2" kind="relationship" relationship="rootViewController" id="dWs-Kg-emc"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tUO-F5-0bt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="236" y="-146.17691154422789"/>
         </scene>

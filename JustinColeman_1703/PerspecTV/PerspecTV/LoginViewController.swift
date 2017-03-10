@@ -35,7 +35,7 @@ class LoginViewController: UIViewController, UIWebViewDelegate {
         loginBtn.layer.cornerRadius = 6
         welcomeView.layer.cornerRadius = 6
         
-        //load()
+        load()
     }
 
     override func didReceiveMemoryWarning() {
@@ -45,7 +45,7 @@ class LoginViewController: UIViewController, UIWebViewDelegate {
     
     @IBAction func twitchAuth(){
         oauth.authorizeURLHandler = SafariURLHandler(viewController: self, oauthSwift: oauth)
-        let _ = oauth.authorize(withCallbackURL: appDelegate.redirectUrl, scope: "user_read+chat_login+user_subscriptions", state: generateState(withLength: 0), success: { (Credential, response, params) in
+        let _ = oauth.authorize(withCallbackURL: appDelegate.redirectUrl, scope: "user_read+chat_login+user_subscriptions", state: generateState(withLength: 100), success: { (Credential, response, params) in
             self.currentUser = User(authToken: Credential.oauthToken)
             self.getUser()
         }, failure: nil)
@@ -58,8 +58,8 @@ class LoginViewController: UIViewController, UIWebViewDelegate {
     
     func save(){
         UserDefaults.standard.set(true, forKey: "LoggedIn")
-        UserDefaults.standard.set(URL(string: "https://api.twitch.tv/kraken/user?oauth_token=\(currentUser.authToken)&client_id=\(appDelegate.consumerID)&\(appDelegate.apiVersion)") , forKey: "UserLink")
-        UserDefaults.standard.set(Int(currentUser.authToken), forKey: "AuthKey")
+        UserDefaults.standard.set(currentUser.authToken, forKey: "AuthToken")
+        UserDefaults.standard.set(URL(string: "https://api.twitch.tv/kraken/users/\(currentUser.id)?oauth_token=\(currentUser.authToken)&client_id=\(appDelegate.consumerID)&\(appDelegate.apiVersion)") , forKey: "UserLink")
     }
     
     func load(){
@@ -79,8 +79,8 @@ class LoginViewController: UIViewController, UIWebViewDelegate {
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        let FVC = segue.destination as! FollowingViewController
+        FVC.userLoggedIn = true
     }
     */
 

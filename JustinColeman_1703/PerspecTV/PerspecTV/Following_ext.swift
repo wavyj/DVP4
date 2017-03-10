@@ -25,7 +25,7 @@ extension FollowingViewController{
                 
                 //Check response, data, and status code
                 guard let response = response as? HTTPURLResponse,
-                    response.statusCode != 400,
+                    response.statusCode == 200,
                     let data = data
                     else{ print(error?.localizedDescription ?? "Unknown Error"); return }
                 
@@ -46,19 +46,18 @@ extension FollowingViewController{
                                     let username = channel["display_name"] as? String,
                                     let game = channel["game"] as? String,
                                     let viewers = object["viewers"] as? Int
-                                    else{ print("error"); continue }
+                                    else{ print(object); continue }
                                 
                                 self.channels.append(Channel(id: id.description, username: username, game: game, previewUrl: previewUrl, viewers: viewers))
-                    
                             }
                         }
-                        
                     }
                 }
                 catch{
                     print(error.localizedDescription)
                 }
                 DispatchQueue.main.async {
+
                     self.activitySpinner.stopAnimating()
                     self.collectionView.reloadData()
                 }

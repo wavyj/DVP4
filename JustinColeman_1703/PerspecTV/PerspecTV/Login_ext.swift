@@ -11,8 +11,10 @@ import Foundation
 extension LoginViewController{
     
     func downloadandParse(urlString: String){
+       
         activitySpinner.startAnimating()
         loginBtn.isHidden = true
+        
         let config = URLSessionConfiguration.default
         let session = URLSession(configuration: config)
         
@@ -25,7 +27,7 @@ extension LoginViewController{
                 
                 //Check response, data, and status code
                 guard let response = response as? HTTPURLResponse,
-                    response.statusCode != 400,
+                    response.statusCode == 200,
                     let data = data
                     else{ print(error?.localizedDescription ?? "Unknown Error"); return }
                 
