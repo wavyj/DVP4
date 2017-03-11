@@ -27,7 +27,7 @@
                                 <color key="color" white="0.14596896700000001" alpha="1" colorSpace="calibratedWhite"/>
                             </activityIndicatorView>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ME5-ow-Shf">
-                                <rect key="frame" x="121.5" y="307" width="131.5" height="53"/>
+                                <rect key="frame" x="122" y="307" width="131" height="53"/>
                                 <color key="backgroundColor" red="0.39215686274509803" green="0.25490196078431371" blue="0.64313725490196072" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <state key="normal" title="Login">
@@ -78,11 +78,11 @@
                                     <size key="itemSize" width="350" height="170"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="10" maxX="0.0" maxY="0.0"/>
+                                    <inset key="sectionInset" minX="10" minY="10" maxX="10" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell" id="gLZ-J7-Dqt" customClass="ChannelCollectionViewCell" customModule="PerspecTV" customModuleProvider="target">
-                                        <rect key="frame" x="12.5" y="10" width="350" height="170"/>
+                                        <rect key="frame" x="13" y="10" width="350" height="170"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="350" height="170"/>
@@ -150,15 +150,16 @@
                                     <outlet property="delegate" destination="9Qh-Wg-vnB" id="Cfs-ln-4xJ"/>
                                 </connections>
                             </collectionView>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="Kou-CZ-Hvt">
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="Kou-CZ-Hvt">
                                 <rect key="frame" x="169" y="315" width="37" height="37"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="color" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Mao-bB-Xvl" firstAttribute="top" secondItem="B7c-LK-DZi" secondAttribute="bottom" id="0uv-E8-KGL"/>
+                            <constraint firstItem="Kou-CZ-Hvt" firstAttribute="centerX" secondItem="gQw-EM-KFV" secondAttribute="centerX" id="18n-Ii-oPU"/>
+                            <constraint firstItem="Kou-CZ-Hvt" firstAttribute="centerY" secondItem="gQw-EM-KFV" secondAttribute="centerY" id="WfR-Ub-Atw"/>
                             <constraint firstAttribute="trailing" secondItem="Mao-bB-Xvl" secondAttribute="trailing" id="hwT-Bj-c7B"/>
                             <constraint firstItem="EfI-Uo-0Sx" firstAttribute="top" secondItem="Mao-bB-Xvl" secondAttribute="bottom" id="mP7-Bs-xZK"/>
                             <constraint firstItem="Mao-bB-Xvl" firstAttribute="leading" secondItem="gQw-EM-KFV" secondAttribute="leading" id="tlj-7b-awH"/>
@@ -193,7 +194,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="60"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gSQ-um-7VD" id="duH-mf-tuI">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="59.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="59"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>

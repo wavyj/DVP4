@@ -57,7 +57,7 @@ class FollowingViewController: UIViewController , UICollectionViewDelegate, UICo
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
-
+    
     /*
     // MARK: - Navigation
 

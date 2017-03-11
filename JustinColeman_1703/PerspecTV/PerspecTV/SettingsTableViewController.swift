@@ -32,7 +32,7 @@ class SettingsTableViewController: UITableViewController {
         
         currentUser = appDelegate.currentUser
         
-        self.tableView.contentInset = UIEdgeInsetsMake(20, 0, 0, 0);
+        self.tableView.contentInset = UIEdgeInsetsMake(20, 0, 0, 0)
     }
 
     override func didReceiveMemoryWarning() {
