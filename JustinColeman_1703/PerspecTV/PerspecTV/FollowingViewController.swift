@@ -52,6 +52,7 @@ class FollowingViewController: UIViewController , UICollectionViewDelegate, UICo
         cell.streamerName.text = current.username
         cell.viewerCount.text = current.viewers.description
         cell.previewImage.image = current.previewImage
+        cell.layer.cornerRadius = 6
         return cell
     }
     func numberOfSections(in collectionView: UICollectionView) -> Int {

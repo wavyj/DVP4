@@ -81,6 +81,10 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         removeUser()
     }
     
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return "Account"
+    }
+    
 
     //Methods
     @IBAction func removeUser(){
