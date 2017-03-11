@@ -78,7 +78,9 @@ class SettingsTableViewController: UITableViewController {
 
     //Methods
     @IBAction func removeUser(){
-        activitySpinner.startAnimating()
+        DispatchQueue.main.async {
+            self.activitySpinner.startAnimating()
+        }
         
         appDelegate.currentUser = nil
         
