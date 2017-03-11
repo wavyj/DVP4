@@ -86,6 +86,7 @@ class LoginViewController: UIViewController, UIWebViewDelegate {
             let Tab = segue.destination as! UITabBarViewController
             let FVC = Tab.viewControllers?.first as! FollowingViewController
             FVC.userLoggedIn = true
+            FVC.channelsToDownload.append(currentUser.id)
         }
     }
     

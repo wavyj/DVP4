@@ -14,7 +14,6 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var activitySpinner: UIActivityIndicatorView!
     @IBOutlet weak var profileView: UIView!
     @IBOutlet weak var profilePic: UIImageView!
-    @IBOutlet weak var bioText: UILabel!
     @IBOutlet weak var userName: UILabel!
     
     //MARK: - Variables
@@ -35,10 +34,12 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         //Profile View Setup
         profileView.layer.cornerRadius = 6
         profilePic.image = currentUser.image
-        profilePic.layer.cornerRadius = 6
+        profilePic.layer.cornerRadius = 10
+        profilePic.layer.borderWidth = 3.0
+        profilePic.layer.borderColor = UIColor.white.cgColor
         profilePic.clipsToBounds = true
         userName.text = currentUser.username
-        bioText.text = currentUser.bio
+        print(currentUser.id)
     }
 
     override func didReceiveMemoryWarning() {
