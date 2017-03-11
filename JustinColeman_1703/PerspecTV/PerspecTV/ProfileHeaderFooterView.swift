@@ -15,6 +15,7 @@ class ProfileHeaderFooterView: UITableViewHeaderFooterView {
     @IBOutlet weak var username: UILabel!
     @IBOutlet weak var bio: UITextView!
     @IBOutlet weak var mainView: UIView!
+    @IBOutlet weak var imageBG: UIView!
     
     
     /*

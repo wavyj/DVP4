@@ -69,9 +69,17 @@ class SettingsTableViewController: UITableViewController {
         }
         if currentUser!.image != nil{
             header.profilePic.image = currentUser!.image
+            
+            //Rounded Image
             header.profilePic.layer.cornerRadius = 10
+            header.profilePic.clipsToBounds = true
         }
+        header.imageBG.layer.cornerRadius = 10
+        header.imageBG.layer.borderWidth = 3.0
+        header.imageBG.layer.borderColor = UIColor.white.cgColor
         
+        header.mainView.layer.cornerRadius = 10
+        header.mainView.clipsToBounds = true
         return header
     }
     
