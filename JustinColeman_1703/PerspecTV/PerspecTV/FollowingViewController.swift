@@ -50,7 +50,7 @@ class FollowingViewController: UIViewController , UICollectionViewDelegate, UICo
         let current = channels[indexPath.row]
         cell.gameTitle.text = current.game
         cell.streamerName.text = current.username
-        cell.viewerCount.text = "\(current.viewers) Viewers"
+        cell.viewerCount.text = current.viewers.description
         cell.previewImage.image = current.previewImage
         return cell
     }
