@@ -33,7 +33,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         currentUser = appDelegate.currentUser
         
         //Profile View Setup
-        profileView.layer.cornerRadius = 10
+        profileView.layer.cornerRadius = 6
         profilePic.image = currentUser.image
         profilePic.layer.cornerRadius = 6
         profilePic.clipsToBounds = true
@@ -54,16 +54,21 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return 1
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
 
         // Configure the cell...
-
+        cell.textLabel?.text = "Logout"
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        removeUser()
+    }
+    
 
     //Methods
     @IBAction func removeUser(){
