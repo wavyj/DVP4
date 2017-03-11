@@ -14,6 +14,7 @@ extension LoginViewController{
        
         activitySpinner.startAnimating()
         loginBtn.isHidden = true
+        taglineTextView.isHidden = true
         
         let config = URLSessionConfiguration.default
         let session = URLSession(configuration: config)

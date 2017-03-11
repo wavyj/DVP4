@@ -15,6 +15,8 @@ class LoginViewController: UIViewController, UIWebViewDelegate {
     //MARK: - Outlets
     @IBOutlet weak var activitySpinner: UIActivityIndicatorView!
     @IBOutlet weak var loginBtn: UIButton!
+    @IBOutlet weak var welcomeView: UIView!
+    @IBOutlet weak var taglineTextView: UITextView!
     
     //MARK: - Variables
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -51,6 +53,7 @@ class LoginViewController: UIViewController, UIWebViewDelegate {
     @IBAction func userLoggedOut(for segue: UIStoryboardSegue){
         //Calls Authentication to login user
         loginBtn.isHidden = false
+        taglineTextView.isHidden = false
         twitchAuth()
     }
     
@@ -69,6 +72,8 @@ class LoginViewController: UIViewController, UIWebViewDelegate {
         userLoggedIn = UserDefaults.standard.bool(forKey: "LoggedIn")
         if userLoggedIn == false {
             loginBtn.isHidden = false
+            welcomeView.isHidden = false
+            taglineTextView.isHidden = false
         }else{
             currentUser = User(authToken: UserDefaults.standard.integer(forKey: "AuthKey").description)
             if let url = UserDefaults.standard.url(forKey: "UserLink"){
