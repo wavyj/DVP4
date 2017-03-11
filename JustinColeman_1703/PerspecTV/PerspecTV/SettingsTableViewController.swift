@@ -31,6 +31,8 @@ class SettingsTableViewController: UITableViewController {
         tableView.register(headerNib, forHeaderFooterViewReuseIdentifier: "header")
         
         currentUser = appDelegate.currentUser
+        
+        self.tableView.contentInset = UIEdgeInsetsMake(20, 0, 0, 0);
     }
 
     override func didReceiveMemoryWarning() {
@@ -66,8 +68,8 @@ class SettingsTableViewController: UITableViewController {
             header.bio.text = "\(currentUser!.bio)"
         }
         if currentUser!.image != nil{
-            header.profilePic.layer.cornerRadius = 10
             header.profilePic.image = currentUser!.image
+            header.profilePic.layer.cornerRadius = 6
         }
         return header
     }

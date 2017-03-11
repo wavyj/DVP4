@@ -19,8 +19,8 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="T4l-x9-VHz" userLabel="Content View">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="235"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="OqW-tk-jH7">
-                            <rect key="frame" x="10" y="20" width="131.5" height="117.5"/>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="OqW-tk-jH7">
+                            <rect key="frame" x="10" y="20" width="131.5" height="106"/>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Jc-0Z-yPt">
                             <rect key="frame" x="151.5" y="20" width="223.5" height="23"/>
@@ -36,7 +36,7 @@
                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                         </textView>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HGs-m7-SyS">
-                            <rect key="frame" x="50" y="147.5" width="48" height="30"/>
+                            <rect key="frame" x="50" y="136" width="51.5" height="30"/>
                             <state key="normal" title="Logout">
                                 <color key="titleColor" red="0.3921568627" green="0.25490196079999999" blue="0.64313725489999995" alpha="1" colorSpace="calibratedRGB"/>
                             </state>
@@ -59,7 +59,8 @@
                         <constraint firstItem="OqW-tk-jH7" firstAttribute="width" secondItem="T4l-x9-VHz" secondAttribute="width" multiplier="0.35" id="eZA-iW-Eyo"/>
                         <constraint firstAttribute="trailing" secondItem="4Jc-0Z-yPt" secondAttribute="trailing" id="ghH-sj-w7a"/>
                         <constraint firstItem="hoW-wt-oGZ" firstAttribute="height" secondItem="T4l-x9-VHz" secondAttribute="height" multiplier="0.4" id="lIl-nb-2PM"/>
-                        <constraint firstItem="OqW-tk-jH7" firstAttribute="height" secondItem="T4l-x9-VHz" secondAttribute="height" multiplier="0.5" id="wrt-qU-pgS"/>
+                        <constraint firstItem="OqW-tk-jH7" firstAttribute="height" secondItem="T4l-x9-VHz" secondAttribute="height" multiplier="0.45" id="wrt-qU-pgS"/>
+                        <constraint firstItem="HGs-m7-SyS" firstAttribute="centerX" secondItem="OqW-tk-jH7" secondAttribute="centerX" id="x5Z-p4-aLY"/>
                     </constraints>
                 </view>
             </subviews>
