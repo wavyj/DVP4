@@ -15,6 +15,9 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var profileView: UIView!
     @IBOutlet weak var profilePic: UIImageView!
     @IBOutlet weak var userName: UILabel!
+    @IBOutlet weak var bannerImage: UIImageView!
+    @IBOutlet weak var viewsLabel: UILabel!
+    @IBOutlet weak var followersLabel: UILabel!
     
     //MARK: - Variables
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -39,7 +42,11 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         profilePic.layer.borderColor = UIColor.white.cgColor
         profilePic.clipsToBounds = true
         userName.text = currentUser.username
-        print(currentUser.id)
+        bannerImage.image = currentUser.banner
+        bannerImage.layer.cornerRadius = 6
+        bannerImage.clipsToBounds = true
+        viewsLabel.text = currentUser.views.description
+        followersLabel.text = currentUser.followers.description
     }
 
     override func didReceiveMemoryWarning() {

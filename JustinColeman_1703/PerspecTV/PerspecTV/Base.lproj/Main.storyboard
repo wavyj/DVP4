@@ -222,6 +222,9 @@
                                 <rect key="frame" x="169" y="315" width="37" height="37"/>
                                 <color key="color" white="0.14933268229999999" alpha="1" colorSpace="calibratedWhite"/>
                             </activityIndicatorView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mqM-Iy-hgI" userLabel="BannerImage">
+                                <rect key="frame" x="9.5" y="25" width="355" height="167"/>
+                            </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BaC-zQ-r6I" userLabel="Profile View">
                                 <rect key="frame" x="10" y="25" width="355" height="167"/>
                                 <subviews>
@@ -253,7 +256,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" white="0.14933268229166666" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.14933268229166666" alpha="0.40269156678082191" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="w6G-8I-T3s" firstAttribute="top" secondItem="omL-4q-VSb" secondAttribute="bottom" constant="10" id="0ax-Kp-SfC"/>
                                     <constraint firstItem="0Vh-LL-Nh3" firstAttribute="centerY" secondItem="omL-4q-VSb" secondAttribute="centerY" id="1Ka-Zq-oxl"/>
@@ -277,13 +280,17 @@
                         <constraints>
                             <constraint firstItem="kUa-wO-AOy" firstAttribute="leading" secondItem="BDz-EM-LEO" secondAttribute="leading" id="42l-qg-Q96"/>
                             <constraint firstItem="BaC-zQ-r6I" firstAttribute="height" secondItem="BDz-EM-LEO" secondAttribute="height" multiplier="0.25" id="4rh-HQ-in3"/>
+                            <constraint firstItem="mqM-Iy-hgI" firstAttribute="width" secondItem="BaC-zQ-r6I" secondAttribute="width" id="DXh-zB-Kxl"/>
                             <constraint firstItem="2SM-gy-d9V" firstAttribute="top" secondItem="kUa-wO-AOy" secondAttribute="bottom" id="Fck-ym-NbV"/>
                             <constraint firstAttribute="trailing" secondItem="kUa-wO-AOy" secondAttribute="trailing" id="Ph8-3I-yA1"/>
                             <constraint firstItem="rL7-Cp-lTo" firstAttribute="centerX" secondItem="BDz-EM-LEO" secondAttribute="centerX" id="SdD-jb-4jS"/>
                             <constraint firstItem="BaC-zQ-r6I" firstAttribute="top" secondItem="GxI-pe-CDL" secondAttribute="bottom" constant="5" id="UQB-jL-Si1"/>
                             <constraint firstItem="kUa-wO-AOy" firstAttribute="top" secondItem="BaC-zQ-r6I" secondAttribute="bottom" constant="5" id="eJt-TR-Yjf"/>
                             <constraint firstAttribute="trailing" secondItem="BaC-zQ-r6I" secondAttribute="trailing" constant="10" id="fPy-Fc-zn0"/>
+                            <constraint firstItem="mqM-Iy-hgI" firstAttribute="centerX" secondItem="BaC-zQ-r6I" secondAttribute="centerX" id="fjb-8R-ozd"/>
                             <constraint firstItem="rL7-Cp-lTo" firstAttribute="centerY" secondItem="BDz-EM-LEO" secondAttribute="centerY" id="hvL-AM-hGZ"/>
+                            <constraint firstItem="mqM-Iy-hgI" firstAttribute="centerY" secondItem="BaC-zQ-r6I" secondAttribute="centerY" id="iZt-Me-MJt"/>
+                            <constraint firstItem="mqM-Iy-hgI" firstAttribute="height" secondItem="BaC-zQ-r6I" secondAttribute="height" id="p7n-vm-Tdz"/>
                             <constraint firstItem="BaC-zQ-r6I" firstAttribute="leading" secondItem="BDz-EM-LEO" secondAttribute="leading" constant="10" id="wic-x6-54Q"/>
                         </constraints>
                     </view>
@@ -292,9 +299,12 @@
                     </tabBarItem>
                     <connections>
                         <outlet property="activitySpinner" destination="rL7-Cp-lTo" id="Tbi-hQ-4Uf"/>
+                        <outlet property="bannerImage" destination="mqM-Iy-hgI" id="wfk-64-vrI"/>
+                        <outlet property="followersLabel" destination="2MW-J8-LIk" id="L36-zN-792"/>
                         <outlet property="profilePic" destination="omL-4q-VSb" id="btB-Nj-grs"/>
                         <outlet property="profileView" destination="BaC-zQ-r6I" id="Ruo-OV-VPC"/>
                         <outlet property="userName" destination="w6G-8I-T3s" id="MYF-e2-sMz"/>
+                        <outlet property="viewsLabel" destination="P00-t2-5OD" id="6Vt-SA-kc7"/>
                         <segue destination="wba-a4-xXl" kind="unwind" identifier="loggedOut" unwindAction="userLoggedOutFor:" id="Rhn-Tn-nuH"/>
                     </connections>
                 </viewController>
