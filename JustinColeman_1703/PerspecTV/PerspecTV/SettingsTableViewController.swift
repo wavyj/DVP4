@@ -69,13 +69,14 @@ class SettingsTableViewController: UITableViewController {
         }
         if currentUser!.image != nil{
             header.profilePic.image = currentUser!.image
-            header.profilePic.layer.cornerRadius = 6
+            header.profilePic.layer.cornerRadius = 10
         }
+        
         return header
     }
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 235
+        return 150
     }
 
     //Methods
