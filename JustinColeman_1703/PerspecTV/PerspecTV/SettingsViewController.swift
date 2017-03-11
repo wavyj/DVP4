@@ -92,19 +92,23 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
 
     //Methods
     @IBAction func removeUser(){
-        DispatchQueue.main.async {
-            self.activitySpinner.startAnimating()
+        let alert = UIAlertController(title: "Remove Account", message: "Are you sure you want to logout of this account?", preferredStyle: .alert)
+        let yesAction = UIAlertAction(title: "Yes", style: .destructive) { (YesAction) in
+            self.appDelegate.currentUser = nil
+            
+            //Removes User data from UserDefaults
+            UserDefaults.standard.set(false, forKey: "LoggedIn")
+            UserDefaults.standard.removeObject(forKey: "AuthToken")
+            UserDefaults.standard.removeObject(forKey: "UserLink")
+            
+            //unwind back to login screen
+            self.performSegue(withIdentifier: "loggedOut", sender: self)
         }
+        let noAction = UIAlertAction(title: "No", style: .cancel, handler: nil)
+        alert.addAction(yesAction)
+        alert.addAction(noAction)
         
-        appDelegate.currentUser = nil
-        
-        //Removes User data from UserDefaults
-        UserDefaults.standard.set(false, forKey: "LoggedIn")
-        UserDefaults.standard.removeObject(forKey: "AuthToken")
-        UserDefaults.standard.removeObject(forKey: "UserLink")
-        
-        //unwind back to login screen
-        performSegue(withIdentifier: "loggedOut", sender: self)
+        present(alert, animated: true, completion: nil)
     }
     
     /*

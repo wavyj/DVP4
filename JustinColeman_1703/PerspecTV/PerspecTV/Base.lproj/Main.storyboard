@@ -27,8 +27,8 @@
                                 <rect key="frame" x="16" y="150" width="343" height="167"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PerspecTV" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kp8-Y3-aIQ">
-                                        <rect key="frame" x="0.0" y="121" width="343" height="36"/>
-                                        <fontDescription key="fontDescription" type="system" weight="thin" pointSize="30"/>
+                                        <rect key="frame" x="0.0" y="115" width="343" height="42"/>
+                                        <fontDescription key="fontDescription" type="system" weight="thin" pointSize="35"/>
                                         <color key="textColor" red="0.57647058823529407" green="0.61960784313725492" blue="0.67450980392156867" alpha="0.70352632709999996" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
