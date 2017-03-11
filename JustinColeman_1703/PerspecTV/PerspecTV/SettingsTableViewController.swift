@@ -11,6 +11,7 @@ import UIKit
 class SettingsTableViewController: UITableViewController {
 
     //MARK: - Outlets
+    @IBOutlet weak var activitySpinner: UIActivityIndicatorView!
     
     //MARK: - Variables
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -45,7 +46,7 @@ class SettingsTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 1
+        return 0
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -65,6 +66,7 @@ class SettingsTableViewController: UITableViewController {
             header.bio.text = "\(currentUser!.bio)"
         }
         if currentUser!.image != nil{
+            header.profilePic.layer.cornerRadius = 10
             header.profilePic.image = currentUser!.image
         }
         return header
@@ -73,15 +75,11 @@ class SettingsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 235
     }
-    
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.row == 0{
-            removeUser()
-        }
-    }
 
     //Methods
-    func removeUser(){
+    @IBAction func removeUser(){
+        activitySpinner.startAnimating()
+        
         appDelegate.currentUser = nil
         
         //Removes User data from UserDefaults
