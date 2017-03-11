@@ -56,7 +56,7 @@ class LoginViewController: UIViewController, UIWebViewDelegate {
     
     //MARK: - Methods
     func getUser(){
-        downloadandParse(urlString: "https://api.twitch.tv/kraken/user?oauth_token=\(currentUser.authToken)&client_id=\(appDelegate.consumerID)&\(appDelegate.apiVersion)")
+        downloadandParse(urlString: "https://api.twitch.tv/kraken/user?oauth_token=\(currentUser.authToken)&client_id=\(appDelegate.consumerID)&\(appDelegate.apiVersion)", downloadTask: "User")
     }
     
     func save(){
@@ -72,7 +72,7 @@ class LoginViewController: UIViewController, UIWebViewDelegate {
         }else{
             currentUser = User(authToken: UserDefaults.standard.integer(forKey: "AuthKey").description)
             if let url = UserDefaults.standard.url(forKey: "UserLink"){
-                downloadandParse(urlString: url.absoluteString)
+                downloadandParse(urlString: url.absoluteString, downloadTask: "User")
             }
         }
     }
