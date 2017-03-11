@@ -45,8 +45,12 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         bannerImage.image = currentUser.banner
         bannerImage.layer.cornerRadius = 6
         bannerImage.clipsToBounds = true
+        profileView.layer.shadowOpacity = 0.5
+        profileView.layer.shadowOffset = CGSize(width: 0.0, height: 3.0)
+        profileView.layer.shadowColor = UIColor.black.cgColor
         viewsLabel.text = currentUser.views.description
         followersLabel.text = currentUser.followers.description
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -94,6 +98,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         //unwind back to login screen
         performSegue(withIdentifier: "loggedOut", sender: self)
     }
+    
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
