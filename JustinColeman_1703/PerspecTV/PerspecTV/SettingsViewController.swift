@@ -18,6 +18,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var bannerImage: UIImageView!
     @IBOutlet weak var viewsLabel: UILabel!
     @IBOutlet weak var followersLabel: UILabel!
+    @IBOutlet weak var tableView: UITableView!
     
     //MARK: - Variables
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -50,7 +51,6 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         profileView.layer.shadowColor = UIColor.black.cgColor
         viewsLabel.text = currentUser.views.description
         followersLabel.text = currentUser.followers.description
-        
     }
 
     override func didReceiveMemoryWarning() {
@@ -83,6 +83,10 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return "Account"
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        (view as! UITableViewHeaderFooterView).textLabel?.textColor = UIColor.lightGray
     }
     
 
