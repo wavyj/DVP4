@@ -8,10 +8,14 @@
 
 import UIKit
 
-class SettingsTableViewController: UITableViewController {
+class SettingsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     //MARK: - Outlets
     @IBOutlet weak var activitySpinner: UIActivityIndicatorView!
+    @IBOutlet weak var profileView: UIView!
+    @IBOutlet weak var profilePic: UIImageView!
+    @IBOutlet weak var bioText: UILabel!
+    @IBOutlet weak var userName: UILabel!
     
     //MARK: - Variables
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -26,13 +30,15 @@ class SettingsTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
-        //Register Xib with Identifier
-        let headerNib = UINib(nibName: "ProfileHeader", bundle: nil)
-        tableView.register(headerNib, forHeaderFooterViewReuseIdentifier: "header")
-        
         currentUser = appDelegate.currentUser
         
-        self.tableView.contentInset = UIEdgeInsetsMake(20, 0, 0, 0)
+        //Profile View Setup
+        profileView.layer.cornerRadius = 10
+        profilePic.image = currentUser.image
+        profilePic.layer.cornerRadius = 6
+        profilePic.clipsToBounds = true
+        userName.text = currentUser.username
+        bioText.text = currentUser.bio
     }
 
     override func didReceiveMemoryWarning() {
@@ -41,47 +47,22 @@ class SettingsTableViewController: UITableViewController {
     }
 
     // MARK: - Table view data source
-    override func numberOfSections(in tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return 0
     }
 
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
 
         // Configure the cell...
 
         return cell
-    }
-    
-    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-            let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "header") as! ProfileHeaderFooterView
-        header.username.text = "\(currentUser!.username)"
-        if currentUser!.bio == ""{
-            header.bio.text = "This user has not provided a bio."
-        }else{
-            header.bio.text = "\(currentUser!.bio)"
-        }
-        if currentUser!.image != nil{
-            header.profilePic.image = currentUser!.image
-            
-            //Rounded Image
-            header.profilePic.layer.cornerRadius = 10
-            header.profilePic.clipsToBounds = true
-        }
-        header.imageBG.layer.cornerRadius = 10
-        header.imageBG.layer.borderWidth = 3.0
-        header.imageBG.layer.borderColor = UIColor.white.cgColor
-        return header
-    }
-    
-    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 150
     }
 
     //Methods

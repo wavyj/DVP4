@@ -12,9 +12,7 @@
 		D000511A1E70243F0024E91D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D00051191E70243F0024E91D /* Assets.xcassets */; };
 		D000511D1E70243F0024E91D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D000511B1E70243F0024E91D /* LaunchScreen.storyboard */; };
 		D00051291E702A770024E91D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00051281E702A770024E91D /* LoginViewController.swift */; };
-		D05829AF1E7283A1003D1B36 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05829AE1E7283A1003D1B36 /* SettingsTableViewController.swift */; };
-		D05F899D1E72C49900AC22F6 /* ProfileHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = D05F899B1E72C49900AC22F6 /* ProfileHeader.xib */; };
-		D05F899F1E72C53400AC22F6 /* ProfileHeaderFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05F899E1E72C53400AC22F6 /* ProfileHeaderFooterView.swift */; };
+		D05829AF1E7283A1003D1B36 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05829AE1E7283A1003D1B36 /* SettingsViewController.swift */; };
 		D068D7251E7090D5006AFBB6 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D068D7241E7090D5006AFBB6 /* User.swift */; };
 		D068D7271E7092D3006AFBB6 /* Login_ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = D068D7261E7092D3006AFBB6 /* Login_ext.swift */; };
 		D0A173881E70D460001893E9 /* FollowingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A173871E70D460001893E9 /* FollowingViewController.swift */; };
@@ -47,9 +45,7 @@
 		D000511C1E70243F0024E91D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D000511E1E70243F0024E91D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D00051281E702A770024E91D /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		D05829AE1E7283A1003D1B36 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
-		D05F899B1E72C49900AC22F6 /* ProfileHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ProfileHeader.xib; path = ../ProfileHeader.xib; sourceTree = "<group>"; };
-		D05F899E1E72C53400AC22F6 /* ProfileHeaderFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileHeaderFooterView.swift; sourceTree = "<group>"; };
+		D05829AE1E7283A1003D1B36 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		D068D7241E7090D5006AFBB6 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		D068D7261E7092D3006AFBB6 /* Login_ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Login_ext.swift; sourceTree = "<group>"; };
 		D0A173871E70D460001893E9 /* FollowingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FollowingViewController.swift; sourceTree = "<group>"; };
@@ -108,9 +104,7 @@
 		D05829AD1E728145003D1B36 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
-				D05F899B1E72C49900AC22F6 /* ProfileHeader.xib */,
-				D05F899E1E72C53400AC22F6 /* ProfileHeaderFooterView.swift */,
-				D05829AE1E7283A1003D1B36 /* SettingsTableViewController.swift */,
+				D05829AE1E7283A1003D1B36 /* SettingsViewController.swift */,
 			);
 			name = Settings;
 			sourceTree = "<group>";
@@ -196,7 +190,6 @@
 			files = (
 				D000511D1E70243F0024E91D /* LaunchScreen.storyboard in Resources */,
 				D000511A1E70243F0024E91D /* Assets.xcassets in Resources */,
-				D05F899D1E72C49900AC22F6 /* ProfileHeader.xib in Resources */,
 				D00051181E70243F0024E91D /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -214,10 +207,9 @@
 				D0A1738A1E70D483001893E9 /* Following_ext.swift in Sources */,
 				D0A173901E70DD9D001893E9 /* Channel.swift in Sources */,
 				D068D7251E7090D5006AFBB6 /* User.swift in Sources */,
-				D05F899F1E72C53400AC22F6 /* ProfileHeaderFooterView.swift in Sources */,
 				D0A1738C1E70D6C7001893E9 /* ChannelCollectionViewCell.swift in Sources */,
 				D068D7271E7092D3006AFBB6 /* Login_ext.swift in Sources */,
-				D05829AF1E7283A1003D1B36 /* SettingsTableViewController.swift in Sources */,
+				D05829AF1E7283A1003D1B36 /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

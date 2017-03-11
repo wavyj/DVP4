@@ -17,7 +17,7 @@ class User{
     var logoUrl: String
     var image: UIImage!
     
-    init(authToken: String, username: String = "", id: String = "", bio: String = "", logoUrl: String = "") {
+    init(authToken: String, username: String = "", id: String = "", bio: String = "One day I will think of a clever bio...", logoUrl: String = "") {
         self.authToken = authToken
         self.username = username
         self.id = id
