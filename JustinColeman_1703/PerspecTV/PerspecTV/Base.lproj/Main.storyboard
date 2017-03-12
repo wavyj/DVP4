@@ -226,7 +226,7 @@
             </objects>
             <point key="canvasLocation" x="2687" y="-146"/>
         </scene>
-        <!--Item-->
+        <!--Watch View Controller-->
         <scene sceneID="3O1-jK-WP9">
             <objects>
                 <viewController id="ZMs-L7-0az" customClass="WatchViewController" customModule="PerspecTV" customModuleProvider="target" sceneMemberID="viewController">
@@ -237,13 +237,52 @@
                     <view key="view" contentMode="scaleToFill" id="bjF-hM-ize">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1s8-nr-B5V" userLabel="Control View">
+                                <rect key="frame" x="0.0" y="25" width="375" height="66.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Channel" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eBm-BQ-WXN">
+                                        <rect key="frame" x="0.0" y="21.5" width="375" height="24"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.096381293402777776" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="eBm-BQ-WXN" firstAttribute="centerY" secondItem="1s8-nr-B5V" secondAttribute="centerY" id="4ne-Zs-dDN"/>
+                                    <constraint firstAttribute="trailing" secondItem="eBm-BQ-WXN" secondAttribute="trailing" id="FDt-y0-nFA"/>
+                                    <constraint firstItem="eBm-BQ-WXN" firstAttribute="leading" secondItem="1s8-nr-B5V" secondAttribute="leading" id="W9q-tA-qwX"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LRN-i8-ouZ" userLabel="Stream View">
+                                <rect key="frame" x="0.0" y="91.5" width="375" height="233.5"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.20392156859999999" green="0.26274509800000001" blue="0.3294117647" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="1s8-nr-B5V" firstAttribute="leading" secondItem="bjF-hM-ize" secondAttribute="leading" id="4UM-y7-7Mc"/>
+                            <constraint firstItem="LRN-i8-ouZ" firstAttribute="top" secondItem="1s8-nr-B5V" secondAttribute="bottom" id="8G3-nN-4po"/>
+                            <constraint firstAttribute="trailing" secondItem="1s8-nr-B5V" secondAttribute="trailing" id="V0e-BG-OJr"/>
+                            <constraint firstAttribute="trailing" secondItem="LRN-i8-ouZ" secondAttribute="trailing" id="Y56-1X-H1R"/>
+                            <constraint firstItem="1s8-nr-B5V" firstAttribute="height" secondItem="bjF-hM-ize" secondAttribute="height" multiplier="0.1" id="cSB-jX-c3X"/>
+                            <constraint firstItem="1s8-nr-B5V" firstAttribute="top" secondItem="Xjb-F5-BlX" secondAttribute="bottom" constant="5" id="kMW-MJ-flP"/>
+                            <constraint firstItem="LRN-i8-ouZ" firstAttribute="height" secondItem="bjF-hM-ize" secondAttribute="height" multiplier="0.35" id="n2q-kC-Hib"/>
+                            <constraint firstItem="LRN-i8-ouZ" firstAttribute="leading" secondItem="bjF-hM-ize" secondAttribute="leading" id="qPE-Rd-MNJ"/>
+                        </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="U5r-1S-EKY"/>
+                    <tabBarItem key="tabBarItem" tag="3" title="" image="PlayIcon" selectedImage="PlayIcon" id="U5r-1S-EKY">
+                        <inset key="imageInsets" minX="0.0" minY="9" maxX="0.0" maxY="-9"/>
+                    </tabBarItem>
+                    <connections>
+                        <outlet property="channelName" destination="eBm-BQ-WXN" id="bFu-uA-nuH"/>
+                        <outlet property="streamView" destination="LRN-i8-ouZ" id="05s-SU-A3K"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="366-ki-Kk4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3455" y="-146"/>
+            <point key="canvasLocation" x="3452" y="-146"/>
         </scene>
         <!--Settings View Controller-->
         <scene sceneID="xXa-xc-XPd">
@@ -385,7 +424,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2Xl-Bp-g9N" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="wba-a4-xXl" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2686" y="1320"/>
+            <point key="canvasLocation" x="4191" y="-146"/>
         </scene>
         <!--Tab Bar View Controller-->
         <scene sceneID="AtP-BR-x2O">
@@ -400,8 +439,8 @@
                     </tabBar>
                     <connections>
                         <segue destination="9Qh-Wg-vnB" kind="relationship" relationship="viewControllers" id="pVJ-uL-XEv"/>
-                        <segue destination="Pg6-HX-AGm" kind="relationship" relationship="viewControllers" id="FPN-iW-wql"/>
                         <segue destination="ZMs-L7-0az" kind="relationship" relationship="viewControllers" id="BM2-2R-Gcr"/>
+                        <segue destination="Pg6-HX-AGm" kind="relationship" relationship="viewControllers" id="FPN-iW-wql"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yi2-rQ-NOL" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -413,6 +452,7 @@
         <image name="CurrentViewersIcon" width="24" height="24"/>
         <image name="FollowersIcon" width="24" height="24"/>
         <image name="HeartIcon" width="24" height="24"/>
+        <image name="PlayIcon" width="24" height="24"/>
         <image name="SettingsIcon" width="24" height="24"/>
         <image name="ViewsIcon" width="24" height="24"/>
     </resources>

@@ -7,13 +7,26 @@
 //
 
 import UIKit
+import WebKit
 
 class WatchViewController: UITabBarController {
 
+    //MARK: - Outlets
+    @IBOutlet weak var channelName: UILabel!
+    @IBOutlet weak var streamView: UIView!
+    
+    //MARK: - Variables
+    var webView: WKWebView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        // Do any additional setup after loading the view
+        let configuaration = WKWebViewConfiguration()
+        configuaration.allowsInlineMediaPlayback = true
+        webView = WKWebView(frame: streamView.frame, configuration: configuaration)
+        streamView.clipsToBounds = true
+        webView.contentMode = .scaleToFill
     }
 
     override func didReceiveMemoryWarning() {
