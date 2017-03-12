@@ -11,7 +11,7 @@ import UIKit
 //Global resuse identifier
 private let cellID = "cell"
 
-class FollowingViewController: UIViewController , UICollectionViewDelegate, UICollectionViewDataSource{
+class FollowingViewController: UIViewController , UICollectionViewDelegate, UICollectionViewDataSource, UIScrollViewDelegate{
 
     //MARK: - Outlets
     @IBOutlet weak var activitySpinner: UIActivityIndicatorView!
@@ -23,6 +23,7 @@ class FollowingViewController: UIViewController , UICollectionViewDelegate, UICo
     var channels = [Channel]()
     var userLoggedIn = false
     var channelsToDownload = [String]()
+    var offset = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,9 +31,9 @@ class FollowingViewController: UIViewController , UICollectionViewDelegate, UICo
         // Do any additional setup after loading the view.
         currentUser = appDelegate.currentUser
         if userLoggedIn == true{
-            downloadandParse(urlString: "https://api.twitch.tv/kraken/users/\(currentUser.id)/follows/channels?limit=100&client_id=\(appDelegate.consumerID)&\(appDelegate.apiVersion)", downloadTask: "User Followed")
+            downloadandParse(urlString: "https://api.twitch.tv/kraken/users/\(currentUser.id)/follows/channels?limit=10&offset=\(offset)&client_id=\(appDelegate.consumerID)&\(appDelegate.apiVersion)", downloadTask: "User Followed")
         }else{
-            downloadandParse(urlString: "https://api.twitch.tv/kraken/streams/followed?oauth_token=\(currentUser.authToken)&stream_type=live&client_id=\(appDelegate.consumerID)&\(appDelegate.apiVersion)", downloadTask: "Followed Live")
+            downloadandParse(urlString: "https://api.twitch.tv/kraken/streams/followed?oauth_token=\(currentUser.authToken)&limit=10&offset\(offset)&stream_type=live&client_id=\(appDelegate.consumerID)&\(appDelegate.apiVersion)", downloadTask: "Followed Live")
         }
     }
 
@@ -57,6 +58,29 @@ class FollowingViewController: UIViewController , UICollectionViewDelegate, UICo
     }
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
+    }
+    
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+            let scrollViewHeight = scrollView.frame.size.height
+            let scrollViewContentSize = scrollView.contentSize.height
+            let scrollOffset = scrollView.contentOffset.y
+            
+            if scrollOffset == 0 && offset != 0{
+                //At the top
+                offset -= 10
+                update()
+            }else if scrollOffset + scrollViewHeight == scrollViewContentSize && channels.count == 10{
+                //At the bottom
+                offset += 10
+                update()
+            }
+    }
+    
+    //MARK: - Methods
+    func update(){
+        channels.removeAll()
+        collectionView.reloadData()
+        downloadandParse(urlString: "https://api.twitch.tv/kraken/users/\(currentUser.id)/follows/channels?limit=10&offset=\(offset)&client_id=\(appDelegate.consumerID)&\(appDelegate.apiVersion)", downloadTask: "User Followed")
     }
     
     /*
