@@ -125,7 +125,7 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell" id="gLZ-J7-Dqt" customClass="ChannelCollectionViewCell" customModule="PerspecTV" customModuleProvider="target">
-                                        <rect key="frame" x="13" y="10" width="350" height="170"/>
+                                        <rect key="frame" x="12.5" y="10" width="350" height="170"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="350" height="170"/>
@@ -272,7 +272,7 @@
                             <constraint firstItem="LRN-i8-ouZ" firstAttribute="leading" secondItem="bjF-hM-ize" secondAttribute="leading" id="qPE-Rd-MNJ"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" tag="2" title="" image="PlayIcon" selectedImage="PlayIcon" id="U5r-1S-EKY">
+                    <tabBarItem key="tabBarItem" tag="3" title="" image="PlayIcon" selectedImage="PlayIcon" id="U5r-1S-EKY">
                         <inset key="imageInsets" minX="0.0" minY="9" maxX="0.0" maxY="-9"/>
                     </tabBarItem>
                     <connections>
@@ -282,7 +282,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="366-ki-Kk4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3452" y="-146"/>
+            <point key="canvasLocation" x="4105" y="-146"/>
         </scene>
         <!--Settings View Controller-->
         <scene sceneID="xXa-xc-XPd">
@@ -301,14 +301,14 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="gray" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" textLabel="qyK-oe-4cZ" style="IBUITableViewCellStyleDefault" id="miM-jW-XWg">
-                                        <rect key="frame" x="0.0" y="56" width="355" height="44"/>
+                                        <rect key="frame" x="0.0" y="55.5" width="355" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="miM-jW-XWg" id="dci-zd-zT7">
-                                            <rect key="frame" x="0.0" y="0.0" width="355" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="355" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Logout" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="qyK-oe-4cZ">
-                                                    <rect key="frame" x="15" y="0.0" width="325" height="43"/>
+                                                    <rect key="frame" x="15" y="0.0" width="325" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -406,7 +406,7 @@
                             <constraint firstItem="BaC-zQ-r6I" firstAttribute="leading" secondItem="BDz-EM-LEO" secondAttribute="leading" constant="10" id="wic-x6-54Q"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" tag="3" title="" image="SettingsIcon" selectedImage="SettingsIcon" id="TUQ-lY-CoU">
+                    <tabBarItem key="tabBarItem" tag="5" title="" image="SettingsIcon" selectedImage="SettingsIcon" id="TUQ-lY-CoU">
                         <inset key="imageInsets" minX="0.0" minY="9" maxX="0.0" maxY="-9"/>
                     </tabBarItem>
                     <connections>
@@ -424,7 +424,105 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2Xl-Bp-g9N" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="wba-a4-xXl" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="4191" y="-146"/>
+            <point key="canvasLocation" x="4946" y="-146"/>
+        </scene>
+        <!--Games View Controller-->
+        <scene sceneID="3lf-JQ-cCI">
+            <objects>
+                <viewController id="UI2-Gh-QEm" customClass="GamesViewController" customModule="PerspecTV" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="BVz-F2-YTv"/>
+                        <viewControllerLayoutGuide type="bottom" id="BPi-Po-SM1"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="yek-v1-70s">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="yXR-QT-1ak">
+                                <rect key="frame" x="10" y="30" width="355" height="578"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="RRK-CJ-2Jq">
+                                    <size key="itemSize" width="150" height="200"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="10" minY="10" maxX="10" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell" id="mP2-Bh-2B7" customClass="GameCollectionViewCell" customModule="PerspecTV" customModuleProvider="target">
+                                        <rect key="frame" x="10" y="10" width="150" height="200"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="150" height="200"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="842-QS-R24" userLabel="Game Image">
+                                                    <rect key="frame" x="0.0" y="0.0" width="150" height="200"/>
+                                                </imageView>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wUv-Od-tYw" userLabel="Clear Overlay">
+                                                    <rect key="frame" x="0.0" y="0.0" width="150" height="200"/>
+                                                    <subviews>
+                                                        <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Game" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zGk-dQ-hho">
+                                                            <rect key="frame" x="0.0" y="90" width="150" height="20.5"/>
+                                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstItem="zGk-dQ-hho" firstAttribute="width" secondItem="wUv-Od-tYw" secondAttribute="width" id="3yQ-ti-RcW"/>
+                                                        <constraint firstItem="zGk-dQ-hho" firstAttribute="centerX" secondItem="wUv-Od-tYw" secondAttribute="centerX" id="ZlT-Zj-ZIU"/>
+                                                        <constraint firstItem="zGk-dQ-hho" firstAttribute="centerY" secondItem="wUv-Od-tYw" secondAttribute="centerY" id="hwF-cT-Op4"/>
+                                                    </constraints>
+                                                </view>
+                                            </subviews>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstItem="wUv-Od-tYw" firstAttribute="width" secondItem="842-QS-R24" secondAttribute="width" id="B3Q-dg-9rZ"/>
+                                            <constraint firstItem="842-QS-R24" firstAttribute="leading" secondItem="mP2-Bh-2B7" secondAttribute="leading" id="HyN-5c-aCg"/>
+                                            <constraint firstItem="wUv-Od-tYw" firstAttribute="centerY" secondItem="842-QS-R24" secondAttribute="centerY" id="NJ0-ae-FpQ"/>
+                                            <constraint firstItem="842-QS-R24" firstAttribute="top" secondItem="mP2-Bh-2B7" secondAttribute="top" id="R5V-uK-7zn"/>
+                                            <constraint firstItem="wUv-Od-tYw" firstAttribute="height" secondItem="842-QS-R24" secondAttribute="height" id="Uqv-wC-A6v"/>
+                                            <constraint firstItem="wUv-Od-tYw" firstAttribute="centerX" secondItem="842-QS-R24" secondAttribute="centerX" id="l9R-Vl-wN0"/>
+                                            <constraint firstAttribute="bottom" secondItem="842-QS-R24" secondAttribute="bottom" id="sI7-cR-ich"/>
+                                            <constraint firstAttribute="trailing" secondItem="842-QS-R24" secondAttribute="trailing" id="tH9-mS-zLA"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="gameImage" destination="842-QS-R24" id="Ef8-aR-TQJ"/>
+                                            <outlet property="gameLabel" destination="zGk-dQ-hho" id="BNa-eN-jDN"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="UI2-Gh-QEm" id="R7r-oL-uTB"/>
+                                    <outlet property="delegate" destination="UI2-Gh-QEm" id="W88-wM-ftc"/>
+                                </connections>
+                            </collectionView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="3o3-dB-F3N">
+                                <rect key="frame" x="169.5" y="315.5" width="37" height="37"/>
+                                <color key="color" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            </activityIndicatorView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.20392156859999999" green="0.26274509800000001" blue="0.3294117647" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="yXR-QT-1ak" firstAttribute="top" secondItem="BVz-F2-YTv" secondAttribute="bottom" constant="10" id="8wu-UE-Ofp"/>
+                            <constraint firstItem="yXR-QT-1ak" firstAttribute="leading" secondItem="yek-v1-70s" secondAttribute="leading" constant="10" id="Bmg-w9-OfY"/>
+                            <constraint firstItem="3o3-dB-F3N" firstAttribute="centerY" secondItem="yek-v1-70s" secondAttribute="centerY" id="D4u-Uv-Mfc"/>
+                            <constraint firstAttribute="trailing" secondItem="yXR-QT-1ak" secondAttribute="trailing" constant="10" id="RkH-Oq-bbT"/>
+                            <constraint firstItem="3o3-dB-F3N" firstAttribute="centerX" secondItem="yek-v1-70s" secondAttribute="centerX" id="Se2-QI-ydq"/>
+                            <constraint firstItem="BPi-Po-SM1" firstAttribute="top" secondItem="yXR-QT-1ak" secondAttribute="bottom" constant="10" id="geq-pG-RTI"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" tag="2" title="" image="GameIcon" selectedImage="GameIcon" id="dnV-FX-g5J">
+                        <inset key="imageInsets" minX="0.0" minY="9" maxX="0.0" maxY="-9"/>
+                    </tabBarItem>
+                    <connections>
+                        <outlet property="activitySpinner" destination="3o3-dB-F3N" id="LTY-gx-UHt"/>
+                        <outlet property="collectionView" destination="yXR-QT-1ak" id="75y-8n-aED"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SOr-Jj-1Sc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3389.5999999999999" y="-146.17691154422789"/>
         </scene>
         <!--Tab Bar View Controller-->
         <scene sceneID="AtP-BR-x2O">
@@ -439,6 +537,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="9Qh-Wg-vnB" kind="relationship" relationship="viewControllers" id="pVJ-uL-XEv"/>
+                        <segue destination="UI2-Gh-QEm" kind="relationship" relationship="viewControllers" id="YFF-L5-Yif"/>
                         <segue destination="ZMs-L7-0az" kind="relationship" relationship="viewControllers" id="BM2-2R-Gcr"/>
                         <segue destination="Pg6-HX-AGm" kind="relationship" relationship="viewControllers" id="FPN-iW-wql"/>
                     </connections>
@@ -451,6 +550,7 @@
     <resources>
         <image name="CurrentViewersIcon" width="24" height="24"/>
         <image name="FollowersIcon" width="24" height="24"/>
+        <image name="GameIcon" width="24" height="24"/>
         <image name="HeartIcon" width="24" height="24"/>
         <image name="PlayIcon" width="24" height="24"/>
         <image name="SettingsIcon" width="24" height="24"/>
