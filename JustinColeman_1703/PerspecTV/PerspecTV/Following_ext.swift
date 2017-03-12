@@ -99,7 +99,6 @@ extension FollowingViewController{
                                 }else{
                                     self.channels.append(Channel(id: id.description, username: username, game: game,viewers: viewers))
                                 }
-                    
                             }
                         }
                     }

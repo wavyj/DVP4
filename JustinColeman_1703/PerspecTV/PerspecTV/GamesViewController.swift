@@ -58,6 +58,12 @@ class GamesViewController: UIViewController, UICollectionViewDelegate, UICollect
         return cell
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        selectedGame = games[indexPath.row]
+        performSegue(withIdentifier: "toSelectedGame", sender: self)
+    }
+    
+    //MARK: - Scrollview Callbacks
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         let scrollViewHeight = scrollView.frame.size.height
         let scrollViewContentSize = scrollView.contentSize.height

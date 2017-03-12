@@ -8,14 +8,19 @@
 
 import UIKit
 
-class SelectedGameViewController: UIViewController {
+class SelectedGameViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
 
     //MARK: - Outlets
     @IBOutlet weak var backArrow: UIImageView!
     @IBOutlet weak var gameTitle: UILabel!
+    @IBOutlet weak var activitSpinner: UIActivityIndicatorView!
+    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var gameImage: UIImageView!
     
     //MARK: - Variables
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
     var currentGame: Game!
+    var channels = [Channel]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,12 +30,36 @@ class SelectedGameViewController: UIViewController {
         //Gesture Recognizer for back arrow
         backArrow.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.backTapped(_:))))
         gameTitle.text = currentGame.name
+        gameImage.image = currentGame.image
+        
+        let gameName = currentGame.name
+        //remove spaces from name
+        let gameNameUrl = gameName.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
+        downloadAndParse(urlString: "https://api.twitch.tv/kraken/search/streams?query=\(gameNameUrl)&client_id=\(appDelegate.consumerID)&\(appDelegate.apiVersion)")
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    //MARK: - Collection View Data Source
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return channels.count
+    }
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! ChannelCollectionViewCell
+        let current = channels[indexPath.row]
+        cell.streamerName.text = current.username
+        cell.viewerCount.text = current.viewers.description
+        cell.previewImage.image = current.previewImage
+        cell.layer.cornerRadius = 6
+        return cell
+    }
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
+    }
+
     
     //MARK: - Methods
     func backTapped(_ sender: UITapGestureRecognizer){

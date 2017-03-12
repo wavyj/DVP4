@@ -14,6 +14,7 @@
 		D00051291E702A770024E91D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00051281E702A770024E91D /* LoginViewController.swift */; };
 		D0093CFD1E75318500317839 /* WatchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0093CFC1E75318500317839 /* WatchViewController.swift */; };
 		D04C50D01E75F5AB00975E47 /* SelectedGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04C50CF1E75F5AB00975E47 /* SelectedGameViewController.swift */; };
+		D04C50D21E75FC5C00975E47 /* SGVC_ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04C50D11E75FC5C00975E47 /* SGVC_ext.swift */; };
 		D05829AF1E7283A1003D1B36 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05829AE1E7283A1003D1B36 /* SettingsViewController.swift */; };
 		D068D7251E7090D5006AFBB6 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D068D7241E7090D5006AFBB6 /* User.swift */; };
 		D068D7271E7092D3006AFBB6 /* Login_ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = D068D7261E7092D3006AFBB6 /* Login_ext.swift */; };
@@ -54,6 +55,7 @@
 		D00051281E702A770024E91D /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		D0093CFC1E75318500317839 /* WatchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchViewController.swift; sourceTree = "<group>"; };
 		D04C50CF1E75F5AB00975E47 /* SelectedGameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectedGameViewController.swift; sourceTree = "<group>"; };
+		D04C50D11E75FC5C00975E47 /* SGVC_ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SGVC_ext.swift; sourceTree = "<group>"; };
 		D05829AE1E7283A1003D1B36 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		D068D7241E7090D5006AFBB6 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		D068D7261E7092D3006AFBB6 /* Login_ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Login_ext.swift; sourceTree = "<group>"; };
@@ -142,6 +144,7 @@
 				D09C53201E75894E006511C4 /* GameCollectionViewCell.swift */,
 				D09C531C1E757D4B006511C4 /* Games_ext.swift */,
 				D04C50CF1E75F5AB00975E47 /* SelectedGameViewController.swift */,
+				D04C50D11E75FC5C00975E47 /* SGVC_ext.swift */,
 			);
 			name = Games;
 			sourceTree = "<group>";
@@ -246,6 +249,7 @@
 				D09C531A1E757237006511C4 /* GamesViewController.swift in Sources */,
 				D0A1738A1E70D483001893E9 /* Following_ext.swift in Sources */,
 				D0A173901E70DD9D001893E9 /* Channel.swift in Sources */,
+				D04C50D21E75FC5C00975E47 /* SGVC_ext.swift in Sources */,
 				D0093CFD1E75318500317839 /* WatchViewController.swift in Sources */,
 				D09C531F1E757DF1006511C4 /* Game.swift in Sources */,
 				D04C50D01E75F5AB00975E47 /* SelectedGameViewController.swift in Sources */,
