@@ -9,7 +9,7 @@
 import UIKit
 import WebKit
 
-class WatchViewController: UITabBarController {
+class WatchViewController: UIViewController, WKNavigationDelegate {
 
     //MARK: - Outlets
     @IBOutlet weak var channelName: UILabel!
@@ -22,11 +22,18 @@ class WatchViewController: UITabBarController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view
-        let configuaration = WKWebViewConfiguration()
-        configuaration.allowsInlineMediaPlayback = true
-        webView = WKWebView(frame: streamView.frame, configuration: configuaration)
+        let configuration = WKWebViewConfiguration()
+        configuration.allowsInlineMediaPlayback = true
+        webView = WKWebView(frame: streamView.frame, configuration: configuration)
+        streamView.addSubview(webView)
         streamView.clipsToBounds = true
         webView.contentMode = .scaleToFill
+        
+        //Load Stream
+        channelName.text = "MonsterCat"
+        webView.scrollView.isScrollEnabled = false
+        let stream = "<html><body><iframe src=\"https://player.twitch.tv/?channel=monstercat&client_id=i6upsqp6ugslfdqk87z7t1ghxpf9dz&api_version=5\"&playsinline=1\" width=\"\(streamView.frame.size.width)\" height=\"\(streamView.frame.size.height)\" frameborder=\"0\" scrolling=\"yes\" allowfullscreen \"false\"></iframe></body></html>"
+        webView.loadHTMLString(stream, baseURL: Bundle.main.bundleURL)
     }
 
     override func didReceiveMemoryWarning() {
@@ -35,6 +42,20 @@ class WatchViewController: UITabBarController {
     }
     
 
+    //MARK: - WK Navigation Callbacks
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        print("Success")
+    }
+    
+    func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+        
+    }
+    
+    func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
+        print(error.localizedDescription)
+    }
+    
+    
     /*
     // MARK: - Navigation
 

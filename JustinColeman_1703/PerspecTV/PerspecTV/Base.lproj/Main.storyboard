@@ -272,7 +272,7 @@
                             <constraint firstItem="LRN-i8-ouZ" firstAttribute="leading" secondItem="bjF-hM-ize" secondAttribute="leading" id="qPE-Rd-MNJ"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" tag="3" title="" image="PlayIcon" selectedImage="PlayIcon" id="U5r-1S-EKY">
+                    <tabBarItem key="tabBarItem" tag="2" title="" image="PlayIcon" selectedImage="PlayIcon" id="U5r-1S-EKY">
                         <inset key="imageInsets" minX="0.0" minY="9" maxX="0.0" maxY="-9"/>
                     </tabBarItem>
                     <connections>
@@ -406,7 +406,7 @@
                             <constraint firstItem="BaC-zQ-r6I" firstAttribute="leading" secondItem="BDz-EM-LEO" secondAttribute="leading" constant="10" id="wic-x6-54Q"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" tag="2" title="" image="SettingsIcon" selectedImage="SettingsIcon" id="TUQ-lY-CoU">
+                    <tabBarItem key="tabBarItem" tag="3" title="" image="SettingsIcon" selectedImage="SettingsIcon" id="TUQ-lY-CoU">
                         <inset key="imageInsets" minX="0.0" minY="9" maxX="0.0" maxY="-9"/>
                     </tabBarItem>
                     <connections>
