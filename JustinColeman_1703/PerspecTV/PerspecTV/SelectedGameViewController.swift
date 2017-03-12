@@ -16,6 +16,9 @@ class SelectedGameViewController: UIViewController, UICollectionViewDelegate, UI
     @IBOutlet weak var activitSpinner: UIActivityIndicatorView!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var gameImage: UIImageView!
+    @IBOutlet weak var gameView: UIView!
+    @IBOutlet weak var totalViewersLabel: UILabel!
+    @IBOutlet weak var totalChannelsLabel: UILabel!
     
     //MARK: - Variables
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -28,10 +31,22 @@ class SelectedGameViewController: UIViewController, UICollectionViewDelegate, UI
         // Do any additional setup after loading the view.
         
         //Gesture Recognizer for back arrow
+        
+        //Header View Setup
         backArrow.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.backTapped(_:))))
         gameTitle.text = currentGame.name
-        gameImage.image = currentGame.image
         
+        //Game View Setup
+        gameView.layer.cornerRadius = 6
+        gameView.layer.shadowOpacity = 0.5
+        gameView.layer.shadowOffset = CGSize(width: 0.0, height: 3.0)
+        gameView.layer.shadowColor = UIColor.black.cgColor
+        gameView.clipsToBounds = true
+        gameImage.image = currentGame.image
+        totalViewersLabel.text = currentGame.viewers.description
+        totalChannelsLabel.text = currentGame.channels.description
+        
+        //Initial Download
         let gameName = currentGame.name
         //remove spaces from name
         let gameNameUrl = gameName.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
