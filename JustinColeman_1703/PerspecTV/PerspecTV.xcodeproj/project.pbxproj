@@ -12,6 +12,7 @@
 		D000511A1E70243F0024E91D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D00051191E70243F0024E91D /* Assets.xcassets */; };
 		D000511D1E70243F0024E91D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D000511B1E70243F0024E91D /* LaunchScreen.storyboard */; };
 		D00051291E702A770024E91D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00051281E702A770024E91D /* LoginViewController.swift */; };
+		D0093CFD1E75318500317839 /* WatchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0093CFC1E75318500317839 /* WatchViewController.swift */; };
 		D05829AF1E7283A1003D1B36 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05829AE1E7283A1003D1B36 /* SettingsViewController.swift */; };
 		D068D7251E7090D5006AFBB6 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D068D7241E7090D5006AFBB6 /* User.swift */; };
 		D068D7271E7092D3006AFBB6 /* Login_ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = D068D7261E7092D3006AFBB6 /* Login_ext.swift */; };
@@ -46,6 +47,7 @@
 		D000511C1E70243F0024E91D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D000511E1E70243F0024E91D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D00051281E702A770024E91D /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		D0093CFC1E75318500317839 /* WatchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchViewController.swift; sourceTree = "<group>"; };
 		D05829AE1E7283A1003D1B36 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		D068D7241E7090D5006AFBB6 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		D068D7261E7092D3006AFBB6 /* Login_ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Login_ext.swift; sourceTree = "<group>"; };
@@ -95,6 +97,7 @@
 				D0A1738D1E70D6DA001893E9 /* Login */,
 				D0A1738E1E70D6E6001893E9 /* Following */,
 				D05829AD1E728145003D1B36 /* Settings */,
+				D0093CFE1E75318E00317839 /* Watch */,
 				D068D7241E7090D5006AFBB6 /* User.swift */,
 				D0A1738F1E70DD9D001893E9 /* Channel.swift */,
 				D00051191E70243F0024E91D /* Assets.xcassets */,
@@ -102,6 +105,14 @@
 				D000511E1E70243F0024E91D /* Info.plist */,
 			);
 			path = PerspecTV;
+			sourceTree = "<group>";
+		};
+		D0093CFE1E75318E00317839 /* Watch */ = {
+			isa = PBXGroup;
+			children = (
+				D0093CFC1E75318500317839 /* WatchViewController.swift */,
+			);
+			name = Watch;
 			sourceTree = "<group>";
 		};
 		D05829AD1E728145003D1B36 /* Settings */ = {
@@ -210,6 +221,7 @@
 				D06DF5321E73E5DE00714DE1 /* UITabBarController.swift in Sources */,
 				D0A1738A1E70D483001893E9 /* Following_ext.swift in Sources */,
 				D0A173901E70DD9D001893E9 /* Channel.swift in Sources */,
+				D0093CFD1E75318500317839 /* WatchViewController.swift in Sources */,
 				D068D7251E7090D5006AFBB6 /* User.swift in Sources */,
 				D0A1738C1E70D6C7001893E9 /* ChannelCollectionViewCell.swift in Sources */,
 				D068D7271E7092D3006AFBB6 /* Login_ext.swift in Sources */,
