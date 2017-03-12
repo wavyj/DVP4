@@ -18,6 +18,7 @@ class GamesViewController: UIViewController, UICollectionViewDelegate, UICollect
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     var offset = 0
     var games = [Game]()
+    var selectedGame: Game!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +30,11 @@ class GamesViewController: UIViewController, UICollectionViewDelegate, UICollect
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    //MARK: - Storyboard Actions
+    @IBAction func back(for segue: UIStoryboardSegue){
+        //do nothing
     }
     
     //MARK: - UICollectionView Delegate Callbacks
@@ -75,14 +81,14 @@ class GamesViewController: UIViewController, UICollectionViewDelegate, UICollect
         downloadAndParse(urlString: "https://api.twitch.tv/kraken/games/top?limit=10&offset=\(offset)&client_id=\(appDelegate.consumerID)&\(appDelegate.apiVersion)")
     }
 
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        let SGVC: SelectedGameViewController = segue.destination as! SelectedGameViewController
+        SGVC.currentGame = selectedGame
     }
-    */
 
 }
