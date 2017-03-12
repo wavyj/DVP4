@@ -125,7 +125,7 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell" id="gLZ-J7-Dqt" customClass="ChannelCollectionViewCell" customModule="PerspecTV" customModuleProvider="target">
-                                        <rect key="frame" x="13" y="10" width="350" height="170"/>
+                                        <rect key="frame" x="12.5" y="10" width="350" height="170"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="350" height="170"/>
@@ -144,7 +144,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Game" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pJ1-cX-POc">
-                                                            <rect key="frame" x="15" y="140" width="175.5" height="21"/>
+                                                            <rect key="frame" x="15" y="140" width="227.5" height="21"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <nil key="highlightedColor"/>
@@ -181,7 +181,7 @@
                                             <constraint firstItem="kJq-o5-a18" firstAttribute="centerY" secondItem="7Np-vU-8dz" secondAttribute="centerY" id="Qta-9h-Ryc"/>
                                             <constraint firstItem="kJq-o5-a18" firstAttribute="height" secondItem="7Np-vU-8dz" secondAttribute="height" id="Zn7-MN-HWO"/>
                                             <constraint firstItem="kJq-o5-a18" firstAttribute="centerX" secondItem="7Np-vU-8dz" secondAttribute="centerX" id="hhZ-zn-izP"/>
-                                            <constraint firstItem="pJ1-cX-POc" firstAttribute="width" secondItem="gLZ-J7-Dqt" secondAttribute="width" multiplier="0.5" id="mdF-A4-9tT"/>
+                                            <constraint firstItem="pJ1-cX-POc" firstAttribute="width" secondItem="gLZ-J7-Dqt" secondAttribute="width" multiplier="0.65" id="mdF-A4-9tT"/>
                                             <constraint firstAttribute="trailing" secondItem="7Np-vU-8dz" secondAttribute="trailing" id="nrN-Si-IEF"/>
                                             <constraint firstItem="xzg-km-igU" firstAttribute="width" secondItem="gLZ-J7-Dqt" secondAttribute="width" multiplier="0.14" id="xO9-Lh-Iqy"/>
                                         </constraints>
@@ -243,14 +243,14 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="gray" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" textLabel="qyK-oe-4cZ" style="IBUITableViewCellStyleDefault" id="miM-jW-XWg">
-                                        <rect key="frame" x="0.0" y="56" width="355" height="44"/>
+                                        <rect key="frame" x="0.0" y="55.5" width="355" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="miM-jW-XWg" id="dci-zd-zT7">
-                                            <rect key="frame" x="0.0" y="0.0" width="355" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="355" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Logout" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="qyK-oe-4cZ">
-                                                    <rect key="frame" x="15" y="0.0" width="325" height="43"/>
+                                                    <rect key="frame" x="15" y="0.0" width="325" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
