@@ -14,6 +14,10 @@ class WatchViewController: UIViewController, UIWebViewDelegate{
     //MARK: - Outlets
     @IBOutlet weak var streamView: UIView!
     @IBOutlet weak var activitySpinner: UIActivityIndicatorView!
+    @IBOutlet weak var rightArrow: UIButton!
+    @IBOutlet weak var leftArrow: UIButton!
+    @IBOutlet weak var controlView: UIView!
+    @IBOutlet weak var streamName: UILabel!
     
     //MARK: - Variables
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -21,6 +25,7 @@ class WatchViewController: UIViewController, UIWebViewDelegate{
     var currentChannel: Channel!
     var streams = [Channel]()
     var selectedIndex = 0
+    var shouldLoad = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,7 +41,6 @@ class WatchViewController: UIViewController, UIWebViewDelegate{
         webView.contentMode = .scaleAspectFit
         webView.clipsToBounds = true
         webView.delegate = self
-        webView.scrollView.contentInset = UIEdgeInsets(top: -12, left: 0, bottom: 0, right: 0)
         
         //Load Stream
         if streams.count > 0{
@@ -59,6 +63,7 @@ class WatchViewController: UIViewController, UIWebViewDelegate{
             //If it is the last Person, it goes back to the first Person
             if selectedIndex < streams.count - 1{
                 selectedIndex += 1
+                
             }else{
                 selectedIndex = 0
             }
@@ -75,8 +80,25 @@ class WatchViewController: UIViewController, UIWebViewDelegate{
         default:
             print("Unknown button accessed.")
         }
+        shouldLoad = true
         //Calls method to update labels to the current Person
         loadStream()
+    }
+
+    //MARK: - Webview Callbacks
+    func webViewDidFinishLoad(_ webView: UIWebView) {
+        webView.isHidden = false
+        webView.frame = streamView.bounds
+        activitySpinner.stopAnimating()
+        shouldLoad = false
+    }
+    
+    func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
+        if shouldLoad{
+            return true
+        }else{
+            return false
+        }
     }
     
     //MARK: - Methods
@@ -84,25 +106,13 @@ class WatchViewController: UIViewController, UIWebViewDelegate{
         //Display Setup
         webView.isHidden = true
         activitySpinner.startAnimating()
+        streamName.text = currentChannel.username
         
         //Stream Setup
         webView.allowsInlineMediaPlayback = true
         webView.scrollView.isScrollEnabled = false
         let stream = "<html><head><style type='text/css'>html,body {margin: 0;padding: 0;width: 100%;height: 100%;}</style></head><body><iframe src=\"https://player.twitch.tv/?channel=\(currentChannel.username)&autoplay=false&client_id=i6upsqp6ugslfdqk87z7t1ghxpf9dz&api_version=5&playsinline=1\"width=\"\(streamView.frame.width)\" height=\"\(streamView.frame.height)\" frameborder=\"0\" scrolling=\"yes\" allowfullscreen=\"false\" webkit-playsinline></iframe></body></html>"
         webView.loadHTMLString(stream, baseURL: nil)
-    }
-    
-
-    //MARK: - Webview Callbacks
-    func webViewDidFinishLoad(_ webView: UIWebView) {
-        var frame = webView.frame
-        frame.size.height = 1
-        let fittingSize = webView.sizeThatFits(CGSize(width: streamView.frame.width, height: streamView.frame.height))
-        frame.size = fittingSize
-        webView.frame = frame
-        webView.isHidden = false
-        activitySpinner.stopAnimating()
-        //webView.isUserInteractionEnabled = false
     }
 
     /*
