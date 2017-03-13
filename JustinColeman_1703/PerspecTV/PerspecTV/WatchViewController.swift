@@ -32,8 +32,6 @@ class WatchViewController: UIViewController, UIWebViewDelegate{
 
         // Do any additional setup after loading the view
         
-        streams = appDelegate.streams
-        
         //Webview Setup
         webView = UIWebView(frame: streamView.frame)
         streamView.addSubview(webView)
@@ -41,20 +39,28 @@ class WatchViewController: UIViewController, UIWebViewDelegate{
         webView.contentMode = .scaleAspectFit
         webView.clipsToBounds = true
         webView.delegate = self
-        
-        //Load Stream
-        if streams.count > 0{
-            currentChannel = streams[0]
-            loadStream()
-        }else{
-            
-        }
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        streams = appDelegate.streams
+        if streams.count >= 1{
+            //Load stream
+            currentChannel = streams[0]
+            if shouldLoad{
+                loadStream()
+            }
+        }
+        
+        if streams.count > 1{
+            rightArrow.isHidden = false
+        }
+    }
+    
     //MARK: - Storyboard Actions
     @IBAction func btnTapped(_ sender: UIButton){
         switch sender.tag {
@@ -63,9 +69,10 @@ class WatchViewController: UIViewController, UIWebViewDelegate{
             //If it is the last Person, it goes back to the first Person
             if selectedIndex < streams.count - 1{
                 selectedIndex += 1
-                
-            }else{
-                selectedIndex = 0
+                leftArrow.isHidden = false
+            }
+            if selectedIndex == streams.count - 1{
+                rightArrow.isHidden = true
             }
             currentChannel = streams[selectedIndex]
         case 2:
@@ -73,8 +80,10 @@ class WatchViewController: UIViewController, UIWebViewDelegate{
             //If it is the first Person, it goes back to the last Person
             if selectedIndex > 0{
                 selectedIndex -= 1
-            }else{
-                selectedIndex = (streams.count - 1)
+                rightArrow.isHidden = false
+            }
+            if selectedIndex == 0{
+                leftArrow.isHidden = true
             }
             currentChannel = streams[selectedIndex]
         default:

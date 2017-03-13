@@ -18,10 +18,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let apiVersion = "api_version=5"
     let redirectUrl = "com.perspectv.ios://url-callback"
     var currentUser: User!
-    var streams = [Channel]()
+    var streams: [Channel]!
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        streams = [Channel]()
         return true
     }
 
