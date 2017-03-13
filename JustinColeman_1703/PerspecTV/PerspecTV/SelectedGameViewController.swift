@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SelectedGameViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+class SelectedGameViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UIScrollViewDelegate {
 
     //MARK: - Outlets
     @IBOutlet weak var backArrow: UIImageView!
@@ -24,6 +24,7 @@ class SelectedGameViewController: UIViewController, UICollectionViewDelegate, UI
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     var currentGame: Game!
     var channels = [Channel]()
+    var offset = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,7 +48,7 @@ class SelectedGameViewController: UIViewController, UICollectionViewDelegate, UI
         let gameName = currentGame.name
         //remove spaces from name
         let gameNameUrl = gameName.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
-        downloadAndParse(urlString: "https://api.twitch.tv/kraken/search/streams?query=\(gameNameUrl)&client_id=\(appDelegate.consumerID)&\(appDelegate.apiVersion)")
+        downloadAndParse(urlString: "https://api.twitch.tv/kraken/search/streams?query=\(gameNameUrl)&limit=10&offset=\(offset)&client_id=\(appDelegate.consumerID)&\(appDelegate.apiVersion)")
     }
 
     override func didReceiveMemoryWarning() {
@@ -72,10 +73,36 @@ class SelectedGameViewController: UIViewController, UICollectionViewDelegate, UI
         return 1
     }
 
+    //MARK: - Scrollbar Callbacks
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        let scrollViewHeight = scrollView.frame.size.height
+        let scrollViewContentSize = scrollView.contentSize.height
+        let scrollOffset = scrollView.contentOffset.y
+        
+        if scrollOffset == 0 && offset != 0{
+            //At the top
+            offset -= 10
+            update()
+        }else if scrollOffset + scrollViewHeight == scrollViewContentSize && channels.count == 10{
+            //At the bottom
+            offset += 10
+            update()
+        }
+    }
     
     //MARK: - Methods
     func backTapped(_ sender: UITapGestureRecognizer){
         performSegue(withIdentifier: "selectedgameBackTapped", sender: self)
+    }
+    
+    func update(){
+        channels.removeAll()
+        collectionView.reloadData()
+        
+        let gameName = currentGame.name
+        //remove spaces from name
+        let gameNameUrl = gameName.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
+        downloadAndParse(urlString: "https://api.twitch.tv/kraken/search/streams?query=\(gameNameUrl)&limit=10&offset=\(offset)&client_id=\(appDelegate.consumerID)&\(appDelegate.apiVersion)")
     }
 
     /*
