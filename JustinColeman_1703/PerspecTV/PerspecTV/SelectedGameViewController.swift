@@ -37,12 +37,9 @@ class SelectedGameViewController: UIViewController, UICollectionViewDelegate, UI
         gameTitle.text = currentGame.name
         
         //Game View Setup
-        gameView.layer.cornerRadius = 6
-        gameView.layer.shadowOpacity = 0.5
-        gameView.layer.shadowOffset = CGSize(width: 0.0, height: 3.0)
-        gameView.layer.shadowColor = UIColor.black.cgColor
         gameView.clipsToBounds = true
         gameImage.image = currentGame.image
+        gameImage.clipsToBounds = true
         totalViewersLabel.text = currentGame.viewers.description
         totalChannelsLabel.text = currentGame.channels.description
         
