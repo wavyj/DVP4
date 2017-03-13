@@ -33,7 +33,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="rUk-qN-11R">
-                                        <rect key="frame" x="86" y="3.5" width="171.5" height="108.5"/>
+                                        <rect key="frame" x="86.5" y="3.5" width="171.5" height="108.5"/>
                                     </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -63,7 +63,7 @@
                                 </connections>
                             </button>
                             <textView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Dont miss out on the action, watch more than one stream at once, get every perspective" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ARP-1n-bYc" userLabel="Tagline">
-                                <rect key="frame" x="10" y="317" width="355" height="66"/>
+                                <rect key="frame" x="10" y="317" width="355" height="65.5"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
@@ -337,10 +337,10 @@
                                 <rect key="frame" x="10" y="25" width="355" height="167"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="omL-4q-VSb">
-                                        <rect key="frame" x="127" y="17.5" width="101.5" height="99"/>
+                                        <rect key="frame" x="127" y="17" width="101.5" height="100"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w6G-8I-T3s">
-                                        <rect key="frame" x="0.0" y="126.5" width="355" height="30"/>
+                                        <rect key="frame" x="0.0" y="127" width="355" height="30"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
@@ -567,13 +567,13 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10000" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sKy-fQ-fRm">
-                                                            <rect key="frame" x="284" y="140" width="56" height="21"/>
+                                                            <rect key="frame" x="277" y="140" width="63" height="21"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CurrentViewersIcon" translatesAutoresizingMaskIntoConstraints="NO" id="0MG-z0-toL">
-                                                            <rect key="frame" x="255" y="138.5" width="24" height="24"/>
+                                                            <rect key="frame" x="248" y="138.5" width="24" height="24"/>
                                                         </imageView>
                                                     </subviews>
                                                     <color key="backgroundColor" white="0.0" alpha="0.40333369009999998" colorSpace="calibratedWhite"/>
@@ -593,7 +593,7 @@
                                             <constraint firstAttribute="bottom" secondItem="fQD-g5-Ymp" secondAttribute="bottom" id="7iF-Et-X7L"/>
                                             <constraint firstItem="Z8h-bT-U23" firstAttribute="height" secondItem="fQD-g5-Ymp" secondAttribute="height" id="Ftf-nN-pCy"/>
                                             <constraint firstItem="fQD-g5-Ymp" firstAttribute="leading" secondItem="Kvf-HV-bXM" secondAttribute="leading" id="KMj-XC-sNF"/>
-                                            <constraint firstItem="sKy-fQ-fRm" firstAttribute="width" secondItem="Kvf-HV-bXM" secondAttribute="width" multiplier="0.16" id="KyT-s8-u19"/>
+                                            <constraint firstItem="sKy-fQ-fRm" firstAttribute="width" secondItem="Kvf-HV-bXM" secondAttribute="width" multiplier="0.18" id="KyT-s8-u19"/>
                                             <constraint firstItem="Z8h-bT-U23" firstAttribute="centerY" secondItem="fQD-g5-Ymp" secondAttribute="centerY" id="SYo-Rb-Zua"/>
                                             <constraint firstItem="Z8h-bT-U23" firstAttribute="centerX" secondItem="fQD-g5-Ymp" secondAttribute="centerX" id="dxO-AF-ybA"/>
                                             <constraint firstItem="fQD-g5-Ymp" firstAttribute="top" secondItem="Kvf-HV-bXM" secondAttribute="top" id="h41-zI-dbc"/>
@@ -623,7 +623,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="167"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CurrentViewersIcon" translatesAutoresizingMaskIntoConstraints="NO" id="evx-eK-ryX">
-                                        <rect key="frame" x="241" y="100" width="24" height="24"/>
+                                        <rect key="frame" x="241.5" y="100.5" width="24" height="24"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CrK-Th-m9q">
                                         <rect key="frame" x="197.5" y="127.5" width="112.5" height="21"/>
@@ -640,11 +640,11 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ViewsIcon" translatesAutoresizingMaskIntoConstraints="NO" id="scZ-dk-WgW">
-                                        <rect key="frame" x="118" y="99.5" width="24" height="24"/>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="VideoCamIcon" translatesAutoresizingMaskIntoConstraints="NO" id="scZ-dk-WgW">
+                                        <rect key="frame" x="118" y="100.5" width="24" height="24"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cKW-KE-62a">
-                                        <rect key="frame" x="73.5" y="126.5" width="112.5" height="21"/>
+                                        <rect key="frame" x="73.5" y="127.5" width="112.5" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="0.70352632709999996" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
@@ -736,6 +736,7 @@
         <image name="HeartIcon" width="24" height="24"/>
         <image name="PlayIcon" width="24" height="24"/>
         <image name="SettingsIcon" width="24" height="24"/>
+        <image name="VideoCamIcon" width="24" height="24"/>
         <image name="ViewsIcon" width="24" height="24"/>
     </resources>
 </document>

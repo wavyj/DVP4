@@ -31,9 +31,8 @@ class SelectedGameViewController: UIViewController, UICollectionViewDelegate, UI
 
         // Do any additional setup after loading the view.
         
-        //Gesture Recognizer for back arrow
-        
         //Header View Setup
+        //Gesture Recognizer for back arrow
         backArrow.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.backTapped(_:))))
         gameTitle.text = currentGame.name
         
