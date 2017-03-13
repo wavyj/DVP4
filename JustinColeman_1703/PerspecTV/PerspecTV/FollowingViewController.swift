@@ -24,6 +24,7 @@ class FollowingViewController: UIViewController , UICollectionViewDelegate, UICo
     var userLoggedIn = false
     var channelsToDownload = [String]()
     var offset = 0
+    var selectedChannel: Channel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,6 +61,24 @@ class FollowingViewController: UIViewController , UICollectionViewDelegate, UICo
         return 1
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        selectedChannel = channels[indexPath.row]
+        let streams = appDelegate.streams
+        if streams.count < 4{
+            if !streams.contains(where: { (Channel) -> Bool in
+                if Channel.username == self.selectedChannel.username{ return true }else{ return false }
+            }){
+                appDelegate.streams.append(selectedChannel)
+            }
+            self.tabBarController?.selectedIndex = 2
+        }else{
+            //Let user know they cant add anymore 
+        }
+        
+        
+    }
+    
+    //MARK: - Scrollview Callbacks
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
             let scrollViewHeight = scrollView.frame.size.height
             let scrollViewContentSize = scrollView.contentSize.height
@@ -83,14 +102,16 @@ class FollowingViewController: UIViewController , UICollectionViewDelegate, UICo
         downloadandParse(urlString: "https://api.twitch.tv/kraken/users/\(currentUser.id)/follows/channels?limit=10&offset=\(offset)&client_id=\(appDelegate.consumerID)&\(appDelegate.apiVersion)", downloadTask: "User Followed")
     }
     
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        if segue.identifier == "toWatch"{
+            let WVC = segue.destination as! WatchViewController
+            WVC.currentChannel = selectedChannel
+        }
     }
-    */
 
 }

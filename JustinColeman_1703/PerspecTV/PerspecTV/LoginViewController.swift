@@ -89,7 +89,8 @@ class LoginViewController: UIViewController, UIWebViewDelegate {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toFollowing" {
             let Tab = segue.destination as! UITabBarViewController
-            let FVC = Tab.viewControllers?.first as! FollowingViewController
+            let nav = Tab.viewControllers?.first as! UINavigationController
+            let FVC = nav.viewControllers.first as! FollowingViewController
             FVC.userLoggedIn = true
             FVC.channelsToDownload.append(currentUser.id)
         }

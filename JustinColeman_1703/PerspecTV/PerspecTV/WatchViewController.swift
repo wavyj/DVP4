@@ -9,53 +9,101 @@
 import UIKit
 import WebKit
 
-class WatchViewController: UIViewController, WKNavigationDelegate{
+class WatchViewController: UIViewController, UIWebViewDelegate{
 
     //MARK: - Outlets
-    @IBOutlet weak var channelName: UILabel!
     @IBOutlet weak var streamView: UIView!
+    @IBOutlet weak var activitySpinner: UIActivityIndicatorView!
     
     //MARK: - Variables
-    var webView: WKWebView!
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    var webView: UIWebView!
+    var currentChannel: Channel!
+    var streams = [Channel]()
+    var selectedIndex = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view
-//        let configuration = WKWebViewConfiguration()
-//        configuration.allowsInlineMediaPlayback = true
-//        webView = WKWebView(frame: streamView.frame, configuration: configuration)
-//        streamView.addSubview(webView)
-//        streamView.clipsToBounds = true
-//        webView.contentMode = .scaleAspectFill
-//        webView.clipsToBounds = true
-//        webView.navigationDelegate = self
-//        
-//        //Load Stream
-//        webView.scrollView.isScrollEnabled = false
-//        let stream = "<html><body><iframe src=\"https://player.twitch.tv/?channel=monstercat&client_id=i6upsqp6ugslfdqk87z7t1ghxpf9dz&api_version=5\"&playsinline=1\" autoplay=\"false\" width=\"\(streamView.frame.size.width)\" height=\"\(streamView.frame.size.height)\" frameborder=\"0\" scrolling=\"no\" allowfullscreen=\"false\"></iframe></body></html>"
-//        webView.loadHTMLString(stream, baseURL: nil)
+        
+        streams = appDelegate.streams
+        
+        //Webview Setup
+        webView = UIWebView(frame: streamView.frame)
+        streamView.addSubview(webView)
+        streamView.clipsToBounds = true
+        webView.contentMode = .scaleAspectFit
+        webView.clipsToBounds = true
+        webView.delegate = self
+        webView.scrollView.contentInset = UIEdgeInsets(top: -12, left: 0, bottom: 0, right: 0)
+        
+        //Load Stream
+        if streams.count > 0{
+            currentChannel = streams[0]
+            loadStream()
+        }else{
+            
+        }
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    //MARK: - Storyboard Actions
+    @IBAction func btnTapped(_ sender: UIButton){
+        switch sender.tag {
+        case 1:
+            //Increases currentInt until it is the last Person in people array
+            //If it is the last Person, it goes back to the first Person
+            if selectedIndex < streams.count - 1{
+                selectedIndex += 1
+            }else{
+                selectedIndex = 0
+            }
+            currentChannel = streams[selectedIndex]
+        case 2:
+            //Decreases currentInt until it is the first Person in the people array
+            //If it is the first Person, it goes back to the last Person
+            if selectedIndex > 0{
+                selectedIndex -= 1
+            }else{
+                selectedIndex = (streams.count - 1)
+            }
+            currentChannel = streams[selectedIndex]
+        default:
+            print("Unknown button accessed.")
+        }
+        //Calls method to update labels to the current Person
+        loadStream()
+    }
+    
+    //MARK: - Methods
+    func loadStream(){
+        //Display Setup
+        webView.isHidden = true
+        activitySpinner.startAnimating()
+        
+        //Stream Setup
+        webView.allowsInlineMediaPlayback = true
+        webView.scrollView.isScrollEnabled = false
+        let stream = "<html><head><style type='text/css'>html,body {margin: 0;padding: 0;width: 100%;height: 100%;}</style></head><body><iframe src=\"https://player.twitch.tv/?channel=\(currentChannel.username)&autoplay=false&client_id=i6upsqp6ugslfdqk87z7t1ghxpf9dz&api_version=5&playsinline=1\"width=\"\(streamView.frame.width)\" height=\"\(streamView.frame.height)\" frameborder=\"0\" scrolling=\"yes\" allowfullscreen=\"false\" webkit-playsinline></iframe></body></html>"
+        webView.loadHTMLString(stream, baseURL: nil)
+    }
     
 
-    //MARK: - WK Navigation Callbacks
-//    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-//        print("Success")
-//        
-//    }
-    
-    /*func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
-        
-    }*/
-    
-//    func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
-//        print(error.localizedDescription)
-//    }
+    //MARK: - Webview Callbacks
+    func webViewDidFinishLoad(_ webView: UIWebView) {
+        var frame = webView.frame
+        frame.size.height = 1
+        let fittingSize = webView.sizeThatFits(CGSize(width: streamView.frame.width, height: streamView.frame.height))
+        frame.size = fittingSize
+        webView.frame = frame
+        webView.isHidden = false
+        activitySpinner.stopAnimating()
+        //webView.isUserInteractionEnabled = false
+    }
 
     /*
     // MARK: - Navigation

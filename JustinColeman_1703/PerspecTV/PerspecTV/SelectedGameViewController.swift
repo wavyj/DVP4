@@ -25,6 +25,7 @@ class SelectedGameViewController: UIViewController, UICollectionViewDelegate, UI
     var currentGame: Game!
     var channels = [Channel]()
     var offset = 0
+    var selectedChannel: Channel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -71,6 +72,11 @@ class SelectedGameViewController: UIViewController, UICollectionViewDelegate, UI
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        selectedChannel = channels[indexPath.row]
+        performSegue(withIdentifier: "toWatch", sender: self)
+    }
 
     //MARK: - Scrollbar Callbacks
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
@@ -104,14 +110,18 @@ class SelectedGameViewController: UIViewController, UICollectionViewDelegate, UI
         downloadAndParse(urlString: "https://api.twitch.tv/kraken/search/streams?query=\(gameNameUrl)&limit=10&offset=\(offset)&client_id=\(appDelegate.consumerID)&\(appDelegate.apiVersion)")
     }
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        if segue.identifier == "toWatch"{
+            let WVC = segue.destination as! WatchViewController
+            WVC.currentChannel = selectedChannel
+        }
     }
-    */
+ 
 
 }
