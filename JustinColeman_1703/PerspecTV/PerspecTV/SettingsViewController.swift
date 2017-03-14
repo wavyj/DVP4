@@ -36,7 +36,6 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         currentUser = appDelegate.currentUser
         
         //Profile View Setup
-        profileView.layer.cornerRadius = 6
         profilePic.image = currentUser.image
         profilePic.layer.cornerRadius = 10
         profilePic.layer.borderWidth = 3.0
@@ -44,11 +43,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         profilePic.clipsToBounds = true
         userName.text = currentUser.username
         bannerImage.image = currentUser.banner
-        bannerImage.layer.cornerRadius = 6
         bannerImage.clipsToBounds = true
-        profileView.layer.shadowOpacity = 0.5
-        profileView.layer.shadowOffset = CGSize(width: 0.0, height: 3.0)
-        profileView.layer.shadowColor = UIColor.black.cgColor
         viewsLabel.text = currentUser.views.description
         followersLabel.text = currentUser.followers.description
     }
