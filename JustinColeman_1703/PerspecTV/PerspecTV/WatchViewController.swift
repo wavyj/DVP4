@@ -24,6 +24,7 @@ class WatchViewController: UIViewController, UIWebViewDelegate{
     //MARK: - Variables
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     var webView: UIWebView!
+    var chatWebView: UIWebView!
     var currentChannel: Channel!
     var streams = [Channel]()
     var selectedIndex = 0
@@ -34,12 +35,21 @@ class WatchViewController: UIViewController, UIWebViewDelegate{
 
         // Do any additional setup after loading the view
         
-        //Webview Setup
+        //Stream Webview Setup
         webView = UIWebView(frame: streamView.frame)
         streamView.addSubview(webView)
         streamView.clipsToBounds = true
         webView.clipsToBounds = true
         webView.delegate = self
+        webView.tag = 1
+        
+        //Chat Webview Setup
+        chatWebView = UIWebView(frame: chatView.frame)
+        chatView.addSubview(chatWebView)
+        chatView.clipsToBounds = true
+        chatWebView.clipsToBounds = true
+        chatWebView.delegate = self
+        chatWebView.tag = 2
     }
 
     override func didReceiveMemoryWarning() {
@@ -97,9 +107,15 @@ class WatchViewController: UIViewController, UIWebViewDelegate{
 
     //MARK: - Webview Callbacks
     func webViewDidFinishLoad(_ webView: UIWebView) {
-        webView.isHidden = false
-        webView.frame = streamView.bounds
-        activitySpinner.stopAnimating()
+        if webView.tag == 1{
+            webView.isHidden = false
+            webView.frame = streamView.bounds
+            activitySpinner.stopAnimating()
+        }else if webView.tag == 2{
+            webView.isHidden = false
+            webView.frame = chatView.bounds
+            chatActivitySpinner.stopAnimating()
+        }
         shouldLoad = false
     }
     
@@ -115,14 +131,25 @@ class WatchViewController: UIViewController, UIWebViewDelegate{
     func loadStream(){
         //Display Setup
         webView.isHidden = true
+        chatWebView.isHidden = true
         activitySpinner.startAnimating()
+        chatActivitySpinner.startAnimating()
         streamName.text = currentChannel.username
         
         //Stream Setup
         webView.allowsInlineMediaPlayback = true
         webView.scrollView.isScrollEnabled = false
-        let stream = "<html><head><style type='text/css'>html,body {margin: 0;padding: 0;width: 100%;height: 100%;}</style></head><body><iframe src=\"https://player.twitch.tv/?channel=\(currentChannel.username)&autoplay=false&client_id=i6upsqp6ugslfdqk87z7t1ghxpf9dz&api_version=5&playsinline=1\"width=\"\(streamView.frame.width)\" height=\"\(streamView.frame.height)\" frameborder=\"0\" scrolling=\"yes\" allowfullscreen=\"false\" webkit-playsinline></iframe></body></html>"
+        let stream = "<html><head><style type='text/css'>html,body {margin: 0;padding: 0;width: 100%;height: 100%;}</style></head><body><iframe src=\"https://player.twitch.tv/?channel=\(currentChannel.username)&autoplay=false&client_id=\(appDelegate.consumerID)&\(appDelegate.apiVersion)&playsinline=1\"width=\"\(streamView.frame.width)\" height=\"\(streamView.frame.height)\" frameborder=\"0\" scrolling=\"yes\" allowfullscreen=\"false\" webkit-playsinline></iframe></body></html>"
         webView.loadHTMLString(stream, baseURL: nil)
+        
+        //Chat Setup
+        chatWebView.allowsInlineMediaPlayback = true
+        chatWebView.keyboardDisplayRequiresUserAction = true
+        let chat = "<iframe frameborder=\"0\"scrolling=\"no\"id=\"\(currentChannel.username.lowercased())\"src=\"https://www.twitch.tv/\(currentChannel.username.lowercased())/chat?\"height=\"\(chatView.frame.height)\"width=\"\(chatView.frame.width)\" webkit-playsinline></iframe>"
+        chatWebView.loadHTMLString(chat, baseURL: nil)
+//        let chat = "https://www.twitch.tv/\(currentChannel.username.lowercased())/chat?client_id=\(appDelegate.consumerID)&\(appDelegate.apiVersion)"
+//        chatWebView.loadRequest(URLRequest(url: URL(string: chat)!))
+        
     }
 
     /*
