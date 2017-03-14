@@ -18,6 +18,8 @@ class WatchViewController: UIViewController, UIWebViewDelegate{
     @IBOutlet weak var leftArrow: UIButton!
     @IBOutlet weak var controlView: UIView!
     @IBOutlet weak var streamName: UILabel!
+    @IBOutlet weak var chatActivitySpinner: UIActivityIndicatorView!
+    @IBOutlet weak var chatView: UIView!
     
     //MARK: - Variables
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -36,7 +38,6 @@ class WatchViewController: UIViewController, UIWebViewDelegate{
         webView = UIWebView(frame: streamView.frame)
         streamView.addSubview(webView)
         streamView.clipsToBounds = true
-        webView.contentMode = .scaleAspectFit
         webView.clipsToBounds = true
         webView.delegate = self
     }
