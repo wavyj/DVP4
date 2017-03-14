@@ -28,23 +28,7 @@
 		D0A1738A1E70D483001893E9 /* Following_ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A173891E70D483001893E9 /* Following_ext.swift */; };
 		D0A1738C1E70D6C7001893E9 /* ChannelCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A1738B1E70D6C7001893E9 /* ChannelCollectionViewCell.swift */; };
 		D0A173901E70DD9D001893E9 /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A1738F1E70DD9D001893E9 /* Channel.swift */; };
-		D0C90CCC1E71FBC20020435B /* OAuthSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0C90CCB1E71FBC20020435B /* OAuthSwift.framework */; };
-		D0C90CCD1E71FBC20020435B /* OAuthSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D0C90CCB1E71FBC20020435B /* OAuthSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		D0C90CCE1E71FBC20020435B /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				D0C90CCD1E71FBC20020435B /* OAuthSwift.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		D000510D1E70243F0024E91D /* PerspecTV.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PerspecTV.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -70,7 +54,6 @@
 		D0A173891E70D483001893E9 /* Following_ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Following_ext.swift; sourceTree = "<group>"; };
 		D0A1738B1E70D6C7001893E9 /* ChannelCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChannelCollectionViewCell.swift; sourceTree = "<group>"; };
 		D0A1738F1E70DD9D001893E9 /* Channel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
-		D0C90CCB1E71FBC20020435B /* OAuthSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = OAuthSwift.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,7 +61,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D0C90CCC1E71FBC20020435B /* OAuthSwift.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -88,7 +70,6 @@
 		D00051041E70243E0024E91D = {
 			isa = PBXGroup;
 			children = (
-				D0C90CCB1E71FBC20020435B /* OAuthSwift.framework */,
 				D000510F1E70243F0024E91D /* PerspecTV */,
 				D000510E1E70243F0024E91D /* Products */,
 			);
@@ -189,7 +170,6 @@
 				D00051091E70243E0024E91D /* Sources */,
 				D000510A1E70243E0024E91D /* Frameworks */,
 				D000510B1E70243E0024E91D /* Resources */,
-				D0C90CCE1E71FBC20020435B /* Embed Frameworks */,
 			);
 			buildRules = (
 			);

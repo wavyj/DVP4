@@ -8,7 +8,6 @@
 
 import UIKit
 import SafariServices
-import OAuthSwift
 
 class LoginViewController: UIViewController, UIWebViewDelegate {
 
@@ -20,8 +19,7 @@ class LoginViewController: UIViewController, UIWebViewDelegate {
     
     //MARK: - Variables
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
-    var svc: SFSafariViewController!
-    var oauth: OAuth2Swift!
+    var webView: UIWebView!
     var currentUser: User!
     var userLoggedIn: Bool!
     
@@ -29,10 +27,8 @@ class LoginViewController: UIViewController, UIWebViewDelegate {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        oauth = OAuth2Swift(consumerKey: appDelegate.consumerID, consumerSecret: appDelegate.secret, authorizeUrl: "https://api.twitch.tv/kraken/oauth2/authorize?force_verify=true", responseType: "token")
         
         loginBtn.layer.cornerRadius = 6
-        
         load()
     }
 
@@ -43,18 +39,21 @@ class LoginViewController: UIViewController, UIWebViewDelegate {
     
     //MARK: - Storyboard Actions
     @IBAction func twitchAuth(){
-        oauth.authorizeURLHandler = SafariURLHandler(viewController: self, oauthSwift: oauth)
-        let _ = oauth.authorize(withCallbackURL: appDelegate.redirectUrl, scope: "user_read+chat_login+user_subscriptions", state: generateState(withLength: 100), success: { (Credential, response, params) in
-            self.currentUser = User(authToken: Credential.oauthToken)
-            self.getUser()
-        }, failure: nil)
+        webView = UIWebView(frame: self.view.frame)
+        webView.loadRequest(URLRequest(url: URL(string: "https://api.twitch.tv/kraken/oauth2/authorize?force_verify=true&response_type=token&client_id=\(appDelegate.consumerID)&redirect_uri=\(appDelegate.redirectUrl)&scope=user_read+chat_login+user_subscriptions")!))
+        self.view.addSubview(webView)
+        
     }
     
     @IBAction func userLoggedOut(for segue: UIStoryboardSegue){
         //Calls Authentication to login user
         loginBtn.isHidden = false
         taglineTextView.isHidden = false
-        twitchAuth()
+    }
+    
+    //MARK: - Webview callbacks
+    func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
+        return true
     }
     
     //MARK: - Methods

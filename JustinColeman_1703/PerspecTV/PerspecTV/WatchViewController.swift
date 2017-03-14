@@ -8,6 +8,7 @@
 
 import UIKit
 import WebKit
+import SafariServices
 
 class WatchViewController: UIViewController, UIWebViewDelegate{
 
@@ -44,12 +45,13 @@ class WatchViewController: UIViewController, UIWebViewDelegate{
         webView.tag = 1
         
         //Chat Webview Setup
-        chatWebView = UIWebView(frame: chatView.frame)
+        chatWebView = UIWebView(frame: self.view.frame)
         chatView.addSubview(chatWebView)
         chatView.clipsToBounds = true
         chatWebView.clipsToBounds = true
         chatWebView.delegate = self
         chatWebView.tag = 2
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -145,11 +147,10 @@ class WatchViewController: UIViewController, UIWebViewDelegate{
         //Chat Setup
         chatWebView.allowsInlineMediaPlayback = true
         chatWebView.keyboardDisplayRequiresUserAction = true
-        let chat = "<iframe frameborder=\"0\"scrolling=\"no\"id=\"\(currentChannel.username.lowercased())\"src=\"https://www.twitch.tv/\(currentChannel.username.lowercased())/chat?\"height=\"\(chatView.frame.height)\"width=\"\(chatView.frame.width)\" webkit-playsinline></iframe>"
-        chatWebView.loadHTMLString(chat, baseURL: nil)
-//        let chat = "https://www.twitch.tv/\(currentChannel.username.lowercased())/chat?client_id=\(appDelegate.consumerID)&\(appDelegate.apiVersion)"
-//        chatWebView.loadRequest(URLRequest(url: URL(string: chat)!))
-        
+//        let chat = "<html><head><style type='text/css'>html,body {margin: 0;padding: 0;width: 100%;height: 100%;}</style></head><body><iframe frameborder=\"0\"scrolling=\"no\"id=\"\(currentChannel.username)\"src=\"https://www.twitch.tv/\(currentChannel.username))/chat?\"height=\"\(chatView.frame.height)\"width=\"\(chatView.frame.width)\" webkit-playsinline></iframe>"
+//        chatWebView.loadHTMLString(chat, baseURL: nil)
+        let chat = "https://www.twitch.tv/\(currentChannel.username))/chat"
+        chatWebView.loadRequest(URLRequest(url: URL(string: chat)!))
     }
 
     /*

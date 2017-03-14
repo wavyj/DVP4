@@ -50,7 +50,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
         if url.host == "url-callback"{
-            OAuthSwift.handle(url: url)
+            //Get auth token
+            var temp = url.fragment!
+            let splitArray = temp.characters.split(separator: "=").map(String.init)
+            let token = splitArray[1].characters.split(separator: "&").map(String.init)
+            currentUser = User(authToken: token[0])
+            
+            //Dismiss UiWebView
+            let LVC = self.window?.rootViewController as! LoginViewController
+            LVC.webView.removeFromSuperview()
+            
+            //Get user's data
+            LVC.currentUser = self.currentUser
+            LVC.getUser()
         }
         return true
     }
