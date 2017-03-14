@@ -75,7 +75,23 @@ class SelectedGameViewController: UIViewController, UICollectionViewDelegate, UI
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         selectedChannel = channels[indexPath.row]
-        performSegue(withIdentifier: "toWatch", sender: self)
+        let streams = appDelegate.streams!
+        if streams.count < 4{
+            if !streams.contains(where: { (Channel) -> Bool in
+                if Channel.username == selectedChannel.username{
+                    return true
+                }else{
+                    return false
+                }
+            }){
+                appDelegate.streams.append(selectedChannel)
+                self.tabBarController?.selectedIndex = 2
+            }else{
+                //Let user know this channel is already added
+            }
+        }else{
+            //Let user know they cant add anymore
+        }
     }
 
     //MARK: - Scrollbar Callbacks

@@ -769,7 +769,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fnR-MI-FnY" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="0PM-Dr-Rjy" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="3625" y="565"/>
+            <point key="canvasLocation" x="4329" y="575"/>
         </scene>
         <!--Tab Bar View Controller-->
         <scene sceneID="AtP-BR-x2O">
@@ -830,6 +830,6 @@
         <image name="ViewsIcon" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="aX6-US-juq"/>
+        <segue reference="T3X-u3-RQ9"/>
     </inferredMetricsTieBreakers>
 </document>

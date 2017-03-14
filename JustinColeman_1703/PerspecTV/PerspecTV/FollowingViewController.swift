@@ -80,8 +80,6 @@ class FollowingViewController: UIViewController , UICollectionViewDelegate, UICo
         }else{
             //Let user know they cant add anymore 
         }
-        
-        
     }
     
     //MARK: - Scrollview Callbacks
