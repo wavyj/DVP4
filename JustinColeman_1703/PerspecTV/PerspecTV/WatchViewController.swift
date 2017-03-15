@@ -19,13 +19,11 @@ class WatchViewController: UIViewController, UIWebViewDelegate{
     @IBOutlet weak var leftArrow: UIButton!
     @IBOutlet weak var controlView: UIView!
     @IBOutlet weak var streamName: UILabel!
-    @IBOutlet weak var chatActivitySpinner: UIActivityIndicatorView!
-    @IBOutlet weak var chatView: UIView!
+    @IBOutlet weak var menuView: UIView!
     
     //MARK: - Variables
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     var webView: UIWebView!
-    var chatWebView: UIWebView!
     var currentChannel: Channel!
     var streams = [Channel]()
     var selectedIndex = 0
@@ -43,14 +41,6 @@ class WatchViewController: UIViewController, UIWebViewDelegate{
         webView.clipsToBounds = true
         webView.delegate = self
         webView.tag = 1
-        
-        //Chat Webview Setup
-        chatWebView = UIWebView(frame: self.view.frame)
-        chatView.addSubview(chatWebView)
-        chatView.clipsToBounds = true
-        chatWebView.clipsToBounds = true
-        chatWebView.delegate = self
-        chatWebView.tag = 2
         
     }
 
@@ -106,18 +96,24 @@ class WatchViewController: UIViewController, UIWebViewDelegate{
         //Calls method to update labels to the current Person
         loadStream()
     }
+    
+    @IBAction func infoTapped(_ sender: UIButton){
+        
+    }
+    
+    @IBAction func chatTapped(_ sender: UIButton){
+        
+    }
+    
+    @IBAction func menuTapped(_ sender: UIButton){
+        
+    }
 
     //MARK: - Webview Callbacks
     func webViewDidFinishLoad(_ webView: UIWebView) {
-        if webView.tag == 1{
-            webView.isHidden = false
-            webView.frame = streamView.bounds
-            activitySpinner.stopAnimating()
-        }else if webView.tag == 2{
-            webView.isHidden = false
-            webView.frame = chatView.bounds
-            chatActivitySpinner.stopAnimating()
-        }
+        webView.isHidden = false
+        webView.frame = streamView.bounds
+        activitySpinner.stopAnimating()
         shouldLoad = false
     }
     
@@ -133,9 +129,7 @@ class WatchViewController: UIViewController, UIWebViewDelegate{
     func loadStream(){
         //Display Setup
         webView.isHidden = true
-        chatWebView.isHidden = true
         activitySpinner.startAnimating()
-        chatActivitySpinner.startAnimating()
         streamName.text = currentChannel.username
         
         //Stream Setup
@@ -144,13 +138,6 @@ class WatchViewController: UIViewController, UIWebViewDelegate{
         let stream = "<html><head><style type='text/css'>html,body {margin: 0;padding: 0;width: 100%;height: 100%;}</style></head><body><iframe src=\"https://player.twitch.tv/?channel=\(currentChannel.username)&autoplay=false&client_id=\(appDelegate.consumerID)&\(appDelegate.apiVersion)&playsinline=1\"width=\"\(streamView.frame.width)\" height=\"\(streamView.frame.height)\" frameborder=\"0\" scrolling=\"yes\" allowfullscreen=\"false\" webkit-playsinline></iframe></body></html>"
         webView.loadHTMLString(stream, baseURL: nil)
         
-        //Chat Setup
-        chatWebView.allowsInlineMediaPlayback = true
-        chatWebView.keyboardDisplayRequiresUserAction = true
-//        let chat = "<html><head><style type='text/css'>html,body {margin: 0;padding: 0;width: 100%;height: 100%;}</style></head><body><iframe frameborder=\"0\"scrolling=\"no\"id=\"\(currentChannel.username)\"src=\"https://www.twitch.tv/\(currentChannel.username))/chat?\"height=\"\(chatView.frame.height)\"width=\"\(chatView.frame.width)\" webkit-playsinline></iframe>"
-//        chatWebView.loadHTMLString(chat, baseURL: nil)
-        let chat = "https://www.twitch.tv/\(currentChannel.username))/chat"
-        chatWebView.loadRequest(URLRequest(url: URL(string: chat)!))
     }
 
     /*
