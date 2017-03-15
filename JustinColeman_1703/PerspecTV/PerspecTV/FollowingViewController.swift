@@ -93,25 +93,29 @@ class FollowingViewController: UIViewController , UICollectionViewDelegate, UICo
         let selectedCell = collectionView.cellForItem(at: indexPath) as! ChannelCollectionViewCell
         if selectedCell.isFlipped == false{
             UIView.transition(with: selectedCell, duration: 0.5, options: .transitionFlipFromRight, animations: {
-                selectedCell.previewImage.isHidden = true
+                //selectedCell.previewImage.isHidden = true
                 selectedCell.gameTitle.isHidden = true
                 selectedCell.streamerName.isHidden = true
                 selectedCell.viewerCount.isHidden = true
                 selectedCell.addBtn.isHidden = false
                 selectedCell.watchBtn.isHidden = false
                 selectedCell.viewersIcon.isHidden = true
+                selectedCell.addLabel.isHidden = false
+                selectedCell.watchLabel.isHidden = false
             }, completion: { (Bool) in
                 selectedCell.isFlipped = true
             })
         }else{
             UIView.transition(with: selectedCell, duration: 0.5, options: .transitionFlipFromLeft, animations: {
-                selectedCell.previewImage.isHidden = false
+                //selectedCell.previewImage.isHidden = false
                 selectedCell.gameTitle.isHidden = false
                 selectedCell.streamerName.isHidden = false
                 selectedCell.viewerCount.isHidden = false
                 selectedCell.addBtn.isHidden = true
                 selectedCell.watchBtn.isHidden = true
                 selectedCell.viewersIcon.isHidden = false
+                selectedCell.addLabel.isHidden = true
+                selectedCell.watchLabel.isHidden = true
             }, completion: { (Bool) in
                 selectedCell.isFlipped = false
             })

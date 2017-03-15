@@ -17,7 +17,9 @@ class ChannelCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var viewerCount: UILabel!
     @IBOutlet weak var addBtn: UIButton!
     @IBOutlet weak var watchBtn: UIButton!
+    @IBOutlet weak var watchLabel: UILabel!
     @IBOutlet weak var viewersIcon: UIImageView!
+    @IBOutlet weak var addLabel: UILabel!
     
     //Variables
     var isFlipped: Bool!

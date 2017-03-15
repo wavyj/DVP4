@@ -161,9 +161,24 @@
                                                         <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vyO-my-029">
                                                             <rect key="frame" x="204" y="61" width="48" height="48"/>
                                                             <state key="normal" image="AddIcon"/>
+                                                            <connections>
+                                                                <action selector="addTapped:" destination="9Qh-Wg-vnB" eventType="touchUpInside" id="hfa-dQ-qzH"/>
+                                                            </connections>
                                                         </button>
+                                                        <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Watch" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="65T-51-zvM">
+                                                            <rect key="frame" x="100.5" y="114" width="49" height="21"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wak-5U-zXT">
+                                                            <rect key="frame" x="212" y="114" width="31" height="21"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
                                                     </subviews>
-                                                    <color key="backgroundColor" white="0.0" alpha="0.40333369006849318" colorSpace="calibratedWhite"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.4041095890410959" colorSpace="calibratedWhite"/>
                                                     <constraints>
                                                         <constraint firstItem="xzg-km-igU" firstAttribute="leading" secondItem="Md2-C5-9cv" secondAttribute="trailing" constant="5" id="5dr-N0-2Dl"/>
                                                         <constraint firstItem="pJ1-cX-POc" firstAttribute="top" secondItem="KJ2-HO-LXb" secondAttribute="bottom" constant="5" id="DCS-jL-rhD"/>
@@ -175,11 +190,16 @@
                                                         <constraint firstItem="vyO-my-029" firstAttribute="centerY" secondItem="kJq-o5-a18" secondAttribute="centerY" id="YVi-dR-NXT"/>
                                                         <constraint firstItem="KJ2-HO-LXb" firstAttribute="leading" secondItem="kJq-o5-a18" secondAttribute="leading" constant="15" id="cD3-KL-ByI"/>
                                                         <constraint firstItem="pJ1-cX-POc" firstAttribute="leading" secondItem="kJq-o5-a18" secondAttribute="leading" constant="15" id="efs-x3-Led"/>
+                                                        <constraint firstItem="wak-5U-zXT" firstAttribute="top" secondItem="vyO-my-029" secondAttribute="bottom" constant="5" id="ing-Qe-vqT"/>
+                                                        <constraint firstItem="wak-5U-zXT" firstAttribute="centerX" secondItem="vyO-my-029" secondAttribute="centerX" id="kba-Ru-aHa"/>
                                                     </constraints>
                                                 </view>
                                                 <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9gv-dW-s9I">
                                                     <rect key="frame" x="101" y="61" width="48" height="48"/>
                                                     <state key="normal" image="PlayIcon-Light"/>
+                                                    <connections>
+                                                        <action selector="watchTapped:" destination="9Qh-Wg-vnB" eventType="touchUpInside" id="pwF-4C-sJ1"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                         </view>
@@ -190,21 +210,25 @@
                                             <constraint firstAttribute="bottom" secondItem="7Np-vU-8dz" secondAttribute="bottom" id="PCP-Zd-doi"/>
                                             <constraint firstItem="7Np-vU-8dz" firstAttribute="top" secondItem="gLZ-J7-Dqt" secondAttribute="top" id="Plx-MO-f8m"/>
                                             <constraint firstItem="kJq-o5-a18" firstAttribute="centerY" secondItem="7Np-vU-8dz" secondAttribute="centerY" id="Qta-9h-Ryc"/>
+                                            <constraint firstItem="65T-51-zvM" firstAttribute="centerX" secondItem="9gv-dW-s9I" secondAttribute="centerX" id="RYd-F3-oEi"/>
                                             <constraint firstItem="kJq-o5-a18" firstAttribute="height" secondItem="7Np-vU-8dz" secondAttribute="height" id="Zn7-MN-HWO"/>
                                             <constraint firstItem="kJq-o5-a18" firstAttribute="centerX" secondItem="7Np-vU-8dz" secondAttribute="centerX" id="hhZ-zn-izP"/>
                                             <constraint firstItem="pJ1-cX-POc" firstAttribute="width" secondItem="gLZ-J7-Dqt" secondAttribute="width" multiplier="0.65" id="mdF-A4-9tT"/>
                                             <constraint firstAttribute="trailing" secondItem="7Np-vU-8dz" secondAttribute="trailing" id="nrN-Si-IEF"/>
                                             <constraint firstItem="9gv-dW-s9I" firstAttribute="centerY" secondItem="vyO-my-029" secondAttribute="centerY" id="pXP-p9-9MY"/>
+                                            <constraint firstItem="65T-51-zvM" firstAttribute="top" secondItem="9gv-dW-s9I" secondAttribute="bottom" constant="5" id="vGB-2x-TkV"/>
                                             <constraint firstItem="xzg-km-igU" firstAttribute="width" secondItem="gLZ-J7-Dqt" secondAttribute="width" multiplier="0.16" id="xO9-Lh-Iqy"/>
                                         </constraints>
                                         <connections>
                                             <outlet property="addBtn" destination="vyO-my-029" id="WL2-p1-9VM"/>
+                                            <outlet property="addLabel" destination="wak-5U-zXT" id="dM8-52-Zl6"/>
                                             <outlet property="gameTitle" destination="pJ1-cX-POc" id="MwE-zh-JI5"/>
                                             <outlet property="previewImage" destination="7Np-vU-8dz" id="fcn-Jr-Be0"/>
                                             <outlet property="streamerName" destination="KJ2-HO-LXb" id="toa-24-sIb"/>
                                             <outlet property="viewerCount" destination="xzg-km-igU" id="MKW-pC-6j2"/>
                                             <outlet property="viewersIcon" destination="Md2-C5-9cv" id="EeI-Gj-Dli"/>
                                             <outlet property="watchBtn" destination="9gv-dW-s9I" id="FKG-Xf-OWF"/>
+                                            <outlet property="watchLabel" destination="65T-51-zvM" id="VZJ-Fg-1rg"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
