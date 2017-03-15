@@ -113,8 +113,8 @@
 			isa = PBXGroup;
 			children = (
 				D0093CFC1E75318500317839 /* WatchViewController.swift */,
-				D0888B4D1E78D285004A232F /* StreamTableViewCell.swift */,
 				D0888B4B1E78D0E1004A232F /* MenuViewController.swift */,
+				D0888B4D1E78D285004A232F /* StreamTableViewCell.swift */,
 			);
 			name = Watch;
 			sourceTree = "<group>";

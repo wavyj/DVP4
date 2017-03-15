@@ -10,6 +10,12 @@ import UIKit
 
 class StreamTableViewCell: UITableViewCell {
 
+    //Outlets
+    @IBOutlet weak var username: UILabel!
+    @IBOutlet weak var game: UILabel!
+    @IBOutlet weak var preview: UIImageView!
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

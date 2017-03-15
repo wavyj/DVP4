@@ -106,7 +106,19 @@ class WatchViewController: UIViewController, UIWebViewDelegate{
     }
     
     @IBAction func menuTapped(_ sender: UIButton){
-        
+        performSegue(withIdentifier: "toMenu", sender: self)
+    }
+    
+    @IBAction func unwindMenu(_ sender: UIStoryboardSegue){
+        streams = appDelegate.streams
+        currentChannel = streams[0]
+        leftArrow.isHidden = true
+        if streams.count == 1{
+            rightArrow.isHidden = true
+        }else{
+            rightArrow.isHidden = false
+        }
+        loadStream()
     }
 
     //MARK: - Webview Callbacks
