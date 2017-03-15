@@ -57,13 +57,15 @@ class WatchViewController: UIViewController, UIWebViewDelegate{
         if streams.count >= 1{
             //Load stream
             currentChannel = streams[0]
+            if streams.count > 1{
+                rightArrow.isHidden = false
+            }
+            if selectedIndex == streams.count - 1{
+                rightArrow.isHidden = true
+            }
             if shouldLoad{
                 loadStream()
             }
-        }
-        
-        if streams.count > 1{
-            rightArrow.isHidden = false
         }
         
         if streams.count == 0{

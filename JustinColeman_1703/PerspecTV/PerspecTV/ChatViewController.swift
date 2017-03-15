@@ -14,6 +14,7 @@ class ChatViewController: UIViewController, UIWebViewDelegate {
     //MARK: - Outlets
     @IBOutlet weak var channelName: UILabel!
     @IBOutlet weak var chatView: UIView!
+    @IBOutlet weak var chatSpinner: UIActivityIndicatorView!
     
     //MARK: - Variables
     var currentChannel: Channel!
@@ -27,12 +28,15 @@ class ChatViewController: UIViewController, UIWebViewDelegate {
         //Setup
         channelName.text = currentChannel.username
         webView = UIWebView(frame: chatView.frame)
+        chatView.addSubview(webView)
+        chatView.clipsToBounds = true
         webView.delegate = self
-        webView.allowsInlineMediaPlayback = true
+        webView.clipsToBounds = true
+        webView.isHidden = true
+        chatSpinner.startAnimating()
         webView.scrollView.isScrollEnabled = false
         webView.keyboardDisplayRequiresUserAction = true
-        webView.loadHTMLString("<html><head><style type='text/css'>html,body {margin: 0;padding: 0;width: 100%;height: 100%;}</style></head><iframe frameborder=\"0\"scrolling=\"yes\"id=\"\(currentChannel.username)\"src=\"https://twitch.tv/\(currentChannel.username)/chat\"height=\"\(chatView.frame.height)\"width=\"\(chatView.frame.width)\" webkit-playsinline></iframe>", baseURL: nil)
-        chatView.addSubview(webView)
+        webView.loadHTMLString("<html><head><style type='text/css'>html,body {margin: 0;padding: 0;width: 100%;height: 100%;}</style></head><iframe frameborder=\"0\"scrolling=\"yes\"id=\"\(currentChannel.username)\"src=\"https://twitch.tv/\(currentChannel.username)/chat\"height=\"\(chatView.frame.height)\"width=\"\(chatView.frame.width)\"></iframe>", baseURL: nil)
     }
 
     override func didReceiveMemoryWarning() {
@@ -43,6 +47,8 @@ class ChatViewController: UIViewController, UIWebViewDelegate {
     //MARK: - WebView Callbacks
     func webViewDidFinishLoad(_ webView: UIWebView) {
         webView.frame = chatView.bounds
+        webView.isHidden = false
+        chatSpinner.stopAnimating()
     }
     
 
