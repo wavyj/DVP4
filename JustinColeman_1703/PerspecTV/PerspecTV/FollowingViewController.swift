@@ -46,7 +46,9 @@ class FollowingViewController: UIViewController , UICollectionViewDelegate, UICo
     
     //MARK: - Storyboard Actions
     @IBAction func watchTapped(_ sender: UIButton){
-        
+        //Clears array and sets the selected channel to the only stream
+        appDelegate.streams = [selectedChannel]
+        self.tabBarController?.selectedIndex = 2
     }
     
     @IBAction func addTapped(_ sender: UIButton){

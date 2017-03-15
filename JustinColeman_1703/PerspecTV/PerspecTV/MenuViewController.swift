@@ -13,6 +13,7 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
     //MARK: - Outlets
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var editBtn: UIButton!
+    @IBOutlet weak var doneBtn: UIButton!
     
     //MARK: - Variables
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -36,9 +37,11 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
         //Enable/Disable Editing
         tableView.setEditing(!tableView.isEditing, animated: true)
         if tableView.isEditing{
-            editBtn.imageView?.image = UIImage(named: "DoneIcon")
+            doneBtn.isHidden = false
+            editBtn.isHidden = true
         }else{
-            editBtn.imageView?.image = UIImage(named: "EditIcon")
+            doneBtn.isHidden = true
+            editBtn.isHidden = false
         }
         
     }
