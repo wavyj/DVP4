@@ -158,6 +158,13 @@
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CurrentViewersIcon" translatesAutoresizingMaskIntoConstraints="NO" id="Md2-C5-9cv">
                                                             <rect key="frame" x="255" y="139" width="24" height="24"/>
                                                         </imageView>
+                                                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9gv-dW-s9I">
+                                                            <rect key="frame" x="96" y="61" width="48" height="48"/>
+                                                            <state key="normal" image="PlayIcon-Light"/>
+                                                            <connections>
+                                                                <action selector="watchTapped:" destination="9Qh-Wg-vnB" eventType="touchUpInside" id="pwF-4C-sJ1"/>
+                                                            </connections>
+                                                        </button>
                                                         <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vyO-my-029">
                                                             <rect key="frame" x="204" y="61" width="48" height="48"/>
                                                             <state key="normal" image="AddIcon"/>
@@ -166,7 +173,7 @@
                                                             </connections>
                                                         </button>
                                                         <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Watch" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="65T-51-zvM">
-                                                            <rect key="frame" x="100.5" y="114" width="49" height="21"/>
+                                                            <rect key="frame" x="95.5" y="114" width="49" height="21"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <nil key="highlightedColor"/>
@@ -180,9 +187,11 @@
                                                     </subviews>
                                                     <color key="backgroundColor" white="0.0" alpha="0.4041095890410959" colorSpace="calibratedWhite"/>
                                                     <constraints>
+                                                        <constraint firstItem="vyO-my-029" firstAttribute="leading" secondItem="9gv-dW-s9I" secondAttribute="trailing" constant="60" id="1D5-oa-7qN"/>
                                                         <constraint firstItem="xzg-km-igU" firstAttribute="leading" secondItem="Md2-C5-9cv" secondAttribute="trailing" constant="5" id="5dr-N0-2Dl"/>
                                                         <constraint firstItem="pJ1-cX-POc" firstAttribute="top" secondItem="KJ2-HO-LXb" secondAttribute="bottom" constant="5" id="DCS-jL-rhD"/>
                                                         <constraint firstAttribute="bottom" secondItem="xzg-km-igU" secondAttribute="bottom" constant="9" id="ELd-iV-FcZ"/>
+                                                        <constraint firstItem="65T-51-zvM" firstAttribute="top" secondItem="9gv-dW-s9I" secondAttribute="bottom" constant="5" id="N6R-yH-3ZR"/>
                                                         <constraint firstAttribute="bottom" secondItem="pJ1-cX-POc" secondAttribute="bottom" constant="9" id="NhR-IE-U6J"/>
                                                         <constraint firstItem="Md2-C5-9cv" firstAttribute="centerY" secondItem="xzg-km-igU" secondAttribute="centerY" id="OCV-LD-gCc"/>
                                                         <constraint firstAttribute="trailing" secondItem="xzg-km-igU" secondAttribute="trailing" constant="10" id="OGV-3z-sfZ"/>
@@ -190,33 +199,24 @@
                                                         <constraint firstItem="vyO-my-029" firstAttribute="centerY" secondItem="kJq-o5-a18" secondAttribute="centerY" id="YVi-dR-NXT"/>
                                                         <constraint firstItem="KJ2-HO-LXb" firstAttribute="leading" secondItem="kJq-o5-a18" secondAttribute="leading" constant="15" id="cD3-KL-ByI"/>
                                                         <constraint firstItem="pJ1-cX-POc" firstAttribute="leading" secondItem="kJq-o5-a18" secondAttribute="leading" constant="15" id="efs-x3-Led"/>
+                                                        <constraint firstItem="65T-51-zvM" firstAttribute="centerX" secondItem="9gv-dW-s9I" secondAttribute="centerX" id="gF6-NA-pl1"/>
                                                         <constraint firstItem="wak-5U-zXT" firstAttribute="top" secondItem="vyO-my-029" secondAttribute="bottom" constant="5" id="ing-Qe-vqT"/>
+                                                        <constraint firstItem="9gv-dW-s9I" firstAttribute="centerY" secondItem="vyO-my-029" secondAttribute="centerY" id="jg2-Ir-kSi"/>
                                                         <constraint firstItem="wak-5U-zXT" firstAttribute="centerX" secondItem="vyO-my-029" secondAttribute="centerX" id="kba-Ru-aHa"/>
                                                     </constraints>
                                                 </view>
-                                                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9gv-dW-s9I">
-                                                    <rect key="frame" x="101" y="61" width="48" height="48"/>
-                                                    <state key="normal" image="PlayIcon-Light"/>
-                                                    <connections>
-                                                        <action selector="watchTapped:" destination="9Qh-Wg-vnB" eventType="touchUpInside" id="pwF-4C-sJ1"/>
-                                                    </connections>
-                                                </button>
                                             </subviews>
                                         </view>
                                         <constraints>
                                             <constraint firstItem="kJq-o5-a18" firstAttribute="width" secondItem="7Np-vU-8dz" secondAttribute="width" id="0C9-Wc-ExD"/>
-                                            <constraint firstItem="vyO-my-029" firstAttribute="leading" secondItem="9gv-dW-s9I" secondAttribute="trailing" constant="55" id="7CW-Yd-LHS"/>
                                             <constraint firstItem="7Np-vU-8dz" firstAttribute="leading" secondItem="gLZ-J7-Dqt" secondAttribute="leading" id="8WP-8w-lUU"/>
                                             <constraint firstAttribute="bottom" secondItem="7Np-vU-8dz" secondAttribute="bottom" id="PCP-Zd-doi"/>
                                             <constraint firstItem="7Np-vU-8dz" firstAttribute="top" secondItem="gLZ-J7-Dqt" secondAttribute="top" id="Plx-MO-f8m"/>
                                             <constraint firstItem="kJq-o5-a18" firstAttribute="centerY" secondItem="7Np-vU-8dz" secondAttribute="centerY" id="Qta-9h-Ryc"/>
-                                            <constraint firstItem="65T-51-zvM" firstAttribute="centerX" secondItem="9gv-dW-s9I" secondAttribute="centerX" id="RYd-F3-oEi"/>
                                             <constraint firstItem="kJq-o5-a18" firstAttribute="height" secondItem="7Np-vU-8dz" secondAttribute="height" id="Zn7-MN-HWO"/>
                                             <constraint firstItem="kJq-o5-a18" firstAttribute="centerX" secondItem="7Np-vU-8dz" secondAttribute="centerX" id="hhZ-zn-izP"/>
                                             <constraint firstItem="pJ1-cX-POc" firstAttribute="width" secondItem="gLZ-J7-Dqt" secondAttribute="width" multiplier="0.65" id="mdF-A4-9tT"/>
                                             <constraint firstAttribute="trailing" secondItem="7Np-vU-8dz" secondAttribute="trailing" id="nrN-Si-IEF"/>
-                                            <constraint firstItem="9gv-dW-s9I" firstAttribute="centerY" secondItem="vyO-my-029" secondAttribute="centerY" id="pXP-p9-9MY"/>
-                                            <constraint firstItem="65T-51-zvM" firstAttribute="top" secondItem="9gv-dW-s9I" secondAttribute="bottom" constant="5" id="vGB-2x-TkV"/>
                                             <constraint firstItem="xzg-km-igU" firstAttribute="width" secondItem="gLZ-J7-Dqt" secondAttribute="width" multiplier="0.16" id="xO9-Lh-Iqy"/>
                                         </constraints>
                                         <connections>
@@ -330,6 +330,9 @@
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d3L-Xg-g34" userLabel="Chat Btn">
                                         <rect key="frame" x="163.5" y="101" width="48" height="48"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="48" id="N3y-ot-1m8"/>
+                                        </constraints>
                                         <state key="normal" image="ChatIcon"/>
                                         <connections>
                                             <action selector="chatTapped:" destination="ZMs-L7-0az" eventType="touchUpInside" id="7dU-nd-Y0J"/>
@@ -372,15 +375,15 @@
                             <constraint firstItem="iJl-wj-bfF" firstAttribute="centerY" secondItem="bjF-hM-ize" secondAttribute="centerY" multiplier="0.65" id="zBq-tI-VYv"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" tag="3" title="" image="PlayIcon" selectedImage="PlayIcon" id="U5r-1S-EKY">
+                    <tabBarItem key="tabBarItem" tag="2" title="" image="PlayIcon" selectedImage="PlayIcon" id="U5r-1S-EKY">
                         <inset key="imageInsets" minX="0.0" minY="9" maxX="0.0" maxY="-9"/>
                     </tabBarItem>
                     <connections>
                         <outlet property="activitySpinner" destination="iJl-wj-bfF" id="RvM-2L-Fg0"/>
-                        <outlet property="chatBtn" destination="d3L-Xg-g34" id="QAr-ob-vZH"/>
+                        <outlet property="chatBtn" destination="d3L-Xg-g34" id="7Jn-OI-EES"/>
                         <outlet property="controlView" destination="wcC-Hh-LhP" id="Sz6-Jn-vjl"/>
+                        <outlet property="infoBtn" destination="nNm-W7-gcm" id="IAj-zm-jLE"/>
                         <outlet property="leftArrow" destination="ac2-TH-n07" id="wjg-VD-3AM"/>
-                        <outlet property="menuBtn" destination="8jP-Sy-Ygn" id="ywp-cf-qL5"/>
                         <outlet property="menuView" destination="bAx-yC-cih" id="VOx-zF-EVG"/>
                         <outlet property="rightArrow" destination="XSn-8r-1TQ" id="haP-i8-y14"/>
                         <outlet property="streamName" destination="BbR-GN-dEf" id="WIa-Ng-Uru"/>
@@ -514,7 +517,7 @@
                             <constraint firstItem="BaC-zQ-r6I" firstAttribute="leading" secondItem="BDz-EM-LEO" secondAttribute="leading" id="wic-x6-54Q"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" tag="5" title="" image="SettingsIcon" selectedImage="SettingsIcon" id="TUQ-lY-CoU">
+                    <tabBarItem key="tabBarItem" tag="4" title="" image="SettingsIcon" selectedImage="SettingsIcon" id="TUQ-lY-CoU">
                         <inset key="imageInsets" minX="0.0" minY="9" maxX="0.0" maxY="-9"/>
                     </tabBarItem>
                     <connections>
@@ -547,7 +550,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.20392156859999999" green="0.26274509800000001" blue="0.3294117647" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
-                    <tabBarItem key="tabBarItem" tag="4" title="" image="SearchIcon" selectedImage="SearchIcon" id="eq5-w4-CsY">
+                    <tabBarItem key="tabBarItem" tag="3" title="" image="SearchIcon" selectedImage="SearchIcon" id="eq5-w4-CsY">
                         <inset key="imageInsets" minX="0.0" minY="9" maxX="0.0" maxY="-9"/>
                     </tabBarItem>
                     <connections>
@@ -644,7 +647,7 @@
                             <constraint firstItem="BPi-Po-SM1" firstAttribute="top" secondItem="yXR-QT-1ak" secondAttribute="bottom" constant="10" id="geq-pG-RTI"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" tag="2" title="" image="GameIcon" selectedImage="GameIcon" id="dnV-FX-g5J">
+                    <tabBarItem key="tabBarItem" tag="1" title="" image="GameIcon" selectedImage="GameIcon" id="dnV-FX-g5J">
                         <inset key="imageInsets" minX="0.0" minY="9" maxX="0.0" maxY="-9"/>
                     </tabBarItem>
                     <connections>
@@ -692,6 +695,26 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z8h-bT-U23" userLabel="Dark Overlay">
                                                     <rect key="frame" x="0.0" y="0.0" width="350" height="170"/>
                                                     <subviews>
+                                                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WmP-VC-2v7">
+                                                            <rect key="frame" x="95.5" y="61" width="48" height="48"/>
+                                                            <state key="normal" image="PlayIcon-Light"/>
+                                                            <connections>
+                                                                <action selector="watchTapped:" destination="18s-Qy-giX" eventType="touchUpInside" id="qBd-KG-Xvk"/>
+                                                            </connections>
+                                                        </button>
+                                                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qz0-jz-05S">
+                                                            <rect key="frame" x="203.5" y="61" width="48" height="48"/>
+                                                            <state key="normal" image="AddIcon"/>
+                                                            <connections>
+                                                                <action selector="addTapped:" destination="18s-Qy-giX" eventType="touchUpInside" id="trN-iJ-3MJ"/>
+                                                            </connections>
+                                                        </button>
+                                                        <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Watch" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mk0-uA-g0h">
+                                                            <rect key="frame" x="95.5" y="114" width="49" height="21"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hNN-g3-KhB">
                                                             <rect key="frame" x="15" y="137" width="56" height="24"/>
                                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
@@ -707,15 +730,29 @@
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CurrentViewersIcon" translatesAutoresizingMaskIntoConstraints="NO" id="0MG-z0-toL">
                                                             <rect key="frame" x="248" y="138.5" width="24" height="24"/>
                                                         </imageView>
+                                                        <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jrw-ZM-pdo">
+                                                            <rect key="frame" x="212" y="114" width="31" height="21"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
                                                     </subviews>
                                                     <color key="backgroundColor" white="0.0" alpha="0.40333369009999998" colorSpace="calibratedWhite"/>
                                                     <constraints>
                                                         <constraint firstAttribute="bottom" secondItem="sKy-fQ-fRm" secondAttribute="bottom" constant="9" id="0ZY-HF-kgr"/>
+                                                        <constraint firstItem="qz0-jz-05S" firstAttribute="centerY" secondItem="Z8h-bT-U23" secondAttribute="centerY" id="1CI-iG-foy"/>
                                                         <constraint firstAttribute="bottom" secondItem="hNN-g3-KhB" secondAttribute="bottom" constant="9" id="K2B-pF-yP2"/>
                                                         <constraint firstItem="sKy-fQ-fRm" firstAttribute="leading" secondItem="0MG-z0-toL" secondAttribute="trailing" constant="5" id="MQ1-hE-a9L"/>
+                                                        <constraint firstItem="qz0-jz-05S" firstAttribute="leading" secondItem="WmP-VC-2v7" secondAttribute="trailing" constant="60" id="Syq-QK-Efm"/>
+                                                        <constraint firstItem="Mk0-uA-g0h" firstAttribute="centerX" secondItem="WmP-VC-2v7" secondAttribute="centerX" id="Xfm-Xc-tcg"/>
                                                         <constraint firstItem="0MG-z0-toL" firstAttribute="centerY" secondItem="sKy-fQ-fRm" secondAttribute="centerY" id="ZdE-rF-CPg"/>
                                                         <constraint firstAttribute="trailing" secondItem="sKy-fQ-fRm" secondAttribute="trailing" constant="10" id="amr-Ye-yNB"/>
+                                                        <constraint firstItem="WmP-VC-2v7" firstAttribute="centerY" secondItem="qz0-jz-05S" secondAttribute="centerY" id="cGw-er-r1a"/>
+                                                        <constraint firstItem="qz0-jz-05S" firstAttribute="centerX" secondItem="Z8h-bT-U23" secondAttribute="centerX" multiplier="1.3" id="gAr-09-ihZ"/>
                                                         <constraint firstItem="hNN-g3-KhB" firstAttribute="leading" secondItem="Z8h-bT-U23" secondAttribute="leading" constant="15" id="liD-at-OiW"/>
+                                                        <constraint firstItem="Jrw-ZM-pdo" firstAttribute="top" secondItem="qz0-jz-05S" secondAttribute="bottom" constant="5" id="tIV-WN-0Bq"/>
+                                                        <constraint firstItem="Jrw-ZM-pdo" firstAttribute="centerX" secondItem="qz0-jz-05S" secondAttribute="centerX" id="xS2-jH-UDs"/>
+                                                        <constraint firstItem="Mk0-uA-g0h" firstAttribute="top" secondItem="WmP-VC-2v7" secondAttribute="bottom" constant="5" id="zW8-Am-W8O"/>
                                                     </constraints>
                                                 </view>
                                             </subviews>
@@ -732,9 +769,14 @@
                                             <constraint firstAttribute="trailing" secondItem="fQD-g5-Ymp" secondAttribute="trailing" id="ml1-fV-c0s"/>
                                         </constraints>
                                         <connections>
+                                            <outlet property="addBtn" destination="qz0-jz-05S" id="d9D-Za-N0v"/>
+                                            <outlet property="addLabel" destination="Jrw-ZM-pdo" id="NMj-Mw-K2k"/>
                                             <outlet property="previewImage" destination="fQD-g5-Ymp" id="WK6-H3-Y4n"/>
                                             <outlet property="streamerName" destination="hNN-g3-KhB" id="lVg-Iq-zuq"/>
                                             <outlet property="viewerCount" destination="sKy-fQ-fRm" id="geI-0l-KqZ"/>
+                                            <outlet property="viewersIcon" destination="0MG-z0-toL" id="0eu-fb-w6N"/>
+                                            <outlet property="watchBtn" destination="WmP-VC-2v7" id="puK-o6-BXw"/>
+                                            <outlet property="watchLabel" destination="Mk0-uA-g0h" id="R1Y-Ng-tQS"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -830,7 +872,7 @@
                         <outlet property="totalChannelsLabel" destination="cKW-KE-62a" id="U1X-xj-0oP"/>
                         <outlet property="totalViewersLabel" destination="CrK-Th-m9q" id="YTV-Bi-QB6"/>
                         <segue destination="0PM-Dr-Rjy" kind="unwind" identifier="selectedgameBackTapped" unwindAction="backFor:" id="yZr-FX-w2e"/>
-                        <segue destination="ZMs-L7-0az" kind="show" identifier="toWatch" id="T3X-u3-RQ9"/>
+                        <segue destination="0PM-Dr-Rjy" kind="unwind" identifier="toWatch" unwindAction="toWatch:" id="Mjm-Ig-odi"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fnR-MI-FnY" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1020,7 +1062,7 @@
         <scene sceneID="1y3-Uk-UeI">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="7wI-ea-Qn3" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" tag="1" title="" image="HeartIcon" selectedImage="HeartIcon" id="RUD-kY-gAI">
+                    <tabBarItem key="tabBarItem" title="" image="HeartIcon" selectedImage="HeartIcon" id="RUD-kY-gAI">
                         <inset key="imageInsets" minX="0.0" minY="9" maxX="0.0" maxY="-9"/>
                     </tabBarItem>
                     <toolbarItems/>
@@ -1029,6 +1071,10 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="N73-XK-Jzc">
+                        <rect key="frame" x="0.0" y="623" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
                     <connections>
                         <segue destination="9Qh-Wg-vnB" kind="relationship" relationship="rootViewController" id="QuD-FB-0Ug"/>
                     </connections>
@@ -1060,6 +1106,6 @@
         <image name="ViewsIcon" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="T3X-u3-RQ9"/>
+        <segue reference="aX6-US-juq"/>
     </inferredMetricsTieBreakers>
 </document>

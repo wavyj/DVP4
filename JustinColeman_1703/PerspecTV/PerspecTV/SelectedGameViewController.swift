@@ -36,7 +36,7 @@ class SelectedGameViewController: UIViewController, UICollectionViewDelegate, UI
         //Gesture Recognizer for back arrow
         backArrow.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.backTapped(_:))))
         gameTitle.text = currentGame.name
-        
+
         //Game View Setup
         gameView.clipsToBounds = true
         gameImage.image = currentGame.image
@@ -58,27 +58,15 @@ class SelectedGameViewController: UIViewController, UICollectionViewDelegate, UI
     
     //MARK: - Storyboard Actions
     @IBAction func watchTapped(_ sender: UIButton){
-        
+        //Clears array and sets the selected channel to the only stream
+        appDelegate.streams = [selectedChannel]
+        performSegue(withIdentifier: "toWatch", sender: self)
     }
     
     @IBAction func addTapped(_ sender: UIButton){
-        let streams = appDelegate.streams!
-        if streams.count < 4{
-            if !streams.contains(where: { (Channel) -> Bool in
-                if Channel.username == selectedChannel.username{
-                    return true
-                }else{
-                    return false
-                }
-            }){
-                appDelegate.streams.append(selectedChannel)
-                self.tabBarController?.selectedIndex = 2
-            }else{
-                //Let user know this channel is already added
-            }
-        }else{
-            //Let user know they cant add anymore
-        }
+        //Adds selected stream to array of streams
+        appDelegate.streams.append(selectedChannel)
+        performSegue(withIdentifier: "toWatch", sender: self)
     }
     
     //MARK: - Collection View Data Source
@@ -105,7 +93,6 @@ class SelectedGameViewController: UIViewController, UICollectionViewDelegate, UI
         if selectedCell.isFlipped == false{
             UIView.transition(with: selectedCell, duration: 0.5, options: .transitionFlipFromRight, animations: {
                 //selectedCell.previewImage.isHidden = true
-                selectedCell.gameTitle.isHidden = true
                 selectedCell.streamerName.isHidden = true
                 selectedCell.viewerCount.isHidden = true
                 selectedCell.addBtn.isHidden = false
@@ -113,13 +100,33 @@ class SelectedGameViewController: UIViewController, UICollectionViewDelegate, UI
                 selectedCell.viewersIcon.isHidden = true
                 selectedCell.addLabel.isHidden = false
                 selectedCell.watchLabel.isHidden = false
+                
+                //Check current streams
+                let streams = self.appDelegate.streams!
+                if !streams.contains(where: { (Channel) -> Bool in
+                    if Channel.username == self.selectedChannel.username{
+                        return true
+                    }else{
+                        return false
+                    }
+                }){
+                    selectedCell.watchBtn.isEnabled = true
+                    selectedCell.addBtn.isEnabled = true
+                    if streams.count == 4{
+                        selectedCell.addBtn.isEnabled = false
+                        selectedCell.watchBtn.isEnabled = false
+                    }
+                }else{
+                    selectedCell.watchBtn.isEnabled = false
+                    selectedCell.addBtn.isEnabled = false
+                }
+                
             }, completion: { (Bool) in
                 selectedCell.isFlipped = true
             })
         }else{
             UIView.transition(with: selectedCell, duration: 0.5, options: .transitionFlipFromLeft, animations: {
                 //selectedCell.previewImage.isHidden = false
-                selectedCell.gameTitle.isHidden = false
                 selectedCell.streamerName.isHidden = false
                 selectedCell.viewerCount.isHidden = false
                 selectedCell.addBtn.isHidden = true
@@ -166,17 +173,13 @@ class SelectedGameViewController: UIViewController, UICollectionViewDelegate, UI
     }
 
     
-    // MARK: - Navigation
+    /*// MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
-        if segue.identifier == "toWatch"{
-            let WVC = segue.destination as! WatchViewController
-            WVC.currentChannel = selectedChannel
-        }
-    }
+    }*/
  
 
 }

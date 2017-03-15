@@ -22,6 +22,7 @@ class WatchViewController: UIViewController, UIWebViewDelegate{
     @IBOutlet weak var menuView: UIView!
     @IBOutlet weak var menuBtn: UIButton!
     @IBOutlet weak var chatBtn: UIButton!
+    @IBOutlet weak var infoBtn: UIButton!
     
     //MARK: - Variables
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -90,7 +91,11 @@ class WatchViewController: UIViewController, UIWebViewDelegate{
                 rightArrow.isHidden = false
             }
             if selectedIndex == 0{
+                streamView.isHidden = true
                 leftArrow.isHidden = true
+                menuBtn.isEnabled = false
+                infoBtn.isEnabled = false
+                chatBtn.isEnabled = false
             }
             currentChannel = streams[selectedIndex]
         default:
@@ -113,14 +118,13 @@ class WatchViewController: UIViewController, UIWebViewDelegate{
         performSegue(withIdentifier: "toMenu", sender: self)
     }
     
-    @IBAction func unwindMenu(_ sender: UIStoryboardSegue){
+    @IBAction func unwindMenu(_ segue: UIStoryboardSegue){
         streams = appDelegate.streams
         currentChannel = streams[0]
         selectedIndex = 0
         let tempBtn = UIButton()
         tempBtn.tag = 2
         btnTapped(tempBtn)
-    
     }
 
     //MARK: - Webview Callbacks

@@ -37,6 +37,8 @@ class FollowingViewController: UIViewController , UICollectionViewDelegate, UICo
         }else{
             downloadandParse(urlString: "https://api.twitch.tv/kraken/streams/followed?oauth_token=\(currentUser.authToken)&limit=10&offset\(offset)&stream_type=live&client_id=\(appDelegate.consumerID)&\(appDelegate.apiVersion)", downloadTask: "Followed Live")
         }
+        
+        collectionView.remembersLastFocusedIndexPath = false
     }
 
     override func didReceiveMemoryWarning() {
@@ -52,23 +54,9 @@ class FollowingViewController: UIViewController , UICollectionViewDelegate, UICo
     }
     
     @IBAction func addTapped(_ sender: UIButton){
-        let streams = appDelegate.streams!
-        if streams.count < 4{
-            if !streams.contains(where: { (Channel) -> Bool in
-                if Channel.username == selectedChannel.username{
-                    return true
-                }else{
-                    return false
-                }
-            }){
-                appDelegate.streams.append(selectedChannel)
-                self.tabBarController?.selectedIndex = 2
-            }else{
-                //Let user know this channel is already added
-            }
-        }else{
-            //Let user know they cant add anymore
-        }
+        //Adds selected stream to array of streams
+        appDelegate.streams.append(selectedChannel)
+        self.tabBarController?.selectedIndex = 2
     }
     
     //MARK: - Collection View Data Source
@@ -84,6 +72,7 @@ class FollowingViewController: UIViewController , UICollectionViewDelegate, UICo
         cell.previewImage.image = current.previewImage
         cell.layer.cornerRadius = 6
         cell.isFlipped = false
+        
         return cell
     }
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -104,6 +93,27 @@ class FollowingViewController: UIViewController , UICollectionViewDelegate, UICo
                 selectedCell.viewersIcon.isHidden = true
                 selectedCell.addLabel.isHidden = false
                 selectedCell.watchLabel.isHidden = false
+                
+                //Check current streams
+                let streams = self.appDelegate.streams!
+                if !streams.contains(where: { (Channel) -> Bool in
+                    if Channel.username == self.selectedChannel.username{
+                        return true
+                    }else{
+                        return false
+                    }
+                }){
+                    selectedCell.watchBtn.isEnabled = true
+                    selectedCell.addBtn.isEnabled = true
+                    if streams.count == 4{
+                        selectedCell.addBtn.isEnabled = false
+                        selectedCell.watchBtn.isEnabled = false
+                    }
+                }else{
+                    selectedCell.watchBtn.isEnabled = false
+                    selectedCell.addBtn.isEnabled = false
+                }
+                
             }, completion: { (Bool) in
                 selectedCell.isFlipped = true
             })

@@ -28,6 +28,10 @@ class UITabBarViewController: UITabBarController {
     override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
         tabBar.tintColor = UIColor.white
     }
+    
+    @IBAction func toWatch(_ sender: UIStoryboardSegue){
+        self.selectedIndex = 2
+    }
 
     /*
     // MARK: - Navigation
