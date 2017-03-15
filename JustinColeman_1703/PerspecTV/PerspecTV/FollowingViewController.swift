@@ -16,6 +16,7 @@ class FollowingViewController: UIViewController , UICollectionViewDelegate, UICo
     //MARK: - Outlets
     @IBOutlet weak var activitySpinner: UIActivityIndicatorView!
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var addStreamView: UIView!
     
     //MARK: - Variables
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -43,26 +44,12 @@ class FollowingViewController: UIViewController , UICollectionViewDelegate, UICo
         // Dispose of any resources that can be recreated.
     }
     
-    //MARK: - Collection View Data Source
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return channels.count
-    }
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath) as! ChannelCollectionViewCell
-        let current = channels[indexPath.row]
-        cell.gameTitle.text = current.game
-        cell.streamerName.text = current.username
-        cell.viewerCount.text = current.viewers.description
-        cell.previewImage.image = current.previewImage
-        cell.layer.cornerRadius = 6
-        return cell
-    }
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
+    //MARK: - Storyboard Actions
+    @IBAction func watchTapped(_ sender: UIButton){
+        
     }
     
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        selectedChannel = channels[indexPath.row]
+    @IBAction func addTapped(_ sender: UIButton){
         let streams = appDelegate.streams!
         if streams.count < 4{
             if !streams.contains(where: { (Channel) -> Bool in
@@ -78,7 +65,57 @@ class FollowingViewController: UIViewController , UICollectionViewDelegate, UICo
                 //Let user know this channel is already added
             }
         }else{
-            //Let user know they cant add anymore 
+            //Let user know they cant add anymore
+        }
+    }
+    
+    //MARK: - Collection View Data Source
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return channels.count
+    }
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath) as! ChannelCollectionViewCell
+        let current = channels[indexPath.row]
+        cell.gameTitle.text = current.game
+        cell.streamerName.text = current.username
+        cell.viewerCount.text = current.viewers.description
+        cell.previewImage.image = current.previewImage
+        cell.layer.cornerRadius = 6
+        cell.isFlipped = false
+        return cell
+    }
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        selectedChannel = channels[indexPath.row]
+        let selectedCell = collectionView.cellForItem(at: indexPath) as! ChannelCollectionViewCell
+        if selectedCell.isFlipped == false{
+            UIView.transition(with: selectedCell, duration: 0.5, options: .transitionFlipFromRight, animations: {
+                selectedCell.previewImage.isHidden = true
+                selectedCell.gameTitle.isHidden = true
+                selectedCell.streamerName.isHidden = true
+                selectedCell.viewerCount.isHidden = true
+                selectedCell.addBtn.isHidden = false
+                selectedCell.watchBtn.isHidden = false
+                selectedCell.viewersIcon.isHidden = true
+            }, completion: { (Bool) in
+                selectedCell.isFlipped = true
+            })
+        }else{
+            UIView.transition(with: selectedCell, duration: 0.5, options: .transitionFlipFromLeft, animations: {
+                selectedCell.previewImage.isHidden = false
+                selectedCell.gameTitle.isHidden = false
+                selectedCell.streamerName.isHidden = false
+                selectedCell.viewerCount.isHidden = false
+                selectedCell.addBtn.isHidden = true
+                selectedCell.watchBtn.isHidden = true
+                selectedCell.viewersIcon.isHidden = false
+            }, completion: { (Bool) in
+                selectedCell.isFlipped = false
+            })
+
         }
     }
     

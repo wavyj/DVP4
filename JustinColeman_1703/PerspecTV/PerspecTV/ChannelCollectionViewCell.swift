@@ -15,5 +15,11 @@ class ChannelCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var streamerName: UILabel!
     @IBOutlet weak var gameTitle: UILabel!
     @IBOutlet weak var viewerCount: UILabel!
+    @IBOutlet weak var addBtn: UIButton!
+    @IBOutlet weak var watchBtn: UIButton!
+    @IBOutlet weak var viewersIcon: UIImageView!
+    
+    //Variables
+    var isFlipped: Bool!
     
 }

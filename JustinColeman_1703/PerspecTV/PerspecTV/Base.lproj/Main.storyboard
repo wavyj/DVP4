@@ -144,7 +144,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Game" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pJ1-cX-POc">
-                                                            <rect key="frame" x="15" y="140" width="227.5" height="21"/>
+                                                            <rect key="frame" x="15" y="140" width="228" height="21"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <nil key="highlightedColor"/>
@@ -156,8 +156,12 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CurrentViewersIcon" translatesAutoresizingMaskIntoConstraints="NO" id="Md2-C5-9cv">
-                                                            <rect key="frame" x="255" y="138.5" width="24" height="24"/>
+                                                            <rect key="frame" x="255" y="139" width="24" height="24"/>
                                                         </imageView>
+                                                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vyO-my-029">
+                                                            <rect key="frame" x="204" y="61" width="48" height="48"/>
+                                                            <state key="normal" image="AddIcon"/>
+                                                        </button>
                                                     </subviews>
                                                     <color key="backgroundColor" white="0.0" alpha="0.40333369006849318" colorSpace="calibratedWhite"/>
                                                     <constraints>
@@ -167,14 +171,21 @@
                                                         <constraint firstAttribute="bottom" secondItem="pJ1-cX-POc" secondAttribute="bottom" constant="9" id="NhR-IE-U6J"/>
                                                         <constraint firstItem="Md2-C5-9cv" firstAttribute="centerY" secondItem="xzg-km-igU" secondAttribute="centerY" id="OCV-LD-gCc"/>
                                                         <constraint firstAttribute="trailing" secondItem="xzg-km-igU" secondAttribute="trailing" constant="10" id="OGV-3z-sfZ"/>
+                                                        <constraint firstItem="vyO-my-029" firstAttribute="centerX" secondItem="kJq-o5-a18" secondAttribute="centerX" multiplier="1.3" id="OHl-pp-qvA"/>
+                                                        <constraint firstItem="vyO-my-029" firstAttribute="centerY" secondItem="kJq-o5-a18" secondAttribute="centerY" id="YVi-dR-NXT"/>
                                                         <constraint firstItem="KJ2-HO-LXb" firstAttribute="leading" secondItem="kJq-o5-a18" secondAttribute="leading" constant="15" id="cD3-KL-ByI"/>
                                                         <constraint firstItem="pJ1-cX-POc" firstAttribute="leading" secondItem="kJq-o5-a18" secondAttribute="leading" constant="15" id="efs-x3-Led"/>
                                                     </constraints>
                                                 </view>
+                                                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9gv-dW-s9I">
+                                                    <rect key="frame" x="101" y="61" width="48" height="48"/>
+                                                    <state key="normal" image="PlayIcon-Light"/>
+                                                </button>
                                             </subviews>
                                         </view>
                                         <constraints>
                                             <constraint firstItem="kJq-o5-a18" firstAttribute="width" secondItem="7Np-vU-8dz" secondAttribute="width" id="0C9-Wc-ExD"/>
+                                            <constraint firstItem="vyO-my-029" firstAttribute="leading" secondItem="9gv-dW-s9I" secondAttribute="trailing" constant="55" id="7CW-Yd-LHS"/>
                                             <constraint firstItem="7Np-vU-8dz" firstAttribute="leading" secondItem="gLZ-J7-Dqt" secondAttribute="leading" id="8WP-8w-lUU"/>
                                             <constraint firstAttribute="bottom" secondItem="7Np-vU-8dz" secondAttribute="bottom" id="PCP-Zd-doi"/>
                                             <constraint firstItem="7Np-vU-8dz" firstAttribute="top" secondItem="gLZ-J7-Dqt" secondAttribute="top" id="Plx-MO-f8m"/>
@@ -183,13 +194,17 @@
                                             <constraint firstItem="kJq-o5-a18" firstAttribute="centerX" secondItem="7Np-vU-8dz" secondAttribute="centerX" id="hhZ-zn-izP"/>
                                             <constraint firstItem="pJ1-cX-POc" firstAttribute="width" secondItem="gLZ-J7-Dqt" secondAttribute="width" multiplier="0.65" id="mdF-A4-9tT"/>
                                             <constraint firstAttribute="trailing" secondItem="7Np-vU-8dz" secondAttribute="trailing" id="nrN-Si-IEF"/>
+                                            <constraint firstItem="9gv-dW-s9I" firstAttribute="centerY" secondItem="vyO-my-029" secondAttribute="centerY" id="pXP-p9-9MY"/>
                                             <constraint firstItem="xzg-km-igU" firstAttribute="width" secondItem="gLZ-J7-Dqt" secondAttribute="width" multiplier="0.16" id="xO9-Lh-Iqy"/>
                                         </constraints>
                                         <connections>
+                                            <outlet property="addBtn" destination="vyO-my-029" id="WL2-p1-9VM"/>
                                             <outlet property="gameTitle" destination="pJ1-cX-POc" id="MwE-zh-JI5"/>
                                             <outlet property="previewImage" destination="7Np-vU-8dz" id="fcn-Jr-Be0"/>
                                             <outlet property="streamerName" destination="KJ2-HO-LXb" id="toa-24-sIb"/>
                                             <outlet property="viewerCount" destination="xzg-km-igU" id="MKW-pC-6j2"/>
+                                            <outlet property="viewersIcon" destination="Md2-C5-9cv" id="EeI-Gj-Dli"/>
+                                            <outlet property="watchBtn" destination="9gv-dW-s9I" id="FKG-Xf-OWF"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -342,7 +357,7 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="gray" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" textLabel="qyK-oe-4cZ" style="IBUITableViewCellStyleDefault" id="miM-jW-XWg">
-                                        <rect key="frame" x="0.0" y="56" width="355" height="44"/>
+                                        <rect key="frame" x="0.0" y="55.5" width="355" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="miM-jW-XWg" id="dci-zd-zT7">
                                             <rect key="frame" x="0.0" y="0.0" width="355" height="43.5"/>
@@ -817,6 +832,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="AddIcon" width="48" height="48"/>
         <image name="ArrowLeftIcon" width="24" height="24"/>
         <image name="ArrowRightIcon" width="24" height="24"/>
         <image name="CurrentViewersIcon" width="24" height="24"/>
@@ -824,12 +840,13 @@
         <image name="GameIcon" width="24" height="24"/>
         <image name="HeartIcon" width="24" height="24"/>
         <image name="PlayIcon" width="24" height="24"/>
+        <image name="PlayIcon-Light" width="48" height="48"/>
         <image name="SearchIcon" width="24" height="24"/>
         <image name="SettingsIcon" width="24" height="24"/>
         <image name="VideoCamIcon" width="24" height="24"/>
         <image name="ViewsIcon" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="T3X-u3-RQ9"/>
+        <segue reference="25p-Op-POj"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -39,11 +39,13 @@ class LoginViewController: UIViewController, UIWebViewDelegate {
     
     //MARK: - Storyboard Actions
     @IBAction func twitchAuth(){
-        webView = UIWebView(frame: self.view.frame)
+        
         //Clears cache
         for c in HTTPCookieStorage.shared.cookies!{
             HTTPCookieStorage.shared.deleteCookie(c)
         }
+        
+        webView = UIWebView(frame: self.view.frame)
         webView.loadRequest(URLRequest(url: URL(string: "https://api.twitch.tv/kraken/oauth2/authorize?force_verify=false&response_type=token&client_id=\(appDelegate.consumerID)&redirect_uri=\(appDelegate.redirectUrl)&scope=user_read+chat_login+user_subscriptions")!))
         self.view.addSubview(webView)
     }
