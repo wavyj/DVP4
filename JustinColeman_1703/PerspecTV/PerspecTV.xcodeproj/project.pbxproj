@@ -13,6 +13,11 @@
 		D000511D1E70243F0024E91D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D000511B1E70243F0024E91D /* LaunchScreen.storyboard */; };
 		D00051291E702A770024E91D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00051281E702A770024E91D /* LoginViewController.swift */; };
 		D0093CFD1E75318500317839 /* WatchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0093CFC1E75318500317839 /* WatchViewController.swift */; };
+		D0207D961E79F89100D74587 /* SplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0207D951E79F89100D74587 /* SplitViewController.swift */; };
+		D0207D9C1E79FBB500D74587 /* MasterTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0207D9B1E79FBB500D74587 /* MasterTableViewController.swift */; };
+		D0207D9E1E7A007E00D74587 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0207D9D1E7A007E00D74587 /* NavigationController.swift */; };
+		D0207DA01E7A013900D74587 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0207D9F1E7A013900D74587 /* DetailViewController.swift */; };
+		D0207DA21E7A037000D74587 /* MenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0207DA11E7A037000D74587 /* MenuTableViewCell.swift */; };
 		D04C50D01E75F5AB00975E47 /* SelectedGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04C50CF1E75F5AB00975E47 /* SelectedGameViewController.swift */; };
 		D04C50D21E75FC5C00975E47 /* SGVC_ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04C50D11E75FC5C00975E47 /* SGVC_ext.swift */; };
 		D04C50D61E76273D00975E47 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04C50D51E76273D00975E47 /* SearchViewController.swift */; };
@@ -42,6 +47,11 @@
 		D000511E1E70243F0024E91D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D00051281E702A770024E91D /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		D0093CFC1E75318500317839 /* WatchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchViewController.swift; sourceTree = "<group>"; };
+		D0207D951E79F89100D74587 /* SplitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplitViewController.swift; sourceTree = "<group>"; };
+		D0207D9B1E79FBB500D74587 /* MasterTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MasterTableViewController.swift; path = ../MasterTableViewController.swift; sourceTree = "<group>"; };
+		D0207D9D1E7A007E00D74587 /* NavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
+		D0207D9F1E7A013900D74587 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		D0207DA11E7A037000D74587 /* MenuTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuTableViewCell.swift; sourceTree = "<group>"; };
 		D04C50CF1E75F5AB00975E47 /* SelectedGameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectedGameViewController.swift; sourceTree = "<group>"; };
 		D04C50D11E75FC5C00975E47 /* SGVC_ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SGVC_ext.swift; sourceTree = "<group>"; };
 		D04C50D51E76273D00975E47 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
@@ -94,13 +104,8 @@
 			children = (
 				D00051101E70243F0024E91D /* AppDelegate.swift */,
 				D00051161E70243F0024E91D /* Main.storyboard */,
-				D06DF5311E73E5DE00714DE1 /* UITabBarController.swift */,
-				D0A1738D1E70D6DA001893E9 /* Login */,
-				D0A1738E1E70D6E6001893E9 /* Following */,
-				D05829AD1E728145003D1B36 /* Settings */,
-				D0093CFE1E75318E00317839 /* Watch */,
-				D09C531B1E757240006511C4 /* Games */,
-				D04C50D71E76274E00975E47 /* Search */,
+				D0207D9A1E79FB6E00D74587 /* Phone */,
+				D0207D991E79FB5E00D74587 /* Tablet */,
 				D068D7241E7090D5006AFBB6 /* User.swift */,
 				D0A1738F1E70DD9D001893E9 /* Channel.swift */,
 				D09C531E1E757DF1006511C4 /* Game.swift */,
@@ -120,6 +125,32 @@
 				D0888B4D1E78D285004A232F /* StreamTableViewCell.swift */,
 			);
 			name = Watch;
+			sourceTree = "<group>";
+		};
+		D0207D991E79FB5E00D74587 /* Tablet */ = {
+			isa = PBXGroup;
+			children = (
+				D0207D951E79F89100D74587 /* SplitViewController.swift */,
+				D0207D9B1E79FBB500D74587 /* MasterTableViewController.swift */,
+				D0207DA11E7A037000D74587 /* MenuTableViewCell.swift */,
+				D0207D9D1E7A007E00D74587 /* NavigationController.swift */,
+				D0207D9F1E7A013900D74587 /* DetailViewController.swift */,
+			);
+			name = Tablet;
+			sourceTree = "<group>";
+		};
+		D0207D9A1E79FB6E00D74587 /* Phone */ = {
+			isa = PBXGroup;
+			children = (
+				D06DF5311E73E5DE00714DE1 /* UITabBarController.swift */,
+				D0A1738D1E70D6DA001893E9 /* Login */,
+				D0A1738E1E70D6E6001893E9 /* Following */,
+				D05829AD1E728145003D1B36 /* Settings */,
+				D0093CFE1E75318E00317839 /* Watch */,
+				D09C531B1E757240006511C4 /* Games */,
+				D04C50D71E76274E00975E47 /* Search */,
+			);
+			name = Phone;
 			sourceTree = "<group>";
 		};
 		D04C50D71E76274E00975E47 /* Search */ = {
@@ -242,6 +273,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				D00051291E702A770024E91D /* LoginViewController.swift in Sources */,
+				D0207D9E1E7A007E00D74587 /* NavigationController.swift in Sources */,
+				D0207DA01E7A013900D74587 /* DetailViewController.swift in Sources */,
+				D0207D9C1E79FBB500D74587 /* MasterTableViewController.swift in Sources */,
 				D0A173881E70D460001893E9 /* FollowingViewController.swift in Sources */,
 				D00051111E70243F0024E91D /* AppDelegate.swift in Sources */,
 				D0888B4E1E78D285004A232F /* StreamTableViewCell.swift in Sources */,
@@ -254,11 +288,13 @@
 				D067F4E51E79108400FF536A /* ChatViewController.swift in Sources */,
 				D0093CFD1E75318500317839 /* WatchViewController.swift in Sources */,
 				D09C531F1E757DF1006511C4 /* Game.swift in Sources */,
+				D0207D961E79F89100D74587 /* SplitViewController.swift in Sources */,
 				D04C50D01E75F5AB00975E47 /* SelectedGameViewController.swift in Sources */,
 				D04C50D61E76273D00975E47 /* SearchViewController.swift in Sources */,
 				D068D7251E7090D5006AFBB6 /* User.swift in Sources */,
 				D0888B4C1E78D0E1004A232F /* MenuViewController.swift in Sources */,
 				D09C53211E75894E006511C4 /* GameCollectionViewCell.swift in Sources */,
+				D0207DA21E7A037000D74587 /* MenuTableViewCell.swift in Sources */,
 				D0A1738C1E70D6C7001893E9 /* ChannelCollectionViewCell.swift in Sources */,
 				D068D7271E7092D3006AFBB6 /* Login_ext.swift in Sources */,
 				D05829AF1E7283A1003D1B36 /* SettingsViewController.swift in Sources */,

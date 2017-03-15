@@ -19,10 +19,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let redirectUrl = "com.perspectv.ios://url-callback"
     var currentUser: User!
     var streams: [Channel]!
+    var isPhone: Bool!
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         streams = [Channel]()
+        //Checks current device
+        if UIDevice.current.model == "iPhone" || UIDevice.current.model == "iPod"{
+            isPhone = true
+        }else if UIDevice.current.model == "iPad"{
+            isPhone = false
+        }
         return true
     }
 

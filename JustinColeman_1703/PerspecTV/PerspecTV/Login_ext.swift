@@ -106,7 +106,11 @@ extension LoginViewController{
                 self.save()
                 DispatchQueue.main.async {
                     self.activitySpinner.stopAnimating()
-                    self.performSegue(withIdentifier: "toFollowing", sender: self)
+                    if self.appDelegate.isPhone == true{
+                        self.performSegue(withIdentifier: "toFollowing", sender: self)
+                    }else{
+                        self.performSegue(withIdentifier: "ipadToSplitView", sender: self)
+                    }
                 }
             })
             if downloadTask == "User"{
