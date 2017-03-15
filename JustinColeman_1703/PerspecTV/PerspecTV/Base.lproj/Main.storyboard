@@ -1132,11 +1132,11 @@
             </objects>
             <point key="canvasLocation" x="1920.8" y="-146.17691154422789"/>
         </scene>
-        <!--View Controller-->
+        <!--Detail View Controller-->
         <scene sceneID="Z3F-E7-8Xt">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DD5-QJ-eiM" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <viewController id="FIZ-7x-5kB" sceneMemberID="viewController">
+                <viewController id="FIZ-7x-5kB" customClass="DetailViewController" customModule="PerspecTV" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="m4Q-hs-Usc"/>
                         <viewControllerLayoutGuide type="bottom" id="g0z-jd-U73"/>
@@ -1153,7 +1153,7 @@
             </objects>
             <point key="canvasLocation" x="2071" y="1229"/>
         </scene>
-        <!--Home-->
+        <!--Following-->
         <scene sceneID="4ZW-fy-jMv">
             <objects>
                 <tableViewController clearsSelectionOnViewWillAppear="NO" id="rMw-J8-JAu" customClass="MasterTableViewController" customModule="PerspecTV" customModuleProvider="target" sceneMemberID="viewController">
@@ -1162,7 +1162,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.20392156859999999" green="0.26274509800000001" blue="0.3294117647" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="EGS-vN-Ntc">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="EGS-vN-Ntc" customClass="MenuTableViewCell" customModule="PerspecTV" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="EGS-vN-Ntc" id="JKM-4e-BTl">
@@ -1183,6 +1183,9 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="pageTitle" destination="ZG8-Wh-UCk" id="4iz-Dg-7cT"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -1190,7 +1193,7 @@
                             <outlet property="delegate" destination="rMw-J8-JAu" id="41j-ZT-TNE"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Home" id="Ufk-uv-8Ry"/>
+                    <navigationItem key="navigationItem" title="Following" id="Ufk-uv-8Ry"/>
                     <connections>
                         <segue destination="9Qh-Wg-vnB" kind="showDetail" identifier="ipadToFollowing" id="3mL-bI-tgv"/>
                         <segue destination="UI2-Gh-QEm" kind="showDetail" identifier="ipadToGames" id="RGw-Fc-5Ny"/>
@@ -1286,8 +1289,8 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="h4i-qH-350"/>
+        <segue reference="SFp-xc-9OR"/>
         <segue reference="l2L-zK-JoR"/>
-        <segue reference="3mL-bI-tgv"/>
         <segue reference="xUZ-WO-F3M"/>
         <segue reference="RGw-Fc-5Ny"/>
     </inferredMetricsTieBreakers>

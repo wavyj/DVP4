@@ -41,7 +41,20 @@ class MasterTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)as! MenuTableViewCell
 
         // Configure the cell...
-        cell.pageTitle.text = "Row: \(indexPath.row)"
+        switch indexPath.row {
+        case 0:
+            cell.pageTitle.text = "Following"
+        case 1:
+            cell.pageTitle.text = "Games"
+        case 2:
+            cell.pageTitle.text = "Watch"
+        case 3:
+            cell.pageTitle.text = "Search"
+        case 4:
+            cell.pageTitle.text = "Settings"
+        default:
+            print("Error")
+        }
         return cell
     }
     
@@ -52,12 +65,16 @@ class MasterTableViewController: UITableViewController {
             performSegue(withIdentifier: "ipadToFollowing", sender: self)
         case 1:
             self.navigationItem.title = "Games"
+            performSegue(withIdentifier: "ipadToGames", sender: self)
         case 2:
-            print("")
+            self.navigationItem.title = "Watch"
+            performSegue(withIdentifier: "ipadToWatch", sender: self)
         case 3:
-            print("")
+            self.navigationItem.title = "Search"
+            performSegue(withIdentifier: "ipadToSearch", sender: self)
         case 4:
-            print("")
+            self.navigationItem.title = "Settings"
+            performSegue(withIdentifier: "ipadToSettings", sender: self)
         default:
             print("Error")
         }

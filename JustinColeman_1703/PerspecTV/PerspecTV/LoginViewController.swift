@@ -97,6 +97,10 @@ class LoginViewController: UIViewController, UIWebViewDelegate {
             let FVC = nav.viewControllers.first as! FollowingViewController
             FVC.userLoggedIn = true
             FVC.channelsToDownload.append(currentUser.id)
+        }else if segue.identifier == "ipadToSplitView"{
+            let split = segue.destination as! UISplitViewController
+            let detailView = split.viewControllers.last as! DetailViewController
+            detailView.currentUser = currentUser
         }
     }
     
