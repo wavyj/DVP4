@@ -135,6 +135,42 @@ class FollowingViewController: UIViewController , UICollectionViewDelegate, UICo
         }
     }
     
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        //Unflip the cell
+        let selectedCell = collectionView.cellForItem(at: indexPath) as! ChannelCollectionViewCell
+        UIView.transition(with: selectedCell, duration: 0.5, options: .transitionFlipFromLeft, animations: {
+            //selectedCell.previewImage.isHidden = false
+            selectedCell.gameTitle.isHidden = false
+            selectedCell.streamerName.isHidden = false
+            selectedCell.viewerCount.isHidden = false
+            selectedCell.addBtn.isHidden = true
+            selectedCell.watchBtn.isHidden = true
+            selectedCell.viewersIcon.isHidden = false
+            selectedCell.addLabel.isHidden = true
+            selectedCell.watchLabel.isHidden = true
+        }, completion: { (Bool) in
+            selectedCell.isFlipped = false
+        })
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        //Unflip the cell
+        let selectedCell = collectionView.cellForItem(at: indexPath) as! ChannelCollectionViewCell
+        UIView.transition(with: selectedCell, duration: 0.5, options: .transitionFlipFromLeft, animations: {
+            //selectedCell.previewImage.isHidden = false
+            selectedCell.gameTitle.isHidden = false
+            selectedCell.streamerName.isHidden = false
+            selectedCell.viewerCount.isHidden = false
+            selectedCell.addBtn.isHidden = true
+            selectedCell.watchBtn.isHidden = true
+            selectedCell.viewersIcon.isHidden = false
+            selectedCell.addLabel.isHidden = true
+            selectedCell.watchLabel.isHidden = true
+        }, completion: { (Bool) in
+            selectedCell.isFlipped = false
+        })
+    }
+    
     //MARK: - Scrollview Callbacks
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
             let scrollViewHeight = scrollView.frame.size.height
@@ -168,6 +204,8 @@ class FollowingViewController: UIViewController , UICollectionViewDelegate, UICo
         if segue.identifier == "toWatch"{
             let WVC = segue.destination as! WatchViewController
             WVC.currentChannel = selectedChannel
+            
+            //Unflip all cells
         }
     }
 

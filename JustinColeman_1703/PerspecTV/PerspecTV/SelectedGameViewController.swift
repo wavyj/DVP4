@@ -139,6 +139,23 @@ class SelectedGameViewController: UIViewController, UICollectionViewDelegate, UI
             })
         }
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        //Unflip the cell
+        let selectedCell = collectionView.cellForItem(at: indexPath) as! ChannelCollectionViewCell
+        UIView.transition(with: selectedCell, duration: 0.5, options: .transitionFlipFromLeft, animations: {
+            //selectedCell.previewImage.isHidden = false
+            selectedCell.streamerName.isHidden = false
+            selectedCell.viewerCount.isHidden = false
+            selectedCell.addBtn.isHidden = true
+            selectedCell.watchBtn.isHidden = true
+            selectedCell.viewersIcon.isHidden = false
+            selectedCell.addLabel.isHidden = true
+            selectedCell.watchLabel.isHidden = true
+        }, completion: { (Bool) in
+            selectedCell.isFlipped = false
+        })
+    }
 
     //MARK: - Scrollbar Callbacks
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
