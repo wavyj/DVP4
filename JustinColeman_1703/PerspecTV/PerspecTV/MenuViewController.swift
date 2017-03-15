@@ -88,7 +88,7 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
         //Delete Channel
         if editingStyle == .delete{
             streams.remove(at: indexPath.row)
-            
+            appDelegate.streams = streams
             //Update tableView
             tableView.reloadData()
         }

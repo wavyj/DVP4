@@ -71,6 +71,7 @@ class WatchViewController: UIViewController, UIWebViewDelegate{
             menuBtn.isEnabled = false
             infoBtn.isEnabled = false
             chatBtn.isEnabled = false
+            streamName.text = "No Channel Selected"
         }else{
             streamView.isHidden = false
             menuBtn.isEnabled = true
@@ -126,11 +127,15 @@ class WatchViewController: UIViewController, UIWebViewDelegate{
     
     @IBAction func unwindMenu(_ segue: UIStoryboardSegue){
         streams = appDelegate.streams
-        currentChannel = streams[0]
-        selectedIndex = 0
-        let tempBtn = UIButton()
-        tempBtn.tag = 2
-        btnTapped(tempBtn)
+        if streams.count > 0{
+            currentChannel = streams[0]
+            selectedIndex = 0
+            let tempBtn = UIButton()
+            tempBtn.tag = 2
+            btnTapped(tempBtn)
+        }else{
+            
+        }
     }
     
     @IBAction func unwindOther(_ segue: UIStoryboardSegue){
