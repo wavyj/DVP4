@@ -20,6 +20,8 @@ class WatchViewController: UIViewController, UIWebViewDelegate{
     @IBOutlet weak var controlView: UIView!
     @IBOutlet weak var streamName: UILabel!
     @IBOutlet weak var menuView: UIView!
+    @IBOutlet weak var menuBtn: UIButton!
+    @IBOutlet weak var chatBtn: UIButton!
     
     //MARK: - Variables
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -61,6 +63,8 @@ class WatchViewController: UIViewController, UIWebViewDelegate{
         
         if streams.count > 1{
             rightArrow.isHidden = false
+        }else{
+            
         }
     }
     
@@ -112,13 +116,11 @@ class WatchViewController: UIViewController, UIWebViewDelegate{
     @IBAction func unwindMenu(_ sender: UIStoryboardSegue){
         streams = appDelegate.streams
         currentChannel = streams[0]
-        leftArrow.isHidden = true
-        if streams.count == 1{
-            rightArrow.isHidden = true
-        }else{
-            rightArrow.isHidden = false
-        }
-        loadStream()
+        selectedIndex = 0
+        let tempBtn = UIButton()
+        tempBtn.tag = 2
+        btnTapped(tempBtn)
+    
     }
 
     //MARK: - Webview Callbacks

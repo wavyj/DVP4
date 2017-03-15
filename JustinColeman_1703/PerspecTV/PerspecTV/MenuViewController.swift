@@ -14,6 +14,7 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var editBtn: UIButton!
     @IBOutlet weak var doneBtn: UIButton!
+    @IBOutlet weak var deleteBtn: UIButton!
     
     //MARK: - Variables
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -39,11 +40,28 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
         if tableView.isEditing{
             doneBtn.isHidden = false
             editBtn.isHidden = true
+            if streams.count > 1{
+                deleteBtn.isHidden = false
+            }
         }else{
             doneBtn.isHidden = true
             editBtn.isHidden = false
+            deleteBtn.isHidden = true
         }
-        
+    }
+    
+    @IBAction func clear(_ sender: UIButton){
+        //Alert
+        let alert = UIAlertController(title: "Remove All?", message: "Are you sure you want to remove all streams?", preferredStyle: .alert)
+        let yesAction = UIAlertAction(title: "Yes", style: .destructive) { (YesAction) in
+            //Remove all
+            self.streams.removeAll()
+            self.tableView.reloadData()
+        }
+        let noAction = UIAlertAction(title: "No", style: .cancel, handler: nil)
+        alert.addAction(yesAction)
+        alert.addAction(noAction)
+        present(alert, animated: true, completion: nil)
     }
     
     //MARK: - TableView callbacks
@@ -64,6 +82,33 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        //Delete Channel
+        if editingStyle == .delete{
+            streams.remove(at: indexPath.row)
+            
+            //Update tableView
+            tableView.reloadData()
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        //Move Channels in tableview and array
+        let itemToMove = streams[sourceIndexPath.row]
+        streams.remove(at: sourceIndexPath.row)
+        streams.insert(itemToMove, at: destinationIndexPath.row)
+        appDelegate.streams = streams
+        tableView.moveRow(at: sourceIndexPath, to: destinationIndexPath)
+    }
+    
+    func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
+        if streams.count <= 1 {
+            return false
+        }else{
+            return true
+        }
     }
     
 

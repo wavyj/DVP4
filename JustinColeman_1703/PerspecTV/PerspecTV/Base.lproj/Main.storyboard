@@ -377,8 +377,10 @@
                     </tabBarItem>
                     <connections>
                         <outlet property="activitySpinner" destination="iJl-wj-bfF" id="RvM-2L-Fg0"/>
+                        <outlet property="chatBtn" destination="d3L-Xg-g34" id="QAr-ob-vZH"/>
                         <outlet property="controlView" destination="wcC-Hh-LhP" id="Sz6-Jn-vjl"/>
                         <outlet property="leftArrow" destination="ac2-TH-n07" id="wjg-VD-3AM"/>
+                        <outlet property="menuBtn" destination="8jP-Sy-Ygn" id="ywp-cf-qL5"/>
                         <outlet property="menuView" destination="bAx-yC-cih" id="VOx-zF-EVG"/>
                         <outlet property="rightArrow" destination="XSn-8r-1TQ" id="haP-i8-y14"/>
                         <outlet property="streamName" destination="BbR-GN-dEf" id="WIa-Ng-Uru"/>
@@ -857,6 +859,15 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZlN-jg-mj2" userLabel="Edit Btn">
+                                        <rect key="frame" x="331" y="11.5" width="24" height="24"/>
+                                        <state key="normal" image="EditIcon">
+                                            <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="editTapped:" destination="xL4-d9-aAb" eventType="touchUpInside" id="IVt-Bp-UcX"/>
+                                        </connections>
+                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cxK-1k-019" userLabel="Back Btn">
                                         <rect key="frame" x="5" y="11.5" width="24" height="24"/>
                                         <state key="normal" image="ArrowLeftIcon"/>
@@ -871,14 +882,9 @@
                                             <action selector="editTapped:" destination="xL4-d9-aAb" eventType="touchUpInside" id="WhA-5g-90f"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZlN-jg-mj2" userLabel="Edit Btn">
-                                        <rect key="frame" x="331" y="11.5" width="24" height="24"/>
-                                        <state key="normal" image="EditIcon">
-                                            <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="editTapped:" destination="xL4-d9-aAb" eventType="touchUpInside" id="IVt-Bp-UcX"/>
-                                        </connections>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VsC-Yh-cS6" userLabel="Delete Btn">
+                                        <rect key="frame" x="299" y="11" width="24" height="24"/>
+                                        <state key="normal" image="DeleteIcon"/>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -890,7 +896,9 @@
                                     <constraint firstItem="T06-ph-QCn" firstAttribute="centerX" secondItem="ZlN-jg-mj2" secondAttribute="centerX" id="dCm-ow-8sx"/>
                                     <constraint firstItem="cxK-1k-019" firstAttribute="leading" secondItem="4et-SX-05y" secondAttribute="leading" constant="5" id="ikZ-ah-Oq9"/>
                                     <constraint firstItem="ZlN-jg-mj2" firstAttribute="centerY" secondItem="UkZ-Zq-ZE5" secondAttribute="centerY" id="kia-gn-kr8"/>
+                                    <constraint firstItem="VsC-Yh-cS6" firstAttribute="centerY" secondItem="T06-ph-QCn" secondAttribute="centerY" id="ssu-9Q-v5r"/>
                                     <constraint firstItem="UkZ-Zq-ZE5" firstAttribute="centerX" secondItem="4et-SX-05y" secondAttribute="centerX" id="tCt-Oh-8xb"/>
+                                    <constraint firstItem="T06-ph-QCn" firstAttribute="leading" secondItem="VsC-Yh-cS6" secondAttribute="trailing" constant="8" id="x5T-ce-AmC"/>
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="170" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="NIr-kS-e9s">
@@ -974,6 +982,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="deleteBtn" destination="VsC-Yh-cS6" id="5s5-Sb-8LZ"/>
                         <outlet property="doneBtn" destination="T06-ph-QCn" id="4D5-4w-wAn"/>
                         <outlet property="editBtn" destination="ZlN-jg-mj2" id="FEZ-d6-tzh"/>
                         <outlet property="tableView" destination="NIr-kS-e9s" id="cjA-Fd-I1d"/>
@@ -1035,6 +1044,7 @@
         <image name="ArrowRightIcon" width="24" height="24"/>
         <image name="ChatIcon" width="48" height="48"/>
         <image name="CurrentViewersIcon" width="24" height="24"/>
+        <image name="DeleteIcon" width="24" height="24"/>
         <image name="DoneIcon" width="24" height="24"/>
         <image name="EditIcon" width="24" height="24"/>
         <image name="FollowersIcon" width="24" height="24"/>
