@@ -16,7 +16,6 @@ class FollowingViewController: UIViewController , UICollectionViewDelegate, UICo
     //MARK: - Outlets
     @IBOutlet weak var activitySpinner: UIActivityIndicatorView!
     @IBOutlet weak var collectionView: UICollectionView!
-    @IBOutlet weak var addStreamView: UIView!
     
     //MARK: - Variables
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -37,13 +36,32 @@ class FollowingViewController: UIViewController , UICollectionViewDelegate, UICo
         }else{
             downloadandParse(urlString: "https://api.twitch.tv/kraken/streams/followed?oauth_token=\(currentUser.authToken)&limit=10&offset\(offset)&stream_type=live&client_id=\(appDelegate.consumerID)&\(appDelegate.apiVersion)", downloadTask: "Followed Live")
         }
-        
-        collectionView.remembersLastFocusedIndexPath = false
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        //Unflip selected 
+        if let selected = collectionView.indexPathsForSelectedItems?.first{
+            collectionView.deselectItem(at: selected, animated: false)
+            let selectedCell = collectionView.cellForItem(at: selected) as! ChannelCollectionViewCell
+            UIView.transition(with: selectedCell, duration: 0.5, options: .transitionFlipFromLeft, animations: {
+                //selectedCell.previewImage.isHidden = false
+                selectedCell.gameTitle.isHidden = false
+                selectedCell.streamerName.isHidden = false
+                selectedCell.viewerCount.isHidden = false
+                selectedCell.addBtn.isHidden = true
+                selectedCell.watchBtn.isHidden = true
+                selectedCell.viewersIcon.isHidden = false
+                selectedCell.addLabel.isHidden = true
+                selectedCell.watchLabel.isHidden = true
+            }, completion: { (Bool) in
+                selectedCell.isFlipped = false
+            })
+        }
     }
     
     //MARK: - Storyboard Actions
@@ -84,6 +102,7 @@ class FollowingViewController: UIViewController , UICollectionViewDelegate, UICo
         let selectedCell = collectionView.cellForItem(at: indexPath) as! ChannelCollectionViewCell
         if selectedCell.isFlipped == false{
             UIView.transition(with: selectedCell, duration: 0.5, options: .transitionFlipFromRight, animations: {
+                collectionView.isUserInteractionEnabled = false
                 //selectedCell.previewImage.isHidden = true
                 selectedCell.gameTitle.isHidden = true
                 selectedCell.streamerName.isHidden = true
@@ -116,9 +135,11 @@ class FollowingViewController: UIViewController , UICollectionViewDelegate, UICo
                 
             }, completion: { (Bool) in
                 selectedCell.isFlipped = true
+                collectionView.isUserInteractionEnabled = true
             })
         }else{
             UIView.transition(with: selectedCell, duration: 0.5, options: .transitionFlipFromLeft, animations: {
+                collectionView.isUserInteractionEnabled = false
                 //selectedCell.previewImage.isHidden = false
                 selectedCell.gameTitle.isHidden = false
                 selectedCell.streamerName.isHidden = false
@@ -130,6 +151,7 @@ class FollowingViewController: UIViewController , UICollectionViewDelegate, UICo
                 selectedCell.watchLabel.isHidden = true
             }, completion: { (Bool) in
                 selectedCell.isFlipped = false
+                collectionView.isUserInteractionEnabled = true
             })
 
         }
@@ -138,37 +160,23 @@ class FollowingViewController: UIViewController , UICollectionViewDelegate, UICo
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         //Unflip the cell
         let selectedCell = collectionView.cellForItem(at: indexPath) as! ChannelCollectionViewCell
-        UIView.transition(with: selectedCell, duration: 0.5, options: .transitionFlipFromLeft, animations: {
-            //selectedCell.previewImage.isHidden = false
-            selectedCell.gameTitle.isHidden = false
-            selectedCell.streamerName.isHidden = false
-            selectedCell.viewerCount.isHidden = false
-            selectedCell.addBtn.isHidden = true
-            selectedCell.watchBtn.isHidden = true
-            selectedCell.viewersIcon.isHidden = false
-            selectedCell.addLabel.isHidden = true
-            selectedCell.watchLabel.isHidden = true
-        }, completion: { (Bool) in
-            selectedCell.isFlipped = false
-        })
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        //Unflip the cell
-        let selectedCell = collectionView.cellForItem(at: indexPath) as! ChannelCollectionViewCell
-        UIView.transition(with: selectedCell, duration: 0.5, options: .transitionFlipFromLeft, animations: {
-            //selectedCell.previewImage.isHidden = false
-            selectedCell.gameTitle.isHidden = false
-            selectedCell.streamerName.isHidden = false
-            selectedCell.viewerCount.isHidden = false
-            selectedCell.addBtn.isHidden = true
-            selectedCell.watchBtn.isHidden = true
-            selectedCell.viewersIcon.isHidden = false
-            selectedCell.addLabel.isHidden = true
-            selectedCell.watchLabel.isHidden = true
-        }, completion: { (Bool) in
-            selectedCell.isFlipped = false
-        })
+        if selectedCell.isFlipped == true{
+            UIView.transition(with: selectedCell, duration: 0.5, options: .transitionFlipFromLeft, animations: {
+                collectionView.isUserInteractionEnabled = false
+                //selectedCell.previewImage.isHidden = false
+                selectedCell.gameTitle.isHidden = false
+                selectedCell.streamerName.isHidden = false
+                selectedCell.viewerCount.isHidden = false
+                selectedCell.addBtn.isHidden = true
+                selectedCell.watchBtn.isHidden = true
+                selectedCell.viewersIcon.isHidden = false
+                selectedCell.addLabel.isHidden = true
+                selectedCell.watchLabel.isHidden = true
+            }, completion: { (Bool) in
+                selectedCell.isFlipped = false
+                collectionView.isUserInteractionEnabled = true
+            })
+        }
     }
     
     //MARK: - Scrollview Callbacks
@@ -201,12 +209,12 @@ class FollowingViewController: UIViewController , UICollectionViewDelegate, UICo
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        
         if segue.identifier == "toWatch"{
             let WVC = segue.destination as! WatchViewController
             WVC.currentChannel = selectedChannel
-            
-            //Unflip all cells
         }
+        
     }
 
 }

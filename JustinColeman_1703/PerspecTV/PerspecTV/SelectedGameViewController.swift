@@ -92,6 +92,7 @@ class SelectedGameViewController: UIViewController, UICollectionViewDelegate, UI
         let selectedCell = collectionView.cellForItem(at: indexPath) as! ChannelCollectionViewCell
         if selectedCell.isFlipped == false{
             UIView.transition(with: selectedCell, duration: 0.5, options: .transitionFlipFromRight, animations: {
+                collectionView.isUserInteractionEnabled = false
                 //selectedCell.previewImage.isHidden = true
                 selectedCell.streamerName.isHidden = true
                 selectedCell.viewerCount.isHidden = true
@@ -123,9 +124,11 @@ class SelectedGameViewController: UIViewController, UICollectionViewDelegate, UI
                 
             }, completion: { (Bool) in
                 selectedCell.isFlipped = true
+                collectionView.isUserInteractionEnabled = true
             })
         }else{
             UIView.transition(with: selectedCell, duration: 0.5, options: .transitionFlipFromLeft, animations: {
+                collectionView.isUserInteractionEnabled = false
                 //selectedCell.previewImage.isHidden = false
                 selectedCell.streamerName.isHidden = false
                 selectedCell.viewerCount.isHidden = false
@@ -136,6 +139,7 @@ class SelectedGameViewController: UIViewController, UICollectionViewDelegate, UI
                 selectedCell.watchLabel.isHidden = true
             }, completion: { (Bool) in
                 selectedCell.isFlipped = false
+                collectionView.isUserInteractionEnabled = true
             })
         }
     }
@@ -143,18 +147,22 @@ class SelectedGameViewController: UIViewController, UICollectionViewDelegate, UI
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         //Unflip the cell
         let selectedCell = collectionView.cellForItem(at: indexPath) as! ChannelCollectionViewCell
-        UIView.transition(with: selectedCell, duration: 0.5, options: .transitionFlipFromLeft, animations: {
-            //selectedCell.previewImage.isHidden = false
-            selectedCell.streamerName.isHidden = false
-            selectedCell.viewerCount.isHidden = false
-            selectedCell.addBtn.isHidden = true
-            selectedCell.watchBtn.isHidden = true
-            selectedCell.viewersIcon.isHidden = false
-            selectedCell.addLabel.isHidden = true
-            selectedCell.watchLabel.isHidden = true
-        }, completion: { (Bool) in
-            selectedCell.isFlipped = false
-        })
+        if selectedCell.isFlipped == true{
+            UIView.transition(with: selectedCell, duration: 0.5, options: .transitionFlipFromLeft, animations: {
+                collectionView.isUserInteractionEnabled = false
+                //selectedCell.previewImage.isHidden = false
+                selectedCell.streamerName.isHidden = false
+                selectedCell.viewerCount.isHidden = false
+                selectedCell.addBtn.isHidden = true
+                selectedCell.watchBtn.isHidden = true
+                selectedCell.viewersIcon.isHidden = false
+                selectedCell.addLabel.isHidden = true
+                selectedCell.watchLabel.isHidden = true
+            }, completion: { (Bool) in
+                selectedCell.isFlipped = false
+                collectionView.isUserInteractionEnabled = true
+            })
+        }
     }
 
     //MARK: - Scrollbar Callbacks
