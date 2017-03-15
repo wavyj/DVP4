@@ -1035,6 +1035,62 @@
             </objects>
             <point key="canvasLocation" x="5044" y="573.46326836581716"/>
         </scene>
+        <!--Chat View Controller-->
+        <scene sceneID="u1A-T7-9zi">
+            <objects>
+                <viewController id="9kG-Mw-6jC" customClass="ChatViewController" customModule="PerspecTV" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Juw-65-ZML"/>
+                        <viewControllerLayoutGuide type="bottom" id="aaM-gd-avH"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="hiO-NS-1mT">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="goh-2h-DSa">
+                                <rect key="frame" x="0.0" y="20" width="375" height="46.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Channel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="021-po-h5v">
+                                        <rect key="frame" x="149" y="12" width="78" height="24"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P2w-Zu-3Ar" userLabel="Back Btn">
+                                        <rect key="frame" x="5" y="12" width="24" height="24"/>
+                                        <state key="normal" image="ArrowLeftIcon"/>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="P2w-Zu-3Ar" firstAttribute="centerY" secondItem="021-po-h5v" secondAttribute="centerY" id="8Yx-NQ-vhR"/>
+                                    <constraint firstItem="021-po-h5v" firstAttribute="centerY" secondItem="goh-2h-DSa" secondAttribute="centerY" id="AKE-Il-3TW"/>
+                                    <constraint firstItem="021-po-h5v" firstAttribute="centerX" secondItem="goh-2h-DSa" secondAttribute="centerX" id="c2A-7c-uNS"/>
+                                    <constraint firstItem="P2w-Zu-3Ar" firstAttribute="leading" secondItem="goh-2h-DSa" secondAttribute="leading" constant="5" id="kuV-EP-eSA"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3XI-7s-aCk" userLabel="Chat View">
+                                <rect key="frame" x="0.0" y="66.5" width="375" height="600.5"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.20392156859999999" green="0.26274509800000001" blue="0.3294117647" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="goh-2h-DSa" firstAttribute="top" secondItem="Juw-65-ZML" secondAttribute="bottom" id="4P6-UW-svV"/>
+                            <constraint firstItem="3XI-7s-aCk" firstAttribute="top" secondItem="goh-2h-DSa" secondAttribute="bottom" id="8mC-3e-dG3"/>
+                            <constraint firstItem="goh-2h-DSa" firstAttribute="height" secondItem="hiO-NS-1mT" secondAttribute="height" multiplier="0.07" id="CRx-ca-aeL"/>
+                            <constraint firstItem="goh-2h-DSa" firstAttribute="leading" secondItem="hiO-NS-1mT" secondAttribute="leading" id="MzC-tT-ZUU"/>
+                            <constraint firstItem="3XI-7s-aCk" firstAttribute="leading" secondItem="hiO-NS-1mT" secondAttribute="leading" id="YUZ-Mb-Rcf"/>
+                            <constraint firstAttribute="trailing" secondItem="goh-2h-DSa" secondAttribute="trailing" id="bHD-Pf-4Lc"/>
+                            <constraint firstItem="aaM-gd-avH" firstAttribute="top" secondItem="3XI-7s-aCk" secondAttribute="bottom" id="oJF-nN-UhQ"/>
+                            <constraint firstAttribute="trailing" secondItem="3XI-7s-aCk" secondAttribute="trailing" id="ymm-WV-EOg"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bvU-LO-oce" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5044" y="1236"/>
+        </scene>
         <!--Tab Bar View Controller-->
         <scene sceneID="AtP-BR-x2O">
             <objects>

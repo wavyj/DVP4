@@ -17,6 +17,7 @@
 		D04C50D21E75FC5C00975E47 /* SGVC_ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04C50D11E75FC5C00975E47 /* SGVC_ext.swift */; };
 		D04C50D61E76273D00975E47 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04C50D51E76273D00975E47 /* SearchViewController.swift */; };
 		D05829AF1E7283A1003D1B36 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05829AE1E7283A1003D1B36 /* SettingsViewController.swift */; };
+		D067F4E51E79108400FF536A /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D067F4E41E79108400FF536A /* ChatViewController.swift */; };
 		D068D7251E7090D5006AFBB6 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D068D7241E7090D5006AFBB6 /* User.swift */; };
 		D068D7271E7092D3006AFBB6 /* Login_ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = D068D7261E7092D3006AFBB6 /* Login_ext.swift */; };
 		D06DF5321E73E5DE00714DE1 /* UITabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06DF5311E73E5DE00714DE1 /* UITabBarController.swift */; };
@@ -45,6 +46,7 @@
 		D04C50D11E75FC5C00975E47 /* SGVC_ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SGVC_ext.swift; sourceTree = "<group>"; };
 		D04C50D51E76273D00975E47 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		D05829AE1E7283A1003D1B36 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		D067F4E41E79108400FF536A /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		D068D7241E7090D5006AFBB6 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		D068D7261E7092D3006AFBB6 /* Login_ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Login_ext.swift; sourceTree = "<group>"; };
 		D06DF5311E73E5DE00714DE1 /* UITabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITabBarController.swift; sourceTree = "<group>"; };
@@ -114,6 +116,7 @@
 			children = (
 				D0093CFC1E75318500317839 /* WatchViewController.swift */,
 				D0888B4B1E78D0E1004A232F /* MenuViewController.swift */,
+				D067F4E41E79108400FF536A /* ChatViewController.swift */,
 				D0888B4D1E78D285004A232F /* StreamTableViewCell.swift */,
 			);
 			name = Watch;
@@ -248,6 +251,7 @@
 				D0A1738A1E70D483001893E9 /* Following_ext.swift in Sources */,
 				D0A173901E70DD9D001893E9 /* Channel.swift in Sources */,
 				D04C50D21E75FC5C00975E47 /* SGVC_ext.swift in Sources */,
+				D067F4E51E79108400FF536A /* ChatViewController.swift in Sources */,
 				D0093CFD1E75318500317839 /* WatchViewController.swift in Sources */,
 				D09C531F1E757DF1006511C4 /* Game.swift in Sources */,
 				D04C50D01E75F5AB00975E47 /* SelectedGameViewController.swift in Sources */,
