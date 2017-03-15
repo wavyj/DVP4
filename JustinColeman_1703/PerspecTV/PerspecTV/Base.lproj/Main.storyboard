@@ -384,11 +384,13 @@
                         <outlet property="controlView" destination="wcC-Hh-LhP" id="Sz6-Jn-vjl"/>
                         <outlet property="infoBtn" destination="nNm-W7-gcm" id="IAj-zm-jLE"/>
                         <outlet property="leftArrow" destination="ac2-TH-n07" id="wjg-VD-3AM"/>
+                        <outlet property="menuBtn" destination="8jP-Sy-Ygn" id="l3L-Jl-wls"/>
                         <outlet property="menuView" destination="bAx-yC-cih" id="VOx-zF-EVG"/>
                         <outlet property="rightArrow" destination="XSn-8r-1TQ" id="haP-i8-y14"/>
                         <outlet property="streamName" destination="BbR-GN-dEf" id="WIa-Ng-Uru"/>
                         <outlet property="streamView" destination="LRN-i8-ouZ" id="05s-SU-A3K"/>
                         <segue destination="xL4-d9-aAb" kind="show" identifier="toMenu" id="vDg-eh-RhN"/>
+                        <segue destination="9kG-Mw-6jC" kind="show" identifier="toChat" id="kyX-Ib-NVh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="366-ki-Kk4" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1059,6 +1061,9 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P2w-Zu-3Ar" userLabel="Back Btn">
                                         <rect key="frame" x="5" y="12" width="24" height="24"/>
                                         <state key="normal" image="ArrowLeftIcon"/>
+                                        <connections>
+                                            <segue destination="Kmq-0U-fSw" kind="unwind" unwindAction="unwindOther:" id="eDz-KF-nt5"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -1086,8 +1091,13 @@
                             <constraint firstAttribute="trailing" secondItem="3XI-7s-aCk" secondAttribute="trailing" id="ymm-WV-EOg"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="channelName" destination="021-po-h5v" id="Ajl-Tf-EdC"/>
+                        <outlet property="chatView" destination="3XI-7s-aCk" id="6CR-fC-ac2"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bvU-LO-oce" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="Kmq-0U-fSw" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="5044" y="1236"/>
         </scene>

@@ -44,7 +44,7 @@ class WatchViewController: UIViewController, UIWebViewDelegate{
         webView.clipsToBounds = true
         webView.delegate = self
         webView.tag = 1
-        
+        streamName.text = "No Channel Selected"
     }
 
     override func didReceiveMemoryWarning() {
@@ -64,8 +64,18 @@ class WatchViewController: UIViewController, UIWebViewDelegate{
         
         if streams.count > 1{
             rightArrow.isHidden = false
+        }
+        
+        if streams.count == 0{
+            streamView.isHidden = true
+            menuBtn.isEnabled = false
+            infoBtn.isEnabled = false
+            chatBtn.isEnabled = false
         }else{
-            
+            streamView.isHidden = false
+            menuBtn.isEnabled = true
+            infoBtn.isEnabled = true
+            chatBtn.isEnabled = true
         }
     }
     
@@ -91,11 +101,7 @@ class WatchViewController: UIViewController, UIWebViewDelegate{
                 rightArrow.isHidden = false
             }
             if selectedIndex == 0{
-                streamView.isHidden = true
                 leftArrow.isHidden = true
-                menuBtn.isEnabled = false
-                infoBtn.isEnabled = false
-                chatBtn.isEnabled = false
             }
             currentChannel = streams[selectedIndex]
         default:
@@ -111,7 +117,7 @@ class WatchViewController: UIViewController, UIWebViewDelegate{
     }
     
     @IBAction func chatTapped(_ sender: UIButton){
-        
+        performSegue(withIdentifier: "toChat", sender: self)
     }
     
     @IBAction func menuTapped(_ sender: UIButton){
@@ -125,6 +131,10 @@ class WatchViewController: UIViewController, UIWebViewDelegate{
         let tempBtn = UIButton()
         tempBtn.tag = 2
         btnTapped(tempBtn)
+    }
+    
+    @IBAction func unwindOther(_ segue: UIStoryboardSegue){
+        //do nothing
     }
 
     //MARK: - Webview Callbacks
@@ -155,17 +165,20 @@ class WatchViewController: UIViewController, UIWebViewDelegate{
         webView.scrollView.isScrollEnabled = false
         let stream = "<html><head><style type='text/css'>html,body {margin: 0;padding: 0;width: 100%;height: 100%;}</style></head><body><iframe src=\"https://player.twitch.tv/?channel=\(currentChannel.username)&autoplay=false&client_id=\(appDelegate.consumerID)&\(appDelegate.apiVersion)&playsinline=1\"width=\"\(streamView.frame.width)\" height=\"\(streamView.frame.height)\" frameborder=\"0\" scrolling=\"yes\" allowfullscreen=\"false\" webkit-playsinline></iframe></body></html>"
         webView.loadHTMLString(stream, baseURL: nil)
-        
     }
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        if segue.identifier == "toChat"{
+            let CVC = segue.destination as! ChatViewController
+            CVC.currentChannel = currentChannel
+        }
     }
-    */
+ 
 
 }
