@@ -19,7 +19,9 @@ class MasterTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         self.navigationItem.title = "PerspecTV"
+        self.splitViewController?.preferredDisplayMode = .allVisible
         tableView.selectRow(at: IndexPath(row: 0, section: 0), animated: true, scrollPosition: UITableViewScrollPosition.none)
+        tableView(self.tableView, didSelectRowAt: IndexPath(row: 0, section: 0))
     }
 
     override func didReceiveMemoryWarning() {

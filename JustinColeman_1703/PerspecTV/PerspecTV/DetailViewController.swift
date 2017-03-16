@@ -20,6 +20,8 @@ class DetailViewController: UIViewController {
         // Do any additional setup after loading the view.
         if segueTo != ""{
             performSegue(withIdentifier: segueTo, sender: self)
+        }else{
+            performSegue(withIdentifier: "toMaster", sender: self)
         }
     }
 
