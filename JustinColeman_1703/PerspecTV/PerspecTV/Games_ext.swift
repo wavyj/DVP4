@@ -63,7 +63,7 @@ extension GamesViewController{
                     print(error.localizedDescription)
                 }
                 DispatchQueue.main.async {
-                    
+                    print(self.games.count)
                     self.activitySpinner.stopAnimating()
                     self.collectionView.reloadData()
                 }

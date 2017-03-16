@@ -18,6 +18,7 @@ class MasterTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        self.navigationItem.title = "PerspecTV"
     }
 
     override func didReceiveMemoryWarning() {
@@ -61,20 +62,15 @@ class MasterTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.row {
         case 0:
-            self.navigationItem.title = "Following"
-            performSegue(withIdentifier: "ipadToFollowing", sender: self)
+            performSegue(withIdentifier: "goBack", sender: self)
         case 1:
-            self.navigationItem.title = "Games"
-            performSegue(withIdentifier: "ipadToGames", sender: self)
+            performSegue(withIdentifier: "goBack", sender: self)
         case 2:
-            self.navigationItem.title = "Watch"
-            performSegue(withIdentifier: "ipadToWatch", sender: self)
+            performSegue(withIdentifier: "goBack", sender: self)
         case 3:
-            self.navigationItem.title = "Search"
-            performSegue(withIdentifier: "ipadToSearch", sender: self)
+            performSegue(withIdentifier: "goBack", sender: self)
         case 4:
-            self.navigationItem.title = "Settings"
-            performSegue(withIdentifier: "ipadToSettings", sender: self)
+            performSegue(withIdentifier: "goBack", sender: self)
         default:
             print("Error")
         }
@@ -115,14 +111,33 @@ class MasterTableViewController: UITableViewController {
     }
     */
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        if segue.identifier == "goBack"{
+            let nav = segue.destination as! UINavigationController
+            let DVC = nav.viewControllers.first as! DetailViewController
+            let selected = tableView.indexPathForSelectedRow
+            switch selected!.row{
+            case 0:
+                DVC.segueTo = "ipadToFollowing"
+            case 1:
+                DVC.segueTo = "ipadToGames"
+            case 2:
+                DVC.segueTo = "ipadToWatch"
+            case 3:
+                DVC.segueTo = "ipadToSearch"
+            case 4:
+                DVC.segueTo = "ipadToSettings"
+            default:
+                print("Error")
+            }
+        }
     }
-    */
+ 
 
 }

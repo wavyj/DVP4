@@ -1107,7 +1107,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bvU-LO-oce" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="Kmq-0U-fSw" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="5044" y="1235.5322338830586"/>
+            <point key="canvasLocation" x="5809.375" y="1235.15625"/>
         </scene>
         <!--Tab Bar View Controller-->
         <scene sceneID="AtP-BR-x2O">
@@ -1146,12 +1146,17 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.20392156859999999" green="0.26274509800000001" blue="0.3294117647" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
+                    <navigationItem key="navigationItem" id="Oo5-pE-vfI"/>
                     <connections>
                         <segue destination="9Qh-Wg-vnB" kind="showDetail" identifier="ipadToFollowing" id="SFp-xc-9OR"/>
+                        <segue destination="UI2-Gh-QEm" kind="showDetail" identifier="ipadToGames" id="nym-fO-jMg"/>
+                        <segue destination="ZMs-L7-0az" kind="showDetail" identifier="ipadToWatch" id="g4e-Ol-Nd7"/>
+                        <segue destination="8me-px-KmB" kind="showDetail" identifier="ipadToSearch" id="S05-70-fZa"/>
+                        <segue destination="Pg6-HX-AGm" kind="showDetail" identifier="ipadToSettings" id="G7J-h2-oWy"/>
                     </connections>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="2071" y="1229"/>
+            <point key="canvasLocation" x="2838" y="1279"/>
         </scene>
         <!--Following-->
         <scene sceneID="4ZW-fy-jMv">
@@ -1195,11 +1200,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Following" id="Ufk-uv-8Ry"/>
                     <connections>
-                        <segue destination="9Qh-Wg-vnB" kind="showDetail" identifier="ipadToFollowing" id="3mL-bI-tgv"/>
-                        <segue destination="UI2-Gh-QEm" kind="showDetail" identifier="ipadToGames" id="RGw-Fc-5Ny"/>
-                        <segue destination="ZMs-L7-0az" kind="showDetail" identifier="ipadToWatch" id="l2L-zK-JoR"/>
-                        <segue destination="8me-px-KmB" kind="showDetail" identifier="ipadToSearch" id="h4i-qH-350"/>
-                        <segue destination="Pg6-HX-AGm" kind="showDetail" identifier="ipadToSettings" id="xUZ-WO-F3M"/>
+                        <segue destination="TIh-DI-XtF" kind="showDetail" identifier="goBack" id="wVN-kP-0a8"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Z7v-7a-VSh" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1233,7 +1234,7 @@
                 <splitViewController id="VTs-rl-6ZQ" sceneMemberID="viewController">
                     <connections>
                         <segue destination="8aV-cc-qCK" kind="relationship" relationship="masterViewController" id="7xr-h1-HAM"/>
-                        <segue destination="FIZ-7x-5kB" kind="relationship" relationship="detailViewController" id="ja7-iV-gRD"/>
+                        <segue destination="TIh-DI-XtF" kind="relationship" relationship="detailViewController" id="ja7-iV-gRD"/>
                     </connections>
                 </splitViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Voy-a4-TVh" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1265,6 +1266,24 @@
             </objects>
             <point key="canvasLocation" x="2658" y="-146"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Ndg-Ky-nE5">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="TIh-DI-XtF" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Leu-fx-UB8">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="FIZ-7x-5kB" kind="relationship" relationship="rootViewController" id="Z0d-ZA-5ip"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="izq-L9-e8c" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2070" y="1279"/>
+        </scene>
     </scenes>
     <resources>
         <image name="AddIcon" width="48" height="48"/>
@@ -1288,10 +1307,11 @@
         <image name="ViewsIcon" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="h4i-qH-350"/>
+        <segue reference="wVN-kP-0a8"/>
         <segue reference="SFp-xc-9OR"/>
-        <segue reference="l2L-zK-JoR"/>
-        <segue reference="xUZ-WO-F3M"/>
-        <segue reference="RGw-Fc-5Ny"/>
+        <segue reference="nym-fO-jMg"/>
+        <segue reference="g4e-Ol-Nd7"/>
+        <segue reference="S05-70-fZa"/>
+        <segue reference="G7J-h2-oWy"/>
     </inferredMetricsTieBreakers>
 </document>

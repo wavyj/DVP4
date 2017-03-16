@@ -12,20 +12,19 @@ class DetailViewController: UIViewController {
 
     //Variables
     var currentUser: User!
+    var segueTo = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        performSegue(withIdentifier: "ipadToFollowing", sender: self)
+        performSegue(withIdentifier: segueTo, sender: self)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-
     
     // MARK: - Navigation
 
@@ -36,7 +35,9 @@ class DetailViewController: UIViewController {
         if segue.identifier == "ipadToFollowing"{
             let FVC = segue.destination as! FollowingViewController
             FVC.userLoggedIn = true
-            FVC.channelsToDownload.append(currentUser.id)
+            if currentUser != nil{
+                FVC.channelsToDownload.append(currentUser.id)
+            }
         }
     }
  

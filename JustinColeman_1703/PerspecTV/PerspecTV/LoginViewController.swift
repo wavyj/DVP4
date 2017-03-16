@@ -99,8 +99,10 @@ class LoginViewController: UIViewController, UIWebViewDelegate {
             FVC.channelsToDownload.append(currentUser.id)
         }else if segue.identifier == "ipadToSplitView"{
             let split = segue.destination as! UISplitViewController
-            let detailView = split.viewControllers.last as! DetailViewController
+            let nav = split.viewControllers.last as! UINavigationController
+            let detailView = nav.viewControllers.first as! DetailViewController
             detailView.currentUser = currentUser
+            detailView.segueTo = "ipadToFollowing"
         }
     }
     
