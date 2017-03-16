@@ -64,13 +64,21 @@ class SelectedGameViewController: UIViewController, UICollectionViewDelegate, UI
     @IBAction func watchTapped(_ sender: UIButton){
         //Clears array and sets the selected channel to the only stream
         appDelegate.streams = [selectedChannel]
-        performSegue(withIdentifier: "toWatch", sender: self)
+        if appDelegate.isPhone == true{
+            performSegue(withIdentifier: "toWatch", sender: self)
+        }else{
+            performSegue(withIdentifier: "toDetailWatch", sender: self)
+        }
     }
     
     @IBAction func addTapped(_ sender: UIButton){
         //Adds selected stream to array of streams
         appDelegate.streams.append(selectedChannel)
-        performSegue(withIdentifier: "toWatch", sender: self)
+        if appDelegate.isPhone == true{
+            performSegue(withIdentifier: "toWatch", sender: self)
+        }else{
+            performSegue(withIdentifier: "toDetailWatch", sender: self)
+        }
     }
     
     //MARK: - Collection View Data Source
@@ -188,7 +196,11 @@ class SelectedGameViewController: UIViewController, UICollectionViewDelegate, UI
     
     //MARK: - Methods
     func backTapped(_ sender: UITapGestureRecognizer){
-        performSegue(withIdentifier: "selectedgameBackTapped", sender: self)
+        if appDelegate.isPhone == true{
+            performSegue(withIdentifier: "selectedgameBackTapped", sender: self)
+        }else{
+            performSegue(withIdentifier: "toDetail", sender: self)
+        }
     }
     
     func update(){
@@ -202,13 +214,22 @@ class SelectedGameViewController: UIViewController, UICollectionViewDelegate, UI
     }
 
     
-    /*// MARK: - Navigation
+    // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
-    }*/
+        if segue.identifier == "toDetail"{
+            let nav = segue.destination as! UINavigationController
+            let DVC = nav.viewControllers.first as! DetailViewController
+            DVC.segueTo = "ipadToGames"
+        }else if segue.identifier == "toDetailWatch"{
+            let nav = segue.destination as! UINavigationController
+            let DVC = nav.viewControllers.first as! DetailViewController
+            DVC.segueTo = "ipadToWatch"
+        }
+    }
  
 
 }

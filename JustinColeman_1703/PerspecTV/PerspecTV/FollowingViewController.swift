@@ -71,13 +71,21 @@ class FollowingViewController: UIViewController , UICollectionViewDelegate, UICo
     @IBAction func watchTapped(_ sender: UIButton){
         //Clears array and sets the selected channel to the only stream
         appDelegate.streams = [selectedChannel]
-        self.tabBarController?.selectedIndex = 2
+        if appDelegate.isPhone == true{
+            self.tabBarController?.selectedIndex = 2
+        }else{
+            performSegue(withIdentifier: "toDetail", sender: self)
+        }
     }
     
     @IBAction func addTapped(_ sender: UIButton){
         //Adds selected stream to array of streams
         appDelegate.streams.append(selectedChannel)
-        self.tabBarController?.selectedIndex = 2
+        if appDelegate.isPhone == true{
+            self.tabBarController?.selectedIndex = 2
+        }else{
+            performSegue(withIdentifier: "toDetail", sender: self)
+        }
     }
     
     //MARK: - Collection View Data Source
@@ -218,6 +226,11 @@ class FollowingViewController: UIViewController , UICollectionViewDelegate, UICo
             WVC.currentChannel = selectedChannel
         }
         
+        if segue.identifier == "toDetail"{
+            let nav = segue.destination as! UINavigationController
+            let DVC = nav.viewControllers.first as! DetailViewController
+            DVC.segueTo = "ipadToWatch"
+        }
     }
 
 }

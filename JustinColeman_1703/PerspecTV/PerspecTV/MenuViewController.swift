@@ -34,6 +34,14 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     //MARK: - Storyboard Actions
+    @IBAction func backTapped(){
+        if appDelegate.isPhone == true{
+            performSegue(withIdentifier: "toMenu", sender: self)
+        }else{
+            performSegue(withIdentifier: "toDetail", sender: self)
+        }
+    }
+    
     @IBAction func editTapped(_ sender: UIButton){
         //Enable/Disable Editing
         tableView.setEditing(!tableView.isEditing, animated: true)
@@ -111,15 +119,17 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
     }
     
-
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        if segue.identifier == "toDetail"{
+            let nav = segue.destination as! UINavigationController
+            let DVC = nav.viewControllers.first as! DetailViewController
+            DVC.segueTo = "ipadToWatch"
+        }
     }
-    */
 
 }
