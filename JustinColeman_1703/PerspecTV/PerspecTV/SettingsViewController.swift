@@ -83,6 +83,10 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         return "Account"
     }
     
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        
+    }
+    
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         (view as! UITableViewHeaderFooterView).textLabel?.textColor = UIColor.lightGray
     }
@@ -102,7 +106,10 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
             //unwind back to login screen
             self.performSegue(withIdentifier: "loggedOut", sender: self)
         }
-        let noAction = UIAlertAction(title: "No", style: .cancel, handler: nil)
+        let noAction = UIAlertAction(title: "No", style: .cancel) { (NoAction) in
+            self.tableView(self.tableView, didDeselectRowAt: self.tableView.indexPathForSelectedRow!)
+            self.tableView.deselectRow(at: self.tableView.indexPathForSelectedRow!, animated: true)
+        }
         alert.addAction(yesAction)
         alert.addAction(noAction)
         
