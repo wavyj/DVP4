@@ -37,6 +37,10 @@ class SelectedGameViewController: UIViewController, UICollectionViewDelegate, UI
         backArrow.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.backTapped(_:))))
         gameTitle.text = currentGame.name
 
+        if appDelegate.isPhone == false{
+            self.splitViewController?.preferredDisplayMode = .allVisible
+        }
+        
         //Game View Setup
         gameView.clipsToBounds = true
         gameImage.image = currentGame.image

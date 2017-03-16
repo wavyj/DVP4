@@ -11,6 +11,7 @@ import UIKit
 class MenuTableViewCell: UITableViewCell {
     //Outlets
     @IBOutlet weak var pageTitle: UILabel!
+    @IBOutlet weak var icon: UIImageView!
 
     override func awakeFromNib() {
         super.awakeFromNib()

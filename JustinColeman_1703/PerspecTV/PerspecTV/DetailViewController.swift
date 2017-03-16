@@ -18,7 +18,9 @@ class DetailViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        performSegue(withIdentifier: segueTo, sender: self)
+        if segueTo != ""{
+            performSegue(withIdentifier: segueTo, sender: self)
+        }
     }
 
     override func didReceiveMemoryWarning() {

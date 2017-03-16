@@ -35,7 +35,9 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
         currentUser = appDelegate.currentUser
-        
+        if appDelegate.isPhone == false{
+            self.splitViewController?.preferredDisplayMode = .allVisible
+        }
         //Profile View Setup
         profilePic.image = currentUser.image
         profilePic.layer.cornerRadius = 10

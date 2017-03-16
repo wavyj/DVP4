@@ -36,7 +36,9 @@ class WatchViewController: UIViewController, UIWebViewDelegate{
         super.viewDidLoad()
 
         // Do any additional setup after loading the view
-        
+        if appDelegate.isPhone == false{
+            self.splitViewController?.preferredDisplayMode = .primaryHidden
+        }
         //Stream Webview Setup
         webView = UIWebView(frame: streamView.frame)
         streamView.addSubview(webView)

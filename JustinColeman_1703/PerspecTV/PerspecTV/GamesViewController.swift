@@ -24,6 +24,9 @@ class GamesViewController: UIViewController, UICollectionViewDelegate, UICollect
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        if appDelegate.isPhone == false{
+            self.splitViewController?.preferredDisplayMode = .allVisible
+        }
         downloadAndParse(urlString: "https://api.twitch.tv/kraken/games/top?limit=10&offset=\(offset)&client_id=\(appDelegate.consumerID)&\(appDelegate.apiVersion)")
     }
 

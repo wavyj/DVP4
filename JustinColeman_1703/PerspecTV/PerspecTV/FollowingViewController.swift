@@ -31,6 +31,9 @@ class FollowingViewController: UIViewController , UICollectionViewDelegate, UICo
 
         // Do any additional setup after loading the view.
         currentUser = appDelegate.currentUser
+        if appDelegate.isPhone == false{
+            self.splitViewController?.preferredDisplayMode = .allVisible
+        }
         if userLoggedIn == true{
             downloadandParse(urlString: "https://api.twitch.tv/kraken/users/\(currentUser.id)/follows/channels?limit=10&offset=\(offset)&client_id=\(appDelegate.consumerID)&\(appDelegate.apiVersion)", downloadTask: "User Followed")
         }else{

@@ -102,7 +102,6 @@ class LoginViewController: UIViewController, UIWebViewDelegate {
             let nav = split.viewControllers.last as! UINavigationController
             let detailView = nav.viewControllers.first as! DetailViewController
             detailView.currentUser = currentUser
-            detailView.segueTo = "ipadToFollowing"
         }
     }
     

@@ -19,6 +19,7 @@ class MasterTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         self.navigationItem.title = "PerspecTV"
+        tableView.selectRow(at: IndexPath(row: 0, section: 0), animated: true, scrollPosition: UITableViewScrollPosition.none)
     }
 
     override func didReceiveMemoryWarning() {
@@ -42,17 +43,39 @@ class MasterTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)as! MenuTableViewCell
 
         // Configure the cell...
+        cell.accessoryType = .disclosureIndicator
+        cell.selectionStyle = .none
         switch indexPath.row {
         case 0:
             cell.pageTitle.text = "Following"
+            let origImg = #imageLiteral(resourceName: "HeartIcon")
+            let tintedImg = origImg.withRenderingMode(.alwaysTemplate)
+            cell.icon.image = tintedImg
+            cell.icon.tintColor = UIColor(white: 1, alpha: 0.5)
         case 1:
             cell.pageTitle.text = "Games"
+            let origImg = #imageLiteral(resourceName: "GameIcon")
+            let tintedImg = origImg.withRenderingMode(.alwaysTemplate)
+            cell.icon.image = tintedImg
+            cell.icon.tintColor = UIColor(white: 1, alpha: 0.5)
         case 2:
             cell.pageTitle.text = "Watch"
+            let origImg = #imageLiteral(resourceName: "PlayIcon")
+            let tintedImg = origImg.withRenderingMode(.alwaysTemplate)
+            cell.icon.image = tintedImg
+            cell.icon.tintColor = UIColor(white: 1, alpha: 0.5)
         case 3:
             cell.pageTitle.text = "Search"
+            let origImg = #imageLiteral(resourceName: "SearchIcon")
+            let tintedImg = origImg.withRenderingMode(.alwaysTemplate)
+            cell.icon.image = tintedImg
+            cell.icon.tintColor = UIColor(white: 1, alpha: 0.5)
         case 4:
             cell.pageTitle.text = "Settings"
+            let origImg = #imageLiteral(resourceName: "SettingsIcon")
+            let tintedImg = origImg.withRenderingMode(.alwaysTemplate)
+            cell.icon.image = tintedImg
+            cell.icon.tintColor = UIColor(white: 1, alpha: 0.5)
         default:
             print("Error")
         }
@@ -60,6 +83,10 @@ class MasterTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let selected = tableView.cellForRow(at: indexPath) as! MenuTableViewCell
+        selected.accessoryType = .none
+        selected.icon.tintColor = UIColor(white: 1, alpha: 1)
+        selected.backgroundColor = UIColor(white: 0, alpha: 0.5)
         switch indexPath.row {
         case 0:
             performSegue(withIdentifier: "goBack", sender: self)
@@ -74,6 +101,13 @@ class MasterTableViewController: UITableViewController {
         default:
             print("Error")
         }
+    }
+    
+    override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        let selected = tableView.cellForRow(at: indexPath) as! MenuTableViewCell
+        selected.accessoryType = .disclosureIndicator
+        selected.icon.tintColor = UIColor(white: 1, alpha: 0.5)
+        selected.backgroundColor = UIColor.clear
     }
 
     /*
