@@ -258,6 +258,7 @@
                         <outlet property="activitySpinner" destination="Kou-CZ-Hvt" id="ZJa-ob-cFa"/>
                         <outlet property="collectionView" destination="Mao-bB-Xvl" id="9Dt-18-Opl"/>
                         <segue destination="ZMs-L7-0az" kind="show" identifier="toWatch" id="25p-Op-POj"/>
+                        <segue destination="TIh-DI-XtF" kind="showDetail" identifier="toDetail" id="83Y-93-Hd7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="55L-93-617" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1089,7 +1090,7 @@
                                         <rect key="frame" x="5" y="12" width="24" height="24"/>
                                         <state key="normal" image="ArrowLeftIcon"/>
                                         <connections>
-                                            <segue destination="Kmq-0U-fSw" kind="unwind" unwindAction="unwindOther:" id="eDz-KF-nt5"/>
+                                            <action selector="backTapped:" destination="9kG-Mw-6jC" eventType="touchUpInside" id="lQj-eO-bXH"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -1128,12 +1129,14 @@
                         <outlet property="channelName" destination="021-po-h5v" id="Ajl-Tf-EdC"/>
                         <outlet property="chatSpinner" destination="35w-wR-370" id="bVG-nf-ROZ"/>
                         <outlet property="chatView" destination="3XI-7s-aCk" id="6CR-fC-ac2"/>
+                        <segue destination="Kmq-0U-fSw" kind="unwind" identifier="goBack" unwindAction="unwindOther:" id="oJa-Ei-2mi"/>
+                        <segue destination="TIh-DI-XtF" kind="showDetail" identifier="toDetail" id="tCt-lq-whr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bvU-LO-oce" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="Kmq-0U-fSw" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="5809.375" y="1235.15625"/>
+            <point key="canvasLocation" x="5044" y="1279"/>
         </scene>
         <!--Tab Bar View Controller-->
         <scene sceneID="AtP-BR-x2O">
@@ -1382,7 +1385,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="nym-fO-jMg"/>
-        <segue reference="6rs-WM-20q"/>
+        <segue reference="tCt-lq-whr"/>
         <segue reference="25p-Op-POj"/>
         <segue reference="SFp-xc-9OR"/>
         <segue reference="S05-70-fZa"/>
