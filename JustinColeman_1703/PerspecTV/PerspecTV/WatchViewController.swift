@@ -10,7 +10,7 @@ import UIKit
 import WebKit
 import SafariServices
 
-class WatchViewController: UIViewController, UIWebViewDelegate{
+class WatchViewController: UIViewController, UIWebViewDelegate, UIGestureRecognizerDelegate{
 
     //MARK: - Outlets
     @IBOutlet weak var streamView: UIView!
@@ -22,8 +22,10 @@ class WatchViewController: UIViewController, UIWebViewDelegate{
     @IBOutlet weak var menuView: UIView!
     @IBOutlet weak var menuBtn: UIButton!
     @IBOutlet weak var infoBtn: UIButton!
-    @IBOutlet weak var chatBtn: UIImageView!
     @IBOutlet weak var chatView: UIView!
+    @IBOutlet var swipeGesture: UISwipeGestureRecognizer!
+    @IBOutlet weak var hamMenuBtn: UIButton!
+    
     
     //MARK: - Variables
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -34,6 +36,7 @@ class WatchViewController: UIViewController, UIWebViewDelegate{
     var shouldLoad = true
     var chatWebView: UIWebView!
     var isOpened = false
+    var isMenuOpen = false
     lazy var ChatVC: ChatViewController = {
         let sb = UIStoryboard(name: "Main", bundle: nil)
         var viewController = sb.instantiateViewController(withIdentifier: "ChatViewController")as! ChatViewController
@@ -46,7 +49,7 @@ class WatchViewController: UIViewController, UIWebViewDelegate{
 
         // Do any additional setup after loading the view
         if appDelegate.isPhone == false{
-            self.splitViewController?.preferredDisplayMode = .allVisible
+            self.splitViewController?.preferredDisplayMode = .primaryHidden
             var frame = chatView.frame
             frame.size.width = self.splitViewController!.primaryColumnWidth
             chatView.frame = frame
@@ -57,7 +60,10 @@ class WatchViewController: UIViewController, UIWebViewDelegate{
         }
         
         //Chat Button setup
-        chatBtn.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.chatTapped(_:))))
+        //chatBtn.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.chatTapped(_:))))
+        swipeGesture.delegate = self
+        swipeGesture.addTarget(self, action: #selector(self.chatTapped(_:)))
+        self.view.addGestureRecognizer(swipeGesture)
         
         //Stream Webview Setup
         webView = UIWebView(frame: streamView.frame)
@@ -95,7 +101,7 @@ class WatchViewController: UIViewController, UIWebViewDelegate{
             streamView.isHidden = true
             menuBtn.isEnabled = false
             infoBtn.isEnabled = false
-            chatBtn.isUserInteractionEnabled = false
+            self.view.gestureRecognizers?.first?.isEnabled = false
             streamName.text = "No Channel Selected"
             
         }else{
@@ -103,11 +109,35 @@ class WatchViewController: UIViewController, UIWebViewDelegate{
             streamView.isHidden = false
             menuBtn.isEnabled = true
             infoBtn.isEnabled = true
-            chatBtn.isUserInteractionEnabled = true
+            self.view.gestureRecognizers?.first?.isEnabled = true
         }
     }
     
     //MARK: - Storyboard Actions
+    @IBAction func hamMenuTapped(_ sender: UIButton){
+        if isMenuOpen{
+            UIView.animate(withDuration: 0.5, animations: {
+                self.splitViewController?.preferredDisplayMode = .primaryHidden
+            }, completion: { (Bool) in
+                self.leftArrow.isUserInteractionEnabled = true
+                self.rightArrow.isUserInteractionEnabled = true
+                self.streamView.isUserInteractionEnabled = true
+                self.menuView.isUserInteractionEnabled = true
+                self.isMenuOpen = false
+            })
+        }else{
+            UIView.animate(withDuration: 0.5, animations: {
+                self.splitViewController?.preferredDisplayMode = .allVisible
+            }, completion: { (Bool) in
+                self.leftArrow.isUserInteractionEnabled = false
+                self.rightArrow.isUserInteractionEnabled = false
+                self.streamView.isUserInteractionEnabled = false
+                self.menuView.isUserInteractionEnabled = false
+                self.isMenuOpen = true
+            })
+        }
+    }
+    
     @IBAction func btnTapped(_ sender: UIButton){
         switch sender.tag {
         case 1:
@@ -147,8 +177,12 @@ class WatchViewController: UIViewController, UIWebViewDelegate{
     @IBAction func chatTapped(_ sender: UIButton){
         if isOpened{
             isOpened = false
+            self.view.gestureRecognizers?.first?.isEnabled = true
+            chatView.gestureRecognizers?.first?.isEnabled = false
         }else{
             isOpened = true
+            self.view.gestureRecognizers?.first?.isEnabled = false
+            chatView.gestureRecognizers?.first?.isEnabled = true
         }
         
         leftArrow.isEnabled = !isOpened
@@ -222,6 +256,9 @@ class WatchViewController: UIViewController, UIWebViewDelegate{
         childController.view.frame = chatView.frame
         childController.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         childController.view.isHidden = true
+        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(self.chatTapped(_:)))
+        swipeRight.direction = .right
+        childController.view.addGestureRecognizer(swipeRight)
         childController.didMove(toParentViewController: self)
     }
     
@@ -235,24 +272,20 @@ class WatchViewController: UIViewController, UIWebViewDelegate{
         //Animation to open or close chat
         if isOpened{
             ChatVC.view.frame = ChatVC.view.frame.offsetBy(dx: chatView.frame.width, dy: 0)
-            UIView.animate(withDuration: 0.5, animations: {
-                self.chatBtn.isUserInteractionEnabled = false
+            UIView.animate(withDuration: 0.7, animations: {
                 self.ChatVC.view.frame = self.chatView.frame
                 self.ChatVC.view.isHidden = false
             }, completion: { (Bool) in
                 print("open")
-                self.chatBtn.isUserInteractionEnabled = true
             })
         }else{
-            UIView.animate(withDuration: 0.5, animations: {
-                self.chatBtn.isUserInteractionEnabled = false
+            UIView.animate(withDuration: 0.7, animations: {
                 var frame = self.chatView.frame
                 frame = frame.offsetBy(dx: self.chatView.frame.width, dy: 0)
                 self.ChatVC.view.frame = frame
             }, completion: { (Bool) in
                 self.ChatVC.view.isHidden = true
                 self.ChatVC.view.frame = self.chatView.frame
-                self.chatBtn.isUserInteractionEnabled = true
                 print("closed")
             })
         }
