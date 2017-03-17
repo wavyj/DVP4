@@ -21,8 +21,9 @@ class WatchViewController: UIViewController, UIWebViewDelegate{
     @IBOutlet weak var streamName: UILabel!
     @IBOutlet weak var menuView: UIView!
     @IBOutlet weak var menuBtn: UIButton!
-    @IBOutlet weak var chatBtn: UIButton!
     @IBOutlet weak var infoBtn: UIButton!
+    @IBOutlet weak var chatBtn: UIImageView!
+    @IBOutlet weak var chatView: UIView!
     
     //MARK: - Variables
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -31,14 +32,33 @@ class WatchViewController: UIViewController, UIWebViewDelegate{
     var streams = [Channel]()
     var selectedIndex = 0
     var shouldLoad = true
+    var chatWebView: UIWebView!
+    var isOpened = false
+    lazy var ChatVC: ChatViewController = {
+        let sb = UIStoryboard(name: "Main", bundle: nil)
+        var viewController = sb.instantiateViewController(withIdentifier: "ChatViewController")as! ChatViewController
+        self.addChildAsViewController(viewController)
+        return viewController
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view
         if appDelegate.isPhone == false{
-            self.splitViewController?.preferredDisplayMode = .primaryHidden
+            self.splitViewController?.preferredDisplayMode = .allVisible
+            var frame = chatView.frame
+            frame.size.width = self.splitViewController!.primaryColumnWidth
+            chatView.frame = frame
+        }else{
+            var frame = chatView.frame
+            frame.size.height = frame.size.height - controlView.frame.height
+            ChatVC.view.frame = frame
         }
+        
+        //Chat Button setup
+        chatBtn.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.chatTapped(_:))))
+        
         //Stream Webview Setup
         webView = UIWebView(frame: streamView.frame)
         streamView.addSubview(webView)
@@ -75,7 +95,7 @@ class WatchViewController: UIViewController, UIWebViewDelegate{
             streamView.isHidden = true
             menuBtn.isEnabled = false
             infoBtn.isEnabled = false
-            chatBtn.isEnabled = false
+            chatBtn.isUserInteractionEnabled = false
             streamName.text = "No Channel Selected"
             
         }else{
@@ -83,7 +103,7 @@ class WatchViewController: UIViewController, UIWebViewDelegate{
             streamView.isHidden = false
             menuBtn.isEnabled = true
             infoBtn.isEnabled = true
-            chatBtn.isEnabled = true
+            chatBtn.isUserInteractionEnabled = true
         }
     }
     
@@ -125,7 +145,15 @@ class WatchViewController: UIViewController, UIWebViewDelegate{
     }
     
     @IBAction func chatTapped(_ sender: UIButton){
-        performSegue(withIdentifier: "toChat", sender: self)
+        if isOpened{
+            isOpened = false
+        }else{
+            isOpened = true
+        }
+        
+        leftArrow.isEnabled = !isOpened
+        rightArrow.isEnabled = !isOpened
+        updateChatDisplay()
     }
     
     @IBAction func menuTapped(_ sender: UIButton){
@@ -174,22 +202,70 @@ class WatchViewController: UIViewController, UIWebViewDelegate{
         //Stream Setup
         webView.allowsInlineMediaPlayback = true
         webView.scrollView.isScrollEnabled = false
-        let stream = "<html><head><style type='text/css'>html,body {margin: 0;padding: 0;width: 100%;height: 100%;}</style></head><body><iframe src=\"https://player.twitch.tv/?channel=\(currentChannel.username)&autoplay=false&client_id=\(appDelegate.consumerID)&\(appDelegate.apiVersion)&playsinline=1\"width=\"\(streamView.frame.width)\" height=\"\(streamView.frame.height)\" frameborder=\"0\" scrolling=\"yes\" allowfullscreen=\"false\" webkit-playsinline></iframe></body></html>"
-        webView.loadHTMLString(stream, baseURL: nil)
+        if appDelegate.isPhone == true{
+            let stream = "<html><head><style type='text/css'>html,body {margin: 0;padding: 0;width: 100%;height: 100%;}</style></head><body><iframe src=\"https://player.twitch.tv/?channel=\(currentChannel.username)&autoplay=false&client_id=\(appDelegate.consumerID)&\(appDelegate.apiVersion)&playsinline=1\"width=\"\(streamView.frame.width)\" height=\"\(streamView.frame.height)\" frameborder=\"0\" scrolling=\"yes\" allowfullscreen=\"false\" webkit-playsinline></iframe></body></html>"
+            webView.loadHTMLString(stream, baseURL: nil)
+        }else{
+            let stream = "<html><head><style type='text/css'>html,body {margin: 0;padding: 0;width: 100%;height: 100%;}</style></head><body><iframe src=\"https://player.twitch.tv/?channel=\(currentChannel.username)&autoplay=false&client_id=\(appDelegate.consumerID)&\(appDelegate.apiVersion)&playsinline=1\"width=\"\(view.frame.width - self.splitViewController!.primaryColumnWidth)\" height=\"\(streamView.frame.height)\" frameborder=\"0\" scrolling=\"yes\" allowfullscreen=\"false\" webkit-playsinline></iframe></body></html>"
+            webView.loadHTMLString(stream, baseURL: nil)
+        }
+        
+        //Chat update
+        ChatVC.loadChat()
+    }
+    
+    //MARK: - Container View Controller
+    private func addChildAsViewController(_ childController: UIViewController) {
+        addChildViewController(childController)
+        
+        self.view.addSubview(childController.view)
+        childController.view.frame = chatView.frame
+        childController.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        childController.view.isHidden = true
+        childController.didMove(toParentViewController: self)
+    }
+    
+    private func removeChildViewController(childViewController: UIViewController){
+        childViewController.willMove(toParentViewController: nil)
+        childViewController.view.removeFromSuperview()
+        childViewController.removeFromParentViewController()
+    }
+    
+    func updateChatDisplay(){
+        //Animation to open or close chat
+        if isOpened{
+            ChatVC.view.frame = ChatVC.view.frame.offsetBy(dx: chatView.frame.width, dy: 0)
+            UIView.animate(withDuration: 0.5, animations: {
+                self.chatBtn.isUserInteractionEnabled = false
+                self.ChatVC.view.frame = self.chatView.frame
+                self.ChatVC.view.isHidden = false
+            }, completion: { (Bool) in
+                print("open")
+                self.chatBtn.isUserInteractionEnabled = true
+            })
+        }else{
+            UIView.animate(withDuration: 0.5, animations: {
+                self.chatBtn.isUserInteractionEnabled = false
+                var frame = self.chatView.frame
+                frame = frame.offsetBy(dx: self.chatView.frame.width, dy: 0)
+                self.ChatVC.view.frame = frame
+            }, completion: { (Bool) in
+                self.ChatVC.view.isHidden = true
+                self.ChatVC.view.frame = self.chatView.frame
+                self.chatBtn.isUserInteractionEnabled = true
+                print("closed")
+            })
+        }
     }
 
     
-    // MARK: - Navigation
+    /*// MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
-        if segue.identifier == "toChat"{
-            let CVC = segue.destination as! ChatViewController
-            CVC.currentChannel = currentChannel
-        }
-    }
+    }*/
  
 
 }

@@ -30,6 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }else if UIDevice.current.model == "iPad"{
             isPhone = false
         }
+        
         return true
     }
 

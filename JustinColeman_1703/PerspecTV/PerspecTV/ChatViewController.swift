@@ -12,8 +12,6 @@ import WebKit
 class ChatViewController: UIViewController, UIWebViewDelegate {
     
     //MARK: - Outlets
-    @IBOutlet weak var channelName: UILabel!
-    @IBOutlet weak var chatView: UIView!
     @IBOutlet weak var chatSpinner: UIActivityIndicatorView!
     
     //MARK: - Variables
@@ -27,17 +25,12 @@ class ChatViewController: UIViewController, UIWebViewDelegate {
         // Do any additional setup after loading the view.
         
         //Setup
-        channelName.text = currentChannel.username
-        webView = UIWebView(frame: chatView.frame)
-        chatView.addSubview(webView)
-        chatView.clipsToBounds = true
+        webView = UIWebView(frame: self.view.frame)
+        self.view.addSubview(webView)
         webView.delegate = self
         webView.clipsToBounds = true
         webView.isHidden = true
         chatSpinner.startAnimating()
-        webView.scrollView.isScrollEnabled = false
-        webView.keyboardDisplayRequiresUserAction = true
-        webView.loadHTMLString("<html><head><style type='text/css'>html,body {margin: 0;padding: 0;width: 100%;height: 100%;}</style></head><iframe frameborder=\"0\"scrolling=\"yes\"id=\"\(currentChannel.username)\"src=\"https://twitch.tv/\(currentChannel.username)/chat\"height=\"\(chatView.frame.height)\"width=\"\(chatView.frame.width)\"></iframe>", baseURL: nil)
     }
 
     override func didReceiveMemoryWarning() {
@@ -56,25 +49,32 @@ class ChatViewController: UIViewController, UIWebViewDelegate {
     
     //MARK: - WebView Callbacks
     func webViewDidFinishLoad(_ webView: UIWebView) {
-        webView.frame = chatView.bounds
+        webView.frame = (self.parent as! WatchViewController).chatView.bounds
         webView.isHidden = false
         chatSpinner.stopAnimating()
     }
     
+    //MARK: - Methods
+    func loadChat(){
+        let parent = self.parent as! WatchViewController
+        currentChannel = parent.currentChannel
+        webView.scrollView.isScrollEnabled = false
+        webView.keyboardDisplayRequiresUserAction = true
+        if appDelegate.isPhone == true{
+            webView.loadHTMLString("<html><head><style type='text/css'>html,body {margin: 0;padding: 0;width: 100%;height: 100%;}</style></head><iframe frameborder=\"0\"scrolling=\"yes\"id=\"\(currentChannel.username)\"src=\"https://twitch.tv/\(currentChannel.username)/chat\"width=\"\(parent.chatView.frame.width)\"height=\"\(self.view.frame.height)\"></iframe>", baseURL: nil)
+        }else{
+            webView.loadHTMLString("<html><head><style type='text/css'>html,body {margin: 0;padding: 0;width: 100%;height: 100%;}</style></head><iframe frameborder=\"0\"scrolling=\"yes\"id=\"\(currentChannel.username)\"src=\"https://twitch.tv/\(currentChannel.username)/chat\"width=\"\(parent.chatView.frame.width)\"height=\"\(parent.chatView.frame.height)\"></iframe>", baseURL: nil)
+        }
+    }
 
     
-    // MARK: - Navigation
+    /*// MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
-        if segue.identifier == "toDetail"{
-            let nav = segue.destination as! UINavigationController
-            let DVC = nav.viewControllers.first as! DetailViewController
-            DVC.segueTo = "ipadToWatch"
-        }
-    }
+    }*/
  
 
 }
