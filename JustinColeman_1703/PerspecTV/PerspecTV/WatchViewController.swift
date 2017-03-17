@@ -79,6 +79,7 @@ class WatchViewController: UIViewController, UIWebViewDelegate{
             streamName.text = "No Channel Selected"
             
         }else{
+            streamName.text = currentChannel.username
             streamView.isHidden = false
             menuBtn.isEnabled = true
             infoBtn.isEnabled = true

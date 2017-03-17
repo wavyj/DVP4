@@ -19,6 +19,7 @@ class GamesViewController: UIViewController, UICollectionViewDelegate, UICollect
     var offset = 0
     var games = [Game]()
     var selectedGame: Game!
+    var layout: UICollectionViewFlowLayout!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,6 +27,13 @@ class GamesViewController: UIViewController, UICollectionViewDelegate, UICollect
         // Do any additional setup after loading the view.
         if appDelegate.isPhone == false{
             self.splitViewController?.preferredDisplayMode = .allVisible
+            
+            layout = UICollectionViewFlowLayout()
+            layout.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 0, right: 10)
+            layout.itemSize = CGSize(width: collectionView.frame.width / 2, height: collectionView.frame.height / 2.5)
+            layout.minimumInteritemSpacing = 5
+            layout.minimumLineSpacing = 10
+            collectionView.collectionViewLayout = layout
         }
         downloadAndParse(urlString: "https://api.twitch.tv/kraken/games/top?limit=10&offset=\(offset)&client_id=\(appDelegate.consumerID)&\(appDelegate.apiVersion)")
     }

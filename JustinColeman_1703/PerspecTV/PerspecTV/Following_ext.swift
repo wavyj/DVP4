@@ -26,9 +26,6 @@ extension FollowingViewController{
                 if error != nil { return }
                 
                 //Check response, data, and status code
-                if let r = response as? HTTPURLResponse{
-                    print(r.statusCode)
-                }
                 guard let response = response as? HTTPURLResponse,
                     response.statusCode == 200,
                     let data = data
