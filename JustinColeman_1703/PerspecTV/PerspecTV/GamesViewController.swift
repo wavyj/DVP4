@@ -20,13 +20,14 @@ class GamesViewController: UIViewController, UICollectionViewDelegate, UICollect
     var games = [Game]()
     var selectedGame: Game!
     var layout: UICollectionViewFlowLayout!
+    var isMenuOpen = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         if appDelegate.isPhone == false{
-            self.splitViewController?.preferredDisplayMode = .allVisible
+            self.splitViewController?.preferredDisplayMode = .primaryHidden
             
             layout = UICollectionViewFlowLayout()
             layout.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 0, right: 10)
@@ -44,6 +45,24 @@ class GamesViewController: UIViewController, UICollectionViewDelegate, UICollect
     }
     
     //MARK: - Storyboard Actions
+    @IBAction func hamMenuTapped(_ sender: UIButton){
+        if isMenuOpen{
+            UIView.animate(withDuration: 0.5, animations: {
+                self.splitViewController?.preferredDisplayMode = .primaryHidden
+            }, completion: { (Bool) in
+                self.collectionView.isUserInteractionEnabled = true
+                self.isMenuOpen = false
+            })
+        }else{
+            UIView.animate(withDuration: 0.5, animations: {
+                self.splitViewController?.preferredDisplayMode = .allVisible
+            }, completion: { (Bool) in
+                self.collectionView.isUserInteractionEnabled = false
+                self.isMenuOpen = true
+            })
+        }
+    }
+    
     @IBAction func back(for segue: UIStoryboardSegue){
         //do nothing
     }

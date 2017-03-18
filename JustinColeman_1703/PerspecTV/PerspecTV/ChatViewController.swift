@@ -18,6 +18,7 @@ class ChatViewController: UIViewController, UIWebViewDelegate {
     var currentChannel: Channel!
     var webView: UIWebView!
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    var firstLoad: Bool!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,6 +32,8 @@ class ChatViewController: UIViewController, UIWebViewDelegate {
         webView.clipsToBounds = true
         webView.isHidden = true
         chatSpinner.startAnimating()
+        
+        firstLoad = true
     }
 
     override func didReceiveMemoryWarning() {
@@ -61,7 +64,12 @@ class ChatViewController: UIViewController, UIWebViewDelegate {
         webView.scrollView.isScrollEnabled = false
         webView.keyboardDisplayRequiresUserAction = true
         if appDelegate.isPhone == true{
-            webView.loadHTMLString("<html><head><style type='text/css'>html,body {margin: 0;padding: 0;width: 100%;height: 100%;}</style></head><iframe frameborder=\"0\"scrolling=\"yes\"id=\"\(currentChannel.username)\"src=\"https://twitch.tv/\(currentChannel.username)/chat\"width=\"\(parent.chatView.frame.width)\"height=\"\(self.view.frame.height)\"></iframe>", baseURL: nil)
+            if firstLoad == true{
+                webView.loadHTMLString("<html><head><style type='text/css'>html,body {margin: 0;padding: 0;width: 100%;height: 100%;}</style></head><iframe frameborder=\"0\"scrolling=\"yes\"id=\"\(currentChannel.username)\"src=\"https://twitch.tv/\(currentChannel.username)/chat\"width=\"\(parent.chatView.frame.width)\"height=\"\(parent.chatView.frame.height - parent.tabBarController!.tabBar.frame.height - 10)\"></iframe>", baseURL: nil)
+                firstLoad = false
+            }else{
+                webView.loadHTMLString("<html><head><style type='text/css'>html,body {margin: 0;padding: 0;width: 100%;height: 100%;}</style></head><iframe frameborder=\"0\"scrolling=\"yes\"id=\"\(currentChannel.username)\"src=\"https://twitch.tv/\(currentChannel.username)/chat\"width=\"\(parent.chatView.frame.width)\"height=\"\(self.view.frame.height)\"></iframe>", baseURL: nil)
+            }
         }else{
             webView.loadHTMLString("<html><head><style type='text/css'>html,body {margin: 0;padding: 0;width: 100%;height: 100%;}</style></head><iframe frameborder=\"0\"scrolling=\"yes\"id=\"\(currentChannel.username)\"src=\"https://twitch.tv/\(currentChannel.username)/chat\"width=\"\(parent.chatView.frame.width)\"height=\"\(parent.chatView.frame.height)\"></iframe>", baseURL: nil)
         }

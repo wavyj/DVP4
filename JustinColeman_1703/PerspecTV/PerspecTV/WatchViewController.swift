@@ -58,6 +58,7 @@ class WatchViewController: UIViewController, UIWebViewDelegate, UIGestureRecogni
             frame.size.height = frame.size.height - controlView.frame.height
             ChatVC.view.frame = frame
         }
+        ChatVC.view.clipsToBounds = true
         
         //Chat Button setup
         //chatBtn.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.chatTapped(_:))))
@@ -276,7 +277,7 @@ class WatchViewController: UIViewController, UIWebViewDelegate, UIGestureRecogni
                 self.ChatVC.view.frame = self.chatView.frame
                 self.ChatVC.view.isHidden = false
             }, completion: { (Bool) in
-                print("open")
+    
             })
         }else{
             UIView.animate(withDuration: 0.7, animations: {
@@ -286,7 +287,7 @@ class WatchViewController: UIViewController, UIWebViewDelegate, UIGestureRecogni
             }, completion: { (Bool) in
                 self.ChatVC.view.isHidden = true
                 self.ChatVC.view.frame = self.chatView.frame
-                print("closed")
+            
             })
         }
     }

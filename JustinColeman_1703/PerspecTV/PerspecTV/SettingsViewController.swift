@@ -24,6 +24,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     //MARK: - Variables
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     var currentUser: User!
+    var isMenuOpen = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,7 +37,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         
         currentUser = appDelegate.currentUser
         if appDelegate.isPhone == false{
-            self.splitViewController?.preferredDisplayMode = .allVisible
+            self.splitViewController?.preferredDisplayMode = .primaryHidden
         }
         //Profile View Setup
         profilePic.image = currentUser.image
@@ -93,6 +94,24 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     
 
     //Methods
+    @IBAction func hamMenuTapped(_ sender: UIButton){
+        if isMenuOpen{
+            UIView.animate(withDuration: 0.5, animations: {
+                self.splitViewController?.preferredDisplayMode = .primaryHidden
+            }, completion: { (Bool) in
+                self.tableView.isUserInteractionEnabled = true
+                self.isMenuOpen = false
+            })
+        }else{
+            UIView.animate(withDuration: 0.5, animations: {
+                self.splitViewController?.preferredDisplayMode = .allVisible
+            }, completion: { (Bool) in
+                self.tableView.isUserInteractionEnabled = false
+                self.isMenuOpen = true
+            })
+        }
+    }
+    
     @IBAction func removeUser(){
         let alert = UIAlertController(title: "Remove Account", message: "Are you sure you want to logout of this account?", preferredStyle: .alert)
         let yesAction = UIAlertAction(title: "Yes", style: .destructive) { (YesAction) in

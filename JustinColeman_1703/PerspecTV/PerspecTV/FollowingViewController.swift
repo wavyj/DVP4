@@ -25,6 +25,7 @@ class FollowingViewController: UIViewController , UICollectionViewDelegate, UICo
     var channelsToDownload = [String]()
     var offset = 0
     var selectedChannel: Channel!
+    var isMenuOpen = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,7 +33,7 @@ class FollowingViewController: UIViewController , UICollectionViewDelegate, UICo
         // Do any additional setup after loading the view.
         currentUser = appDelegate.currentUser
         if appDelegate.isPhone == false{
-            self.splitViewController?.preferredDisplayMode = .allVisible
+            self.splitViewController?.preferredDisplayMode = .primaryHidden
         }
         if userLoggedIn == true{
             downloadandParse(urlString: "https://api.twitch.tv/kraken/users/\(currentUser.id)/follows/channels?limit=10&offset=\(offset)&client_id=\(appDelegate.consumerID)&\(appDelegate.apiVersion)", downloadTask: "User Followed")
@@ -68,6 +69,24 @@ class FollowingViewController: UIViewController , UICollectionViewDelegate, UICo
     }
     
     //MARK: - Storyboard Actions
+    @IBAction func hamMenuTapped(_ sender: UIButton){
+        if isMenuOpen{
+            UIView.animate(withDuration: 0.5, animations: {
+                self.splitViewController?.preferredDisplayMode = .primaryHidden
+            }, completion: { (Bool) in
+                self.collectionView.isUserInteractionEnabled = true
+                self.isMenuOpen = false
+            })
+        }else{
+            UIView.animate(withDuration: 0.5, animations: {
+                self.splitViewController?.preferredDisplayMode = .allVisible
+            }, completion: { (Bool) in
+                self.collectionView.isUserInteractionEnabled = false
+                self.isMenuOpen = true
+            })
+        }
+    }
+    
     @IBAction func watchTapped(_ sender: UIButton){
         //Clears array and sets the selected channel to the only stream
         appDelegate.streams = [selectedChannel]
