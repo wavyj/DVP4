@@ -13,6 +13,9 @@ class ChatViewController: UIViewController, UIWebViewDelegate {
     
     //MARK: - Outlets
     @IBOutlet weak var chatSpinner: UIActivityIndicatorView!
+    @IBOutlet weak var leftBtn: UIButton!
+    @IBOutlet weak var rightBtn: UIButton!
+    @IBOutlet weak var controlView: UIView!
     
     //MARK: - Variables
     var currentChannel: Channel!
@@ -26,7 +29,12 @@ class ChatViewController: UIViewController, UIWebViewDelegate {
         // Do any additional setup after loading the view.
         
         //Setup
-        webView = UIWebView(frame: self.view.frame)
+        if appDelegate.isPhone == false{
+            let frame = self.view.frame.offsetBy(dx: 0, dy: controlView.frame.height)
+            webView = UIWebView(frame: frame)
+        }else{
+            webView = UIWebView(frame: self.view.frame)
+        }
         self.view.addSubview(webView)
         webView.delegate = self
         webView.clipsToBounds = true
@@ -52,7 +60,9 @@ class ChatViewController: UIViewController, UIWebViewDelegate {
     
     //MARK: - WebView Callbacks
     func webViewDidFinishLoad(_ webView: UIWebView) {
-        webView.frame = (self.parent as! WatchViewController).chatView.bounds
+        if appDelegate.isPhone == true{
+            webView.frame = (self.parent as! WatchViewController).chatView.bounds
+        }
         webView.isHidden = false
         chatSpinner.stopAnimating()
     }
@@ -71,7 +81,7 @@ class ChatViewController: UIViewController, UIWebViewDelegate {
                 webView.loadHTMLString("<html><head><style type='text/css'>html,body {margin: 0;padding: 0;width: 100%;height: 100%;}</style></head><iframe frameborder=\"0\"scrolling=\"yes\"id=\"\(currentChannel.username)\"src=\"https://twitch.tv/\(currentChannel.username)/chat\"width=\"\(parent.chatView.frame.width)\"height=\"\(self.view.frame.height)\"></iframe>", baseURL: nil)
             }
         }else{
-            webView.loadHTMLString("<html><head><style type='text/css'>html,body {margin: 0;padding: 0;width: 100%;height: 100%;}</style></head><iframe frameborder=\"0\"scrolling=\"yes\"id=\"\(currentChannel.username)\"src=\"https://twitch.tv/\(currentChannel.username)/chat\"width=\"\(parent.chatView.frame.width)\"height=\"\(parent.chatView.frame.height)\"></iframe>", baseURL: nil)
+            webView.loadHTMLString("<html><head><style type='text/css'>html,body {margin: 0;padding: 0;width: 100%;height: 100%;}</style></head><iframe frameborder=\"0\"scrolling=\"yes\"id=\"\(currentChannel.username)\"src=\"https://twitch.tv/\(currentChannel.username)/chat\"width=\"\(parent.chatView.frame.width)\"height=\"\(parent.chatView.frame.height - controlView.frame.height)\"></iframe>", baseURL: nil)
         }
     }
 

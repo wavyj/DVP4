@@ -21,7 +21,7 @@ class User{
     var views: Int
     var followers: Int
     
-    init(authToken: String, username: String = "", id: String = "", bio: String = "One day I will think of a clever bio...", logoUrl: String = "", bannerUrl: String = "", views: Int = 0, followers: Int = 0) {
+    init(authToken: String = "", username: String = "", id: String = "", bio: String = "One day I will think of a clever bio...", logoUrl: String = "", bannerUrl: String = "", views: Int = 0, followers: Int = 0) {
         self.authToken = authToken
         self.username = username
         self.id = id

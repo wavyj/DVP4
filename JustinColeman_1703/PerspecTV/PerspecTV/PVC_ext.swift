@@ -1,17 +1,17 @@
 //
-//  Games_ext.swift
+//  PVC_ext.swift
 //  PerspecTV
 //
-//  Created by Justin Coleman on 3/12/17.
+//  Created by Justin Coleman on 3/20/17.
 //  Copyright © 2017 Justin Coleman. All rights reserved.
 //
 
 import Foundation
 
-extension GamesViewController{
+extension ProfileViewController{
     
     func downloadAndParse(urlString: String){
-        activitySpinner.startAnimating()
+        //activitySpinner.startAnimating()
         
         let config = URLSessionConfiguration.default
         let session = URLSession(configuration: config)
@@ -36,35 +36,40 @@ extension GamesViewController{
                     if let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: Any]{
                         
                         //Parse json data
-                        for firstLevelItem in json{
-                            guard let objects = firstLevelItem.value as? [[String: Any]]
-                                else{ continue }
+                        if let username = json["name"] as? String,
+                            let views = json["views"] as? Int,
+                            let followers = json["followers"] as? Int{
                             
-                            for object in objects{
-                                guard let game = object["game"] as? [String: Any],
-                                    let channels = object["channels"] as? Int,
-                                    let viewers = object["viewers"] as? Int,
-                                    let name = game["name"] as? String,
-                                    let id = game["_id"] as? Int
-                                    else{ print(object); continue }
-                            
-                                    //Seperate check for image url because it is possible it will be null
-                                if let images = game["box"] as? [String: Any],
-                                    let imageUrl = images["large"] as? String{
-                                    self.games.append(Game(id: id, name: name, channels: channels, viewers: viewers, imageUrl: imageUrl))
-                                }else{
-                                    self.games.append(Game(id: id, name: name, channels: channels, viewers: viewers))
-                                }
+                            //bio and profile pic can return null or empty so
+                            //a seperate check to see if they are there
+                            if let bio = json["bio"] as? String{
+                                self.currentUser.bio = bio
                             }
-                        }
+                            
+                            if let profileUrl = json["logo"] as? String{
+                                self.currentUser.logoUrl = profileUrl
+                            }
+                            
+                            if let bannerUrl = json["profile_banner"] as? String{
+                                self.currentUser.bannerUrl = bannerUrl
+                            }
+                            
+                            //Model object
+                            self.currentUser.username = username
+                            self.currentUser.views = views
+                            self.currentUser.followers = followers
+                            self.currentUser.downloadImage()
+                            self.currentUser.downloadBanner()
+                            
+                        }else{ print(json) }
                     }
                 }
                 catch{
                     print(error.localizedDescription)
                 }
                 DispatchQueue.main.async {
-                    self.activitySpinner.stopAnimating()
-                    self.collectionView.reloadData()
+                    //self.activitySpinner.stopAnimating()
+                    self.update()
                 }
             })
             task.resume()

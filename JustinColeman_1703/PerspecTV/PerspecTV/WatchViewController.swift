@@ -50,9 +50,9 @@ class WatchViewController: UIViewController, UIWebViewDelegate, UIGestureRecogni
         // Do any additional setup after loading the view
         if appDelegate.isPhone == false{
             self.splitViewController?.preferredDisplayMode = .primaryHidden
-            var frame = chatView.frame
-            frame.size.width = self.splitViewController!.primaryColumnWidth
-            chatView.frame = frame
+//            var frame = chatView.frame
+//            frame.size.width = self.splitViewController!.primaryColumnWidth
+//            chatView.frame = frame
         }else{
             var frame = chatView.frame
             frame.size.height = frame.size.height - controlView.frame.height
@@ -241,7 +241,7 @@ class WatchViewController: UIViewController, UIWebViewDelegate, UIGestureRecogni
             let stream = "<html><head><style type='text/css'>html,body {margin: 0;padding: 0;width: 100%;height: 100%;}</style></head><body><iframe src=\"https://player.twitch.tv/?channel=\(currentChannel.username)&autoplay=false&client_id=\(appDelegate.consumerID)&\(appDelegate.apiVersion)&playsinline=1\"width=\"\(streamView.frame.width)\" height=\"\(streamView.frame.height)\" frameborder=\"0\" scrolling=\"yes\" allowfullscreen=\"false\" webkit-playsinline></iframe></body></html>"
             webView.loadHTMLString(stream, baseURL: nil)
         }else{
-            let stream = "<html><head><style type='text/css'>html,body {margin: 0;padding: 0;width: 100%;height: 100%;}</style></head><body><iframe src=\"https://player.twitch.tv/?channel=\(currentChannel.username)&autoplay=false&client_id=\(appDelegate.consumerID)&\(appDelegate.apiVersion)&playsinline=1\"width=\"\(view.frame.width - self.splitViewController!.primaryColumnWidth)\" height=\"\(streamView.frame.height)\" frameborder=\"0\" scrolling=\"yes\" allowfullscreen=\"false\" webkit-playsinline></iframe></body></html>"
+            let stream = "<html><head><style type='text/css'>html,body {margin: 0;padding: 0;width: 100%;height: 100%;}</style></head><body><iframe src=\"https://player.twitch.tv/?channel=\(currentChannel.username)&autoplay=false&client_id=\(appDelegate.consumerID)&\(appDelegate.apiVersion)&playsinline=1\"width=\"\(view.frame.width)\" height=\"\(streamView.frame.height)\" frameborder=\"0\" scrolling=\"yes\" allowfullscreen=\"false\" webkit-playsinline></iframe></body></html>"
             webView.loadHTMLString(stream, baseURL: nil)
         }
         
@@ -293,13 +293,19 @@ class WatchViewController: UIViewController, UIWebViewDelegate, UIGestureRecogni
     }
 
     
-    /*// MARK: - Navigation
+    // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
-    }*/
+        if segue.identifier == "toProfile"{
+            let PVC = segue.destination as! ProfileViewController
+            let user = User()
+            user.id = currentChannel.id
+            PVC.currentUser = user
+        }
+    }
  
 
 }
