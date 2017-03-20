@@ -29,7 +29,7 @@ extension ProfileViewController{
                 guard let response = response as? HTTPURLResponse,
                     response.statusCode == 200,
                     let data = data
-                    else{ print(error?.localizedDescription ?? "Unknown Error games"); return }
+                    else{ print(error?.localizedDescription ?? "Unknown Error profile"); return }
                 
                 do{
                     //De-serialize json data

@@ -301,9 +301,7 @@ class WatchViewController: UIViewController, UIWebViewDelegate, UIGestureRecogni
         // Pass the selected object to the new view controller.
         if segue.identifier == "toProfile"{
             let PVC = segue.destination as! ProfileViewController
-            let user = User()
-            user.id = currentChannel.id
-            PVC.currentUser = user
+            PVC.currentID = currentChannel.id
         }
     }
  

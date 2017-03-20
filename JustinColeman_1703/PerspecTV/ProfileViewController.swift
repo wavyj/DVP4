@@ -25,14 +25,16 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
     //MARK: - Variables
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     var currentUser: User!
+    var currentID = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         teamIcon.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.teamTapped(_:))))
+        currentUser = User()
         
-        downloadAndParse(urlString: "https://api.twitch.tv/kraken/channels/\(currentUser.id)?\(appDelegate.consumerID)&\(appDelegate.apiVersion)")
+        downloadAndParse(urlString: "https://api.twitch.tv/kraken/channels/\(currentID)?client_id=\(appDelegate.consumerID)&\(appDelegate.apiVersion)")
     }
 
     override func didReceiveMemoryWarning() {
