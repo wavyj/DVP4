@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ProfileViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource{
+class ProfileViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UIScrollViewDelegate{
     
     //MARK: - Outlets
     @IBOutlet weak var profileView: UIView!
@@ -28,6 +28,8 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
     var currentUser: User!
     var currentID = ""
     var teams = [Team]()
+    var videos = [Video]()
+    var offset = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,9 +37,15 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
         // Do any additional setup after loading the view.
         teamIcon.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.teamTapped(_:))))
         backArrow.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.backTapped(_:))))
+        let origImg = #imageLiteral(resourceName: "StarIcon")
+        let tintedImg = origImg.withRenderingMode(.alwaysTemplate)
+        teamIcon.image = tintedImg
+        teamIcon.tintColor = UIColor(white: 1, alpha: 0.4)
         
         currentUser = User()
         downloadAndParse(urlString: "https://api.twitch.tv/kraken/channels/\(currentID)?client_id=\(appDelegate.consumerID)&\(appDelegate.apiVersion)", downloadTask: "profile")
+        
+        downloadAndParse(urlString: "https://api.twitch.tv/kraken/channels/\(currentID)/videos?limit=10&offset=\(offset)&client_id=\(appDelegate.consumerID)&\(appDelegate.apiVersion)", downloadTask: "videos")
     }
 
     override func didReceiveMemoryWarning() {
@@ -47,16 +55,118 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
     
     //MARK: - Collection View Callbacks
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 0
+        return videos.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! ChannelCollectionViewCell
+        let current = videos[indexPath.row]
+        cell.streamerName.text = current.title
+        cell.viewerCount.text = current.views.description
+        cell.previewImage.image = current.previewImage
+        cell.layer.cornerRadius = 6
+        cell.isFlipped = false
+        
         return cell
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 0
+        return 1
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let selected = videos[indexPath.row]
+        let selectedCell = collectionView.cellForItem(at: indexPath) as! ChannelCollectionViewCell
+        if selectedCell.isFlipped == false{
+            UIView.transition(with: selectedCell, duration: 0.5, options: .transitionFlipFromRight, animations: {
+                collectionView.isUserInteractionEnabled = false
+                //selectedCell.previewImage.isHidden = true
+                selectedCell.streamerName.isHidden = true
+                selectedCell.viewerCount.isHidden = true
+                selectedCell.addBtn.isHidden = false
+                selectedCell.watchBtn.isHidden = false
+                selectedCell.viewersIcon.isHidden = true
+                selectedCell.addLabel.isHidden = false
+                selectedCell.watchLabel.isHidden = false
+                
+                //Check current streams
+                let streams = self.appDelegate.streams!
+                if !streams.contains(where: { (Video) -> Bool in
+                    if Video.id == selected.id{
+                        return true
+                    }else{
+                        return false
+                    }
+                }){
+                    selectedCell.watchBtn.isEnabled = true
+                    selectedCell.addBtn.isEnabled = true
+                    if streams.count == 4{
+                        selectedCell.addBtn.isEnabled = false
+                        selectedCell.watchBtn.isEnabled = false
+                    }
+                }else{
+                    selectedCell.watchBtn.isEnabled = false
+                    selectedCell.addBtn.isEnabled = false
+                }
+                
+            }, completion: { (Bool) in
+                selectedCell.isFlipped = true
+                collectionView.isUserInteractionEnabled = true
+            })
+        }else{
+            UIView.transition(with: selectedCell, duration: 0.5, options: .transitionFlipFromLeft, animations: {
+                collectionView.isUserInteractionEnabled = false
+                //selectedCell.previewImage.isHidden = false
+                selectedCell.streamerName.isHidden = false
+                selectedCell.viewerCount.isHidden = false
+                selectedCell.addBtn.isHidden = true
+                selectedCell.watchBtn.isHidden = true
+                selectedCell.viewersIcon.isHidden = false
+                selectedCell.addLabel.isHidden = true
+                selectedCell.watchLabel.isHidden = true
+            }, completion: { (Bool) in
+                selectedCell.isFlipped = false
+                collectionView.isUserInteractionEnabled = true
+            })
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        //Unflip the cell
+        let selectedCell = collectionView.cellForItem(at: indexPath) as! ChannelCollectionViewCell
+        if selectedCell.isFlipped == true{
+            UIView.transition(with: selectedCell, duration: 0.5, options: .transitionFlipFromLeft, animations: {
+                collectionView.isUserInteractionEnabled = false
+                //selectedCell.previewImage.isHidden = false
+                selectedCell.streamerName.isHidden = false
+                selectedCell.viewerCount.isHidden = false
+                selectedCell.addBtn.isHidden = true
+                selectedCell.watchBtn.isHidden = true
+                selectedCell.viewersIcon.isHidden = false
+                selectedCell.addLabel.isHidden = true
+                selectedCell.watchLabel.isHidden = true
+            }, completion: { (Bool) in
+                selectedCell.isFlipped = false
+                collectionView.isUserInteractionEnabled = true
+            })
+        }
+    }
+    
+    //MARK: - Scrollview Callbacks
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        let scrollViewHeight = scrollView.frame.size.height
+        let scrollViewContentSize = scrollView.contentSize.height
+        let scrollOffset = scrollView.contentOffset.y
+        
+        if scrollOffset == 0 && offset != 0{
+            //At the top
+            offset -= 10
+            updateVideos()
+        }else if scrollOffset + scrollViewHeight == scrollViewContentSize && videos.count == 10{
+            //At the bottom
+            offset += 10
+            updateVideos()
+        }
     }
     
     //MARK: - Storyboard Actions
@@ -75,6 +185,15 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
         totalViewers.text = currentUser.views.description
         totalFollowers.text = currentUser.followers.description
         bannerImage.image = currentUser.banner
+        profileView.isHidden = false
+        activitySpinner.stopAnimating()
+    }
+    
+    func updateVideos(){
+        videos.removeAll()
+        collectionView.reloadData()
+        
+        downloadAndParse(urlString: "https://api.twitch.tv/kraken/channels/\(currentID)/videos?limit=10&offset=\(offset)&client_id=\(appDelegate.consumerID)&\(appDelegate.apiVersion)", downloadTask: "videos")
         
     }
     

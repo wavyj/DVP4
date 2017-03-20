@@ -92,6 +92,7 @@ class WatchViewController: UIViewController, UIWebViewDelegate, UIGestureRecogni
             if selectedIndex == streams.count - 1{
                 rightArrow.isHidden = true
             }
+            shouldLoad = true
             if shouldLoad{
                 loadStream()
             }

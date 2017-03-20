@@ -45,11 +45,21 @@ class TeamsViewController: UIViewController, UICollectionViewDataSource, UIColle
         
         if current.bannerImage != nil{
             cell.bannerImage.image = current.bannerImage
+        }else{
+            cell.bannerImage.backgroundColor = UIColor.black
         }
+        
         if current.profilePic != nil{
             cell.profilePic.image = current.profilePic
+            cell.profilePic.layer.cornerRadius = 10
+            cell.profilePic.layer.borderWidth = 3.0
+            cell.profilePic.layer.borderColor = UIColor.white.cgColor
+            cell.profilePic.clipsToBounds = true
+        }else{
+            cell.profilePic.backgroundColor = UIColor.white
         }
         cell.teamName.text = current.name
+        cell.layer.cornerRadius = 6
         
         return cell
     }

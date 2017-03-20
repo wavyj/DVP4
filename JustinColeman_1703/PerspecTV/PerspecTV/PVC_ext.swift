@@ -7,11 +7,12 @@
 //
 
 import Foundation
+import UIKit
 
 extension ProfileViewController{
     
     func downloadAndParse(urlString: String, downloadTask: String){
-        //activitySpinner.startAnimating()
+        activitySpinner.startAnimating()
         
         let config = URLSessionConfiguration.default
         let session = URLSession(configuration: config)
@@ -68,7 +69,6 @@ extension ProfileViewController{
                     print(error.localizedDescription)
                 }
                 DispatchQueue.main.async {
-                    //self.activitySpinner.stopAnimating()
                     self.update()
                 }
                 self.downloadAndParse(urlString: "https://api.twitch.tv/kraken/channels/\(self.currentID)/teams?client_id=\(self.appDelegate.consumerID)&\(self.appDelegate.apiVersion)", downloadTask: "team")
@@ -127,7 +127,50 @@ extension ProfileViewController{
                     print(error.localizedDescription)
                 }
                 DispatchQueue.main.async {
-                    //self.activitySpinner.stopAnimating()
+                    self.teamIcon.isUserInteractionEnabled = true
+                    self.teamIcon.tintColor = UIColor(white: 1, alpha: 1)
+                }
+            })
+            let vodsTask = session.dataTask(with: validUrl, completionHandler: { (data, response, error) in
+                
+                //Leave if an error occurs
+                if error != nil { return }
+                
+                //Check response, data, and status code
+                guard let response = response as? HTTPURLResponse,
+                    response.statusCode == 200,
+                    let data = data
+                    else{ print(error?.localizedDescription ?? "Unknown Error vods"); return }
+                
+                do{
+                    //De-serialize json data
+                    if let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: Any]{
+                        
+                        //Parse json data
+                        for firstLevelItem in json{
+                            
+                            guard let v = firstLevelItem.value as? [[String: Any]]
+                                else{ print(firstLevelItem); continue}
+                            
+                            for object in v{
+                                guard let id = object["_id"] as? String,
+                                    let title = object["title"] as? String,
+                                    let views = object["views"] as? Int,
+                                    let preview = object["preview"] as? [String: Any],
+                                    let previewUrl = preview["large"] as? String
+                                else{ print(object); continue }
+                                var trimID = id
+                                trimID = trimID.trimmingCharacters(in: CharacterSet.lowercaseLetters)
+                                self.videos.append(Video(id: trimID, title: title, previewUrl: previewUrl, views: views))
+                            }
+                        }
+                    }
+                }
+                catch{
+                    print(error.localizedDescription)
+                }
+                DispatchQueue.main.async {
+                    self.collectionView.reloadData()
                 }
             })
             if downloadTask == "profile"{
@@ -135,7 +178,7 @@ extension ProfileViewController{
             }else if downloadTask == "team"{
                 teamTask.resume()
             }else{
-                //vods task
+                vodsTask.resume()
             }
         }
     }
