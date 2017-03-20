@@ -10,7 +10,7 @@ import Foundation
 
 extension ProfileViewController{
     
-    func downloadAndParse(urlString: String){
+    func downloadAndParse(urlString: String, downloadTask: String){
         //activitySpinner.startAnimating()
         
         let config = URLSessionConfiguration.default
@@ -19,7 +19,7 @@ extension ProfileViewController{
         //Check if the passed in url is valid
         if let validUrl = URL(string: urlString){
             //MARK: Default Task
-            //Downloads all followed channels that are live
+            //Downloads the selected channel's profile info
             let task = session.dataTask(with: validUrl, completionHandler: { (data, response, error) in
                 
                 //Leave if an error occurs
@@ -71,8 +71,72 @@ extension ProfileViewController{
                     //self.activitySpinner.stopAnimating()
                     self.update()
                 }
+                self.downloadAndParse(urlString: "https://api.twitch.tv/kraken/channels/\(self.currentID)/teams?client_id=\(self.appDelegate.consumerID)&\(self.appDelegate.apiVersion)", downloadTask: "team")
             })
-            task.resume()
+            //MARK: Team Task
+            //Downloads each team the current channel belongs to
+            let teamTask = session.dataTask(with: validUrl, completionHandler: { (data, response, error) in
+                
+                //Leave if an error occurs
+                if error != nil { return }
+                
+                //Check response, data, and status code
+                guard let response = response as? HTTPURLResponse,
+                    response.statusCode == 200,
+                    let data = data
+                    else{ print(error?.localizedDescription ?? "Unknown Error team"); return }
+                
+                do{
+                    //De-serialize json data
+                    if let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: Any]{
+
+                        //Parse json data
+                        for firstLevelItem in json{
+                            
+                        guard let t = firstLevelItem.value as? [[String: Any]]
+                            else{ print(firstLevelItem); continue}
+                            
+                            for object in t{
+                                guard let name = object["display_name"] as? String,
+                                    let id = object["_id"] as? Int
+                                    else{ print(object); continue }
+                                
+                                let team = Team(id: id, name: name)
+                                
+                                //Seperate check for possible null values
+                                if let info = object["info"] as? String{
+                                    team.info = info
+                                }
+                                
+                                if let profileUrl = object["logo"] as? String{
+                                    team.profilePicUrl = profileUrl
+                                    team.downloadProfile()
+                                }
+                                
+                                if let bannerUrl = object["banner"] as? String{
+                                    team.bannerUrl = bannerUrl
+                                    team.downloadBanner()
+                                }
+                                
+                                self.teams.append(team)
+                            }
+                        }
+                    }
+                }
+                catch{
+                    print(error.localizedDescription)
+                }
+                DispatchQueue.main.async {
+                    //self.activitySpinner.stopAnimating()
+                }
+            })
+            if downloadTask == "profile"{
+                task.resume()
+            }else if downloadTask == "team"{
+                teamTask.resume()
+            }else{
+                //vods task
+            }
         }
     }
 }

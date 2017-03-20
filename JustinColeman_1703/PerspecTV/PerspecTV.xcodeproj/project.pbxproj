@@ -23,6 +23,9 @@
 		D04C50D61E76273D00975E47 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04C50D51E76273D00975E47 /* SearchViewController.swift */; };
 		D05482261E8003A700D68884 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05482251E8003A700D68884 /* ProfileViewController.swift */; };
 		D05482291E8003C700D68884 /* PVC_ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05482281E8003C700D68884 /* PVC_ext.swift */; };
+		D054822B1E8023D000D68884 /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = D054822A1E8023D000D68884 /* Team.swift */; };
+		D054822D1E8030BA00D68884 /* TeamsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D054822C1E8030BA00D68884 /* TeamsViewController.swift */; };
+		D054822F1E8035FD00D68884 /* TeamCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D054822E1E8035FD00D68884 /* TeamCollectionViewCell.swift */; };
 		D05829AF1E7283A1003D1B36 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05829AE1E7283A1003D1B36 /* SettingsViewController.swift */; };
 		D067F4E51E79108400FF536A /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D067F4E41E79108400FF536A /* ChatViewController.swift */; };
 		D068D7251E7090D5006AFBB6 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D068D7241E7090D5006AFBB6 /* User.swift */; };
@@ -59,6 +62,9 @@
 		D04C50D51E76273D00975E47 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		D05482251E8003A700D68884 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfileViewController.swift; path = ../ProfileViewController.swift; sourceTree = "<group>"; };
 		D05482281E8003C700D68884 /* PVC_ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PVC_ext.swift; sourceTree = "<group>"; };
+		D054822A1E8023D000D68884 /* Team.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
+		D054822C1E8030BA00D68884 /* TeamsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamsViewController.swift; sourceTree = "<group>"; };
+		D054822E1E8035FD00D68884 /* TeamCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamCollectionViewCell.swift; sourceTree = "<group>"; };
 		D05829AE1E7283A1003D1B36 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		D067F4E41E79108400FF536A /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		D068D7241E7090D5006AFBB6 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -112,6 +118,7 @@
 				D0207D991E79FB5E00D74587 /* Tablet */,
 				D068D7241E7090D5006AFBB6 /* User.swift */,
 				D0A1738F1E70DD9D001893E9 /* Channel.swift */,
+				D054822A1E8023D000D68884 /* Team.swift */,
 				D09C531E1E757DF1006511C4 /* Game.swift */,
 				D00051191E70243F0024E91D /* Assets.xcassets */,
 				D000511B1E70243F0024E91D /* LaunchScreen.storyboard */,
@@ -169,8 +176,10 @@
 		D05482271E8003B100D68884 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				D054822C1E8030BA00D68884 /* TeamsViewController.swift */,
 				D05482251E8003A700D68884 /* ProfileViewController.swift */,
 				D05482281E8003C700D68884 /* PVC_ext.swift */,
+				D054822E1E8035FD00D68884 /* TeamCollectionViewCell.swift */,
 			);
 			name = Profile;
 			sourceTree = "<group>";
@@ -288,7 +297,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				D00051291E702A770024E91D /* LoginViewController.swift in Sources */,
+				D054822F1E8035FD00D68884 /* TeamCollectionViewCell.swift in Sources */,
 				D0207D9E1E7A007E00D74587 /* NavigationController.swift in Sources */,
+				D054822B1E8023D000D68884 /* Team.swift in Sources */,
 				D0207DA01E7A013900D74587 /* DetailViewController.swift in Sources */,
 				D0207D9C1E79FBB500D74587 /* MasterTableViewController.swift in Sources */,
 				D0A173881E70D460001893E9 /* FollowingViewController.swift in Sources */,
@@ -299,6 +310,7 @@
 				D06DF5321E73E5DE00714DE1 /* UITabBarController.swift in Sources */,
 				D09C531A1E757237006511C4 /* GamesViewController.swift in Sources */,
 				D0A1738A1E70D483001893E9 /* Following_ext.swift in Sources */,
+				D054822D1E8030BA00D68884 /* TeamsViewController.swift in Sources */,
 				D0A173901E70DD9D001893E9 /* Channel.swift in Sources */,
 				D04C50D21E75FC5C00975E47 /* SGVC_ext.swift in Sources */,
 				D067F4E51E79108400FF536A /* ChatViewController.swift in Sources */,

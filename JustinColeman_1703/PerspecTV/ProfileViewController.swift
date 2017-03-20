@@ -20,21 +20,24 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
     @IBOutlet weak var teamIcon: UIImageView!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var activitySpinner: UIActivityIndicatorView!
+    @IBOutlet weak var backArrow: UIImageView!
     
     
     //MARK: - Variables
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     var currentUser: User!
     var currentID = ""
+    var teams = [Team]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         teamIcon.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.teamTapped(_:))))
-        currentUser = User()
+        backArrow.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.backTapped(_:))))
         
-        downloadAndParse(urlString: "https://api.twitch.tv/kraken/channels/\(currentID)?client_id=\(appDelegate.consumerID)&\(appDelegate.apiVersion)")
+        currentUser = User()
+        downloadAndParse(urlString: "https://api.twitch.tv/kraken/channels/\(currentID)?client_id=\(appDelegate.consumerID)&\(appDelegate.apiVersion)", downloadTask: "profile")
     }
 
     override func didReceiveMemoryWarning() {
@@ -56,6 +59,11 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
         return 0
     }
     
+    //MARK: - Storyboard Actions
+    @IBAction func profileBack(_ segue: UIStoryboardSegue){
+        //do nothing
+    }
+    
     //MARK: - Methods
     func update(){
         profilePic.image = currentUser.image
@@ -70,19 +78,28 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
         
     }
     
+    func backTapped(_ sender: UITapGestureRecognizer){
+        performSegue(withIdentifier: "goBack", sender: self)
+    }
+    
     func teamTapped(_ sender: UITapGestureRecognizer){
-        
+        performSegue(withIdentifier: "toTeams", sender: self)
     }
     
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        if segue.identifier == "toTeams"{
+            let TVC = segue.destination as! TeamsViewController
+            TVC.teams = teams
+            TVC.currentChannel = currentUser.username
+        }
     }
-    */
+ 
 
 }
