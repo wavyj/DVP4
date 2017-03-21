@@ -21,6 +21,8 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var activitySpinner: UIActivityIndicatorView!
     @IBOutlet weak var backArrow: UIImageView!
+    @IBOutlet weak var warningView: UIView!
+    @IBOutlet weak var videoIcon: UIImageView!
     
     
     //MARK: - Variables

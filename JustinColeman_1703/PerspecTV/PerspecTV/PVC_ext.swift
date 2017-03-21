@@ -37,7 +37,7 @@ extension ProfileViewController{
                     if let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: Any]{
                         
                         //Parse json data
-                        if let username = json["name"] as? String,
+                        if let username = json["display_name"] as? String,
                             let views = json["views"] as? Int,
                             let followers = json["followers"] as? Int{
                             
@@ -127,8 +127,10 @@ extension ProfileViewController{
                     print(error.localizedDescription)
                 }
                 DispatchQueue.main.async {
-                    self.teamIcon.isUserInteractionEnabled = true
-                    self.teamIcon.tintColor = UIColor(white: 1, alpha: 1)
+                    if self.teams.count != 0{
+                        self.teamIcon.isUserInteractionEnabled = true
+                        self.teamIcon.tintColor = UIColor(white: 1, alpha: 1)
+                    }
                 }
             })
             let vodsTask = session.dataTask(with: validUrl, completionHandler: { (data, response, error) in
@@ -174,7 +176,16 @@ extension ProfileViewController{
                     print(error.localizedDescription)
                 }
                 DispatchQueue.main.async {
-                    self.collectionView.reloadData()
+                    if self.videos.count == 0{
+                        self.collectionView.isHidden = true
+                        self.warningView.isHidden = false
+                        self.videoIcon.isHidden = true
+                    }else{
+                        self.warningView.isHidden = true
+                        self.videoIcon.isHidden = false
+                        self.collectionView.isHidden = false
+                        self.collectionView.reloadData()
+                    }
                 }
             })
             if downloadTask == "profile"{
