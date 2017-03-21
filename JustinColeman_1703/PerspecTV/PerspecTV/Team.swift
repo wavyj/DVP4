@@ -12,16 +12,18 @@ import UIKit
 class Team{
     let id: Int
     let name: String
+    let displayName: String
     var info: String
     var profilePicUrl: String
     var profilePic: UIImage!
     var bannerUrl: String
     var bannerImage: UIImage!
-    var members = [Channel]()
+    var members = [(type: String, content: Channel)]()
     
-    init(id: Int, name: String, info: String = "No info provided", profilePicUrl: String = "", bannerUrl: String = ""){
+    init(id: Int, name: String, displayName: String, info: String = "No info provided", profilePicUrl: String = "", bannerUrl: String = ""){
         self.id = id
         self.name = name
+        self.displayName = displayName
         self.info = info
         self.profilePicUrl = profilePicUrl
         self.bannerUrl = bannerUrl

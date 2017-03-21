@@ -19,7 +19,7 @@ extension GamesViewController{
         //Check if the passed in url is valid
         if let validUrl = URL(string: urlString){
             //MARK: Default Task
-            //Downloads all followed channels that are live
+            //Downloads each top game
             let task = session.dataTask(with: validUrl, completionHandler: { (data, response, error) in
                 
                 //Leave if an error occurs

@@ -19,6 +19,7 @@ class TeamsViewController: UIViewController, UICollectionViewDataSource, UIColle
     //MARK: - Variables
     var teams = [Team]()
     var currentChannel = ""
+    var selectedTeam: Team!
     
 
     override func viewDidLoad() {
@@ -63,7 +64,7 @@ class TeamsViewController: UIViewController, UICollectionViewDataSource, UIColle
         }else{
             cell.profilePic.backgroundColor = UIColor.white
         }
-        cell.teamName.text = current.name
+        cell.teamName.text = current.displayName
         cell.layer.cornerRadius = 6
         
         return cell
@@ -73,19 +74,27 @@ class TeamsViewController: UIViewController, UICollectionViewDataSource, UIColle
         return 1
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "toSelectedTeam", sender: self)
+    }
+    
     //MARK: - Methods
     func backTapped(_ sender: UITapGestureRecognizer){
         performSegue(withIdentifier: "goBack", sender: self)
     }
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        if segue.identifier == "toSelectedTeam"{
+            let STVC = segue.destination as! SelectedTeamViewController
+            STVC.selectedTeam = selectedTeam
+        }
     }
-    */
+    
 
 }

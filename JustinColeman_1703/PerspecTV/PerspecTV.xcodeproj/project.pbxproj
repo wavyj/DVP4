@@ -32,7 +32,6 @@
 		D068D7271E7092D3006AFBB6 /* Login_ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = D068D7261E7092D3006AFBB6 /* Login_ext.swift */; };
 		D06DF5321E73E5DE00714DE1 /* UITabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06DF5311E73E5DE00714DE1 /* UITabBarController.swift */; };
 		D06EAF0A1E81035B000A71CA /* SelectedTeamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06EAF091E81035B000A71CA /* SelectedTeamViewController.swift */; };
-		D06EAF0C1E810695000A71CA /* STVC_ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06EAF0B1E810695000A71CA /* STVC_ext.swift */; };
 		D0888B4C1E78D0E1004A232F /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0888B4B1E78D0E1004A232F /* MenuViewController.swift */; };
 		D0888B4E1E78D285004A232F /* StreamTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0888B4D1E78D285004A232F /* StreamTableViewCell.swift */; };
 		D09C531A1E757237006511C4 /* GamesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09C53191E757237006511C4 /* GamesViewController.swift */; };
@@ -73,7 +72,6 @@
 		D068D7261E7092D3006AFBB6 /* Login_ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Login_ext.swift; sourceTree = "<group>"; };
 		D06DF5311E73E5DE00714DE1 /* UITabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITabBarController.swift; sourceTree = "<group>"; };
 		D06EAF091E81035B000A71CA /* SelectedTeamViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectedTeamViewController.swift; sourceTree = "<group>"; };
-		D06EAF0B1E810695000A71CA /* STVC_ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = STVC_ext.swift; sourceTree = "<group>"; };
 		D0888B4B1E78D0E1004A232F /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		D0888B4D1E78D285004A232F /* StreamTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StreamTableViewCell.swift; sourceTree = "<group>"; };
 		D09C53191E757237006511C4 /* GamesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GamesViewController.swift; sourceTree = "<group>"; };
@@ -184,7 +182,6 @@
 				D05482281E8003C700D68884 /* PVC_ext.swift */,
 				D054822C1E8030BA00D68884 /* TeamsViewController.swift */,
 				D06EAF091E81035B000A71CA /* SelectedTeamViewController.swift */,
-				D06EAF0B1E810695000A71CA /* STVC_ext.swift */,
 				D054822E1E8035FD00D68884 /* TeamCollectionViewCell.swift */,
 			);
 			name = Profile;
@@ -324,7 +321,6 @@
 				D09C531F1E757DF1006511C4 /* Game.swift in Sources */,
 				D06EAF0A1E81035B000A71CA /* SelectedTeamViewController.swift in Sources */,
 				D0207D961E79F89100D74587 /* SplitViewController.swift in Sources */,
-				D06EAF0C1E810695000A71CA /* STVC_ext.swift in Sources */,
 				D04C50D01E75F5AB00975E47 /* SelectedGameViewController.swift in Sources */,
 				D04C50D61E76273D00975E47 /* SearchViewController.swift in Sources */,
 				D068D7251E7090D5006AFBB6 /* User.swift in Sources */,

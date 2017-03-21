@@ -400,17 +400,17 @@
                                 </variation>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bAx-yC-cih" userLabel="Menu View">
-                                <rect key="frame" x="0.0" y="400" width="375" height="218"/>
+                                <rect key="frame" x="0.0" y="400" width="375" height="267"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8jP-Sy-Ygn" userLabel="Menu Btn">
-                                        <rect key="frame" x="220" y="85.5" width="48" height="48"/>
+                                        <rect key="frame" x="220" y="110" width="48" height="48"/>
                                         <state key="normal" image="MenuIcon"/>
                                         <connections>
                                             <action selector="menuTapped:" destination="ZMs-L7-0az" eventType="touchUpInside" id="TjR-oQ-tyl"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nNm-W7-gcm" userLabel="Info Btn">
-                                        <rect key="frame" x="109" y="85.5" width="48" height="48"/>
+                                        <rect key="frame" x="109" y="110" width="48" height="48"/>
                                         <state key="normal" image="InfoIcon"/>
                                         <connections>
                                             <action selector="infoTapped:" destination="ZMs-L7-0az" eventType="touchUpInside" id="6LT-sY-Yv1"/>
@@ -465,7 +465,7 @@
                                 </variation>
                             </view>
                             <containerView hidden="YES" opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xuo-5E-4W9" userLabel="Chat View">
-                                <rect key="frame" x="0.0" y="66.5" width="375" height="551.5"/>
+                                <rect key="frame" x="0.0" y="66.5" width="375" height="600.5"/>
                                 <connections>
                                     <segue destination="9kG-Mw-6jC" kind="embed" id="P9M-Qp-B1X"/>
                                 </connections>
@@ -1167,7 +1167,7 @@
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="170" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="NIr-kS-e9s">
-                                <rect key="frame" x="0.0" y="66.5" width="375" height="551.5"/>
+                                <rect key="frame" x="0.0" y="66.5" width="375" height="600.5"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
@@ -1269,7 +1269,7 @@
                         <viewControllerLayoutGuide type="bottom" id="aaM-gd-avH"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="hiO-NS-1mT">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="551.5"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="600.5"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Qk-Qv-O9v" userLabel="Chat View">
@@ -1943,16 +1943,10 @@
                                                         <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hHr-2P-oRj">
                                                             <rect key="frame" x="96" y="61" width="48" height="48"/>
                                                             <state key="normal" image="PlayIcon-Light"/>
-                                                            <connections>
-                                                                <action selector="watchTapped:" destination="9Qh-Wg-vnB" eventType="touchUpInside" id="NMI-mS-1Ad"/>
-                                                            </connections>
                                                         </button>
                                                         <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1wz-Co-AtI">
                                                             <rect key="frame" x="204" y="61" width="48" height="48"/>
                                                             <state key="normal" image="AddIcon"/>
-                                                            <connections>
-                                                                <action selector="addTapped:" destination="9Qh-Wg-vnB" eventType="touchUpInside" id="6B2-YJ-c7N"/>
-                                                            </connections>
                                                         </button>
                                                         <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Watch" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s86-4n-uWq">
                                                             <rect key="frame" x="96" y="114" width="49" height="21"/>
@@ -2038,6 +2032,7 @@
                     </view>
                     <connections>
                         <outlet property="backArrow" destination="Seo-ei-oWz" id="Voy-W5-B79"/>
+                        <outlet property="bannerImage" destination="7ow-dh-khW" id="Azc-jz-AXH"/>
                         <outlet property="collectionView" destination="LKh-wy-8hs" id="gys-TQ-8rk"/>
                         <outlet property="membersCount" destination="C73-VY-m9B" id="Ufl-wO-n4q"/>
                         <outlet property="profilePic" destination="KTx-Bp-4G3" id="wDG-mX-UNg"/>

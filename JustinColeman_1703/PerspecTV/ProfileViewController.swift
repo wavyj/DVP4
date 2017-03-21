@@ -30,9 +30,12 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
     var currentUser: User!
     var currentID = ""
     var teams = [Team]()
+    var tempTeams = [Team]()
+    var channelsToDownload = [String]()
     var videos = [(type: String, content: Channel)]()
     var selectedVideo: (type: String, content: Channel)!
     var offset = 0
+    var iterator = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -208,6 +211,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
         totalViewers.text = currentUser.views.description
         totalFollowers.text = currentUser.followers.description
         bannerImage.image = currentUser.banner
+        bannerImage.clipsToBounds = true
         profileView.isHidden = false
         activitySpinner.stopAnimating()
     }

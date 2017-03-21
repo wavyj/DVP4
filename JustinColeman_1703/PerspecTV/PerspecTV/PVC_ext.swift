@@ -97,11 +97,12 @@ extension ProfileViewController{
                             else{ print(firstLevelItem); continue}
                             
                             for object in t{
-                                guard let name = object["display_name"] as? String,
+                                guard let name = object["name"] as? String,
+                                    let displayName = object["display_name"] as? String,
                                     let id = object["_id"] as? Int
                                     else{ print(object); continue }
                                 
-                                let team = Team(id: id, name: name)
+                                let team = Team(id: id, name: name, displayName: displayName)
                                 
                                 //Seperate check for possible null values
                                 if let info = object["info"] as? String{
@@ -126,11 +127,121 @@ extension ProfileViewController{
                 catch{
                     print(error.localizedDescription)
                 }
+                //download team info
+                self.tempTeams = self.teams
+                self.iterator = 0
+                for t in self.tempTeams{
+                    self.downloadAndParse(urlString: "https://api.twitch.tv/kraken/teams/\(t.name)?client_id=\(self.appDelegate.consumerID)&\(self.appDelegate.apiVersion)", downloadTask: "members")
+                }
+            })
+            //MARK: Team Members Task
+            //Downloads each team's members
+            let memberTask = session.dataTask(with: validUrl, completionHandler: { (data, response, error) in
+                
+                //Leave if an error occurs
+                if error != nil {print("error"); return }
+        
+                //Check response, data, and status code
+                guard let response = response as? HTTPURLResponse,
+                    response.statusCode == 200,
+                    let data = data
+                    else{ print(error?.localizedDescription ?? "Unknown Error team"); return }
+                
+                do{
+                    //De-serialize json data
+                    if let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: Any]{
+                        
+                        //Parse json data
+                        guard let users = json["users"] as? [[String: Any]]
+                            else{self.tempTeams.remove(at: self.iterator); return}
+                        
+                        for u in users{
+                            guard let id = u["_id"] as? String
+                                else {print(u); continue}
+                            self.channelsToDownload.append(id)
+                        }
+                    }
+                }
+                catch{
+                    print(error.localizedDescription)
+                }
                 DispatchQueue.main.async {
-                    if self.teams.count != 0{
+                    if self.iterator == self.teams.count - 1 && self.tempTeams.count != 0{
+                        self.teams = self.tempTeams
+                        self.iterator = 0
+                        var string = ""
+                        var index = 0
+                        for c in self.channelsToDownload{
+                            if index < self.channelsToDownload.count{
+                                string += "\(c),"
+                            }else{
+                                string += "\(c)"
+                            }
+                            index += 1
+                        }
+                        //Clears after use
+                        self.channelsToDownload.removeAll()
+                        
+                        //Downloads each Channel's info for each channel ID
+                        self.downloadAndParse(urlString: "https://api.twitch.tv/kraken/streams/?channel=\(string)&oauth_token=\(self.currentUser.authToken)&stream_type=live&client_id=\(self.appDelegate.consumerID)&\(self.appDelegate.apiVersion)", downloadTask: "channel")
+                    }else if self.tempTeams.count == 0{
+                        self.activitySpinner.stopAnimating()
+                        return
+                    }else{
+                    self.iterator += 1
+                    }
+                }
+            })
+            //MARK: Channel Task
+            //Downloads each team member's channel data
+            let channelTask = session.dataTask(with: validUrl, completionHandler: { (data, response, error) in
+                
+                //Leave if an error occurs
+                if error != nil {print("error"); return }
+                
+                //Check response, data, and status code
+                guard let response = response as? HTTPURLResponse,
+                    response.statusCode == 200,
+                    let data = data
+                    else{ print(error?.localizedDescription ?? "Unknown Error channel"); return }
+                
+                do{
+                    //De-serialize json data
+                    if let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: Any]{
+                        
+                        //Parse json data
+                        for firstLevelItem in json{
+                            guard let objects = firstLevelItem.value as? [[String: Any]]
+                                else{ continue }
+                            
+                            for object in objects{
+                                guard let channel = object["channel"] as? [String: Any],
+                                    let id = channel["_id"] as? Int,
+                                    let username = channel["display_name"] as? String,
+                                    let game = channel["game"] as? String,
+                                    let viewers = object["viewers"] as? Int
+                                    else{ print(object); continue }
+                                if let preview = object["preview"] as? [String: Any],
+                                    let previewUrl = preview["large"] as? String{
+                                    self.teams[self.iterator].members.append((type: "stream" , content: Channel(id: id.description, username: username, game: game, previewUrl: previewUrl, viewers: viewers)))
+                                }else{
+                                    self.teams[self.iterator].members.append((type: "stream", content: Channel(id: id.description, username: username, game: game,viewers: viewers)))
+                                }
+                            }
+                        }
+                    }
+                }
+                catch{
+                    print(error.localizedDescription)
+                }
+                DispatchQueue.main.async {
+                    if self.iterator == self.teams.count - 1{
                         self.teamIcon.isUserInteractionEnabled = true
                         self.teamIcon.tintColor = UIColor(white: 1, alpha: 1)
+                        self.activitySpinner.stopAnimating()
                     }
+                    
+                    self.iterator += 1
                 }
             })
             let vodsTask = session.dataTask(with: validUrl, completionHandler: { (data, response, error) in
@@ -192,6 +303,10 @@ extension ProfileViewController{
                 task.resume()
             }else if downloadTask == "team"{
                 teamTask.resume()
+            }else if downloadTask == "members"{
+                memberTask.resume()
+            }else if downloadTask == "channel"{
+                channelTask.resume()
             }else{
                 vodsTask.resume()
             }
