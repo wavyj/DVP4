@@ -75,6 +75,7 @@ class TeamsViewController: UIViewController, UICollectionViewDataSource, UIColle
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        selectedTeam = teams[indexPath.row]
         performSegue(withIdentifier: "toSelectedTeam", sender: self)
     }
     

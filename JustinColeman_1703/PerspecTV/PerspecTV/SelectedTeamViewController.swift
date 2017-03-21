@@ -49,6 +49,7 @@ class SelectedTeamViewController: UIViewController, UICollectionViewDelegate, UI
         }
         teamName.text = selectedTeam.name
         
+        channels = selectedTeam.members
         
     }
 
