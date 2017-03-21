@@ -1850,10 +1850,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7ow-dh-khW">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7ow-dh-khW" userLabel="Banner">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="233.5"/>
                             </imageView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fKB-oG-aWe" userLabel="Game View">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fKB-oG-aWe" userLabel="Team View">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="233.5"/>
                                 <subviews>
                                     <imageView contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ArrowLeftIcon" translatesAutoresizingMaskIntoConstraints="NO" id="Seo-ei-oWz">
@@ -1874,7 +1874,7 @@
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="VideoCamIcon" translatesAutoresizingMaskIntoConstraints="NO" id="Cto-g2-aEL">
                                         <rect key="frame" x="176" y="175" width="24" height="24"/>
                                     </imageView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="KTx-Bp-4G3">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="KTx-Bp-4G3" userLabel="Profile Pic">
                                         <rect key="frame" x="141" y="35" width="93.5" height="93.5"/>
                                     </imageView>
                                 </subviews>
@@ -2036,8 +2036,18 @@
                             <constraint firstItem="Ils-uk-SUo" firstAttribute="top" secondItem="LKh-wy-8hs" secondAttribute="bottom" id="sjm-ch-HfA"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="backArrow" destination="Seo-ei-oWz" id="Voy-W5-B79"/>
+                        <outlet property="collectionView" destination="LKh-wy-8hs" id="gys-TQ-8rk"/>
+                        <outlet property="membersCount" destination="C73-VY-m9B" id="Ufl-wO-n4q"/>
+                        <outlet property="profilePic" destination="KTx-Bp-4G3" id="wDG-mX-UNg"/>
+                        <outlet property="teamName" destination="8Di-VA-pj0" id="OB3-Gd-9bO"/>
+                        <outlet property="teamView" destination="fKB-oG-aWe" id="klb-Qg-wAq"/>
+                        <segue destination="b6c-KL-aXf" kind="unwind" identifier="goBack" unwindAction="teamBack:" id="YM2-vf-5ly"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="co7-GJ-RIR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="b6c-KL-aXf" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="5044" y="3417.8410794602701"/>
         </scene>

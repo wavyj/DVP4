@@ -34,6 +34,11 @@ class TeamsViewController: UIViewController, UICollectionViewDataSource, UIColle
         // Dispose of any resources that can be recreated.
     }
     
+    //MARK: - Storyboard Actions
+    @IBAction func teamBack(_ segue: UIStoryboardSegue){
+        //do nothing
+    }
+    
     //MARK: - Collection View Callbacks
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return teams.count
