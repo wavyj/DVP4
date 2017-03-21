@@ -1118,8 +1118,8 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4et-SX-05y">
                                 <rect key="frame" x="0.0" y="20" width="375" height="46.5"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Manage Streams" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UkZ-Zq-ZE5">
-                                        <rect key="frame" x="108.5" y="11.5" width="159" height="24"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Streams &amp; VODs" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UkZ-Zq-ZE5">
+                                        <rect key="frame" x="110.5" y="11.5" width="155.5" height="24"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
@@ -1666,6 +1666,7 @@
                         <outlet property="totalViewers" destination="Oas-LZ-xlM" id="G4p-x3-PMp"/>
                         <segue destination="CfL-3Z-cVl" kind="unwind" identifier="goBack" unwindAction="unwindOther:" id="SFf-S5-bm0"/>
                         <segue destination="F1T-qD-J3W" kind="show" identifier="toTeams" id="cq8-Nx-IAQ"/>
+                        <segue destination="CfL-3Z-cVl" kind="unwind" identifier="toWatch" unwindAction="unwindOther:" id="wYe-u8-rSY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Iwj-2K-Xn1" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2047,12 +2048,12 @@
         <image name="ViewsIcon" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="SFp-xc-9OR"/>
-        <segue reference="RPL-0k-IM9"/>
-        <segue reference="YFF-L5-Yif"/>
         <segue reference="7xr-h1-HAM"/>
+        <segue reference="BM2-2R-Gcr"/>
+        <segue reference="YFF-L5-Yif"/>
         <segue reference="Psm-ul-Fl7"/>
         <segue reference="FPN-iW-wql"/>
-        <segue reference="BM2-2R-Gcr"/>
+        <segue reference="vUH-LW-5OG"/>
+        <segue reference="SFp-xc-9OR"/>
     </inferredMetricsTieBreakers>
 </document>

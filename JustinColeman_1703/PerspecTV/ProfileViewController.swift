@@ -93,7 +93,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
                 //Check current streams
                 let streams = self.appDelegate.streams!
                 if !streams.contains(where: { (Video) -> Bool in
-                    if Video.content.id == self.selectedVideo.content.id{
+                    if Video.content.videoID == self.selectedVideo.content.videoID{
                         return true
                     }else{
                         return false
@@ -179,7 +179,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
         //Clears array and sets the selected channel to the only stream
         appDelegate.streams = [selectedVideo]
         if appDelegate.isPhone == true{
-            self.tabBarController?.selectedIndex = 2
+            performSegue(withIdentifier: "toWatch", sender: self)
         }else{
             performSegue(withIdentifier: "toDetail", sender: self)
         }
@@ -189,7 +189,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
         //Adds selected stream to array of streams
         appDelegate.streams.append(selectedVideo)
         if appDelegate.isPhone == true{
-            self.tabBarController?.selectedIndex = 2
+            performSegue(withIdentifier: "toWatch", sender: self)
         }else{
             performSegue(withIdentifier: "toDetail", sender: self)
         }
