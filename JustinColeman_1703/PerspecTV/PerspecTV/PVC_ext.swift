@@ -153,17 +153,19 @@ extension ProfileViewController{
                                 else{ print(firstLevelItem); continue}
                             
                             for object in v{
-                                guard let id = object["_id"] as? String,
+                                guard let vidID = object["_id"] as? String,
                                     let title = object["title"] as? String,
                                     let views = object["views"] as? Int,
+                                    let game = object["game"] as? String,
                                     let preview = object["preview"] as? [String: Any],
                                     let previewUrl = preview["large"] as? String,
                                     let channel = object["channel"] as? [String: Any],
-                                    let username = channel["display_name"] as? String
+                                    let username = channel["display_name"] as? String,
+                                    let id = channel["_id"] as? String
                                 else{ print(object); continue }
-                                var trimID = id
+                                var trimID = vidID
                                 trimID = trimID.trimmingCharacters(in: CharacterSet.lowercaseLetters)
-                                self.videos.append((type: "video", content: Video(id: trimID, username: username, title: title, previewUrl: previewUrl, views: views)))
+                                self.videos.append((type: "video", content: Channel(id: id, videoID: trimID, username: username, game: game, previewUrl: previewUrl, viewers: views, title: title)))
                             }
                         }
                     }

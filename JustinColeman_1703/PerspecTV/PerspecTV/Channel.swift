@@ -11,6 +11,7 @@ import UIKit
 
 class Channel{
     let id: String
+    let videoID: String
     let username: String
     let game: String
     let previewUrl: String
@@ -18,8 +19,9 @@ class Channel{
     let title: String
     var previewImage: UIImage!
     
-    init(id: String, username: String, game: String,previewUrl: String = "", viewers: Int, title: String = ""){
+    init(id: String, videoID: String = "", username: String, game: String,previewUrl: String = "", viewers: Int, title: String = ""){
         self.id = id
+        self.videoID = videoID
         self.username = username
         self.game = game
         self.previewUrl = previewUrl

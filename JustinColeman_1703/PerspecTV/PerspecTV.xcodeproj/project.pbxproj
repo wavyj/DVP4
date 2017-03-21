@@ -41,7 +41,6 @@
 		D0A1738A1E70D483001893E9 /* Following_ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A173891E70D483001893E9 /* Following_ext.swift */; };
 		D0A1738C1E70D6C7001893E9 /* ChannelCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A1738B1E70D6C7001893E9 /* ChannelCollectionViewCell.swift */; };
 		D0A173901E70DD9D001893E9 /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A1738F1E70DD9D001893E9 /* Channel.swift */; };
-		D0D969811E805FEA00AA45D0 /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D969801E805FEA00AA45D0 /* Video.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -81,7 +80,6 @@
 		D0A173891E70D483001893E9 /* Following_ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Following_ext.swift; sourceTree = "<group>"; };
 		D0A1738B1E70D6C7001893E9 /* ChannelCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChannelCollectionViewCell.swift; sourceTree = "<group>"; };
 		D0A1738F1E70DD9D001893E9 /* Channel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
-		D0D969801E805FEA00AA45D0 /* Video.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Video.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,7 +120,6 @@
 				D09C531E1E757DF1006511C4 /* Game.swift */,
 				D054822A1E8023D000D68884 /* Team.swift */,
 				D068D7241E7090D5006AFBB6 /* User.swift */,
-				D0D969801E805FEA00AA45D0 /* Video.swift */,
 				D00051191E70243F0024E91D /* Assets.xcassets */,
 				D000511B1E70243F0024E91D /* LaunchScreen.storyboard */,
 				D000511E1E70243F0024E91D /* Info.plist */,
@@ -328,7 +325,6 @@
 				D09C53211E75894E006511C4 /* GameCollectionViewCell.swift in Sources */,
 				D0207DA21E7A037000D74587 /* MenuTableViewCell.swift in Sources */,
 				D0A1738C1E70D6C7001893E9 /* ChannelCollectionViewCell.swift in Sources */,
-				D0D969811E805FEA00AA45D0 /* Video.swift in Sources */,
 				D068D7271E7092D3006AFBB6 /* Login_ext.swift in Sources */,
 				D05829AF1E7283A1003D1B36 /* SettingsViewController.swift in Sources */,
 			);

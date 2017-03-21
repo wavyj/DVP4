@@ -28,7 +28,8 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
     var currentUser: User!
     var currentID = ""
     var teams = [Team]()
-    var videos = [(type: String, content: Video)]()
+    var videos = [(type: String, content: Channel)]()
+    var selectedVideo: (type: String, content: Channel)!
     var offset = 0
 
     override func viewDidLoad() {
@@ -62,7 +63,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! ChannelCollectionViewCell
         let current = videos[indexPath.row]
         cell.streamerName.text = current.content.title
-        cell.viewerCount.text = current.content.views.description
+        cell.viewerCount.text = current.content.viewers.description
         cell.previewImage.image = current.content.previewImage
         cell.layer.cornerRadius = 6
         cell.isFlipped = false
@@ -75,7 +76,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let selected = videos[indexPath.row]
+        selectedVideo = videos[indexPath.row]
         let selectedCell = collectionView.cellForItem(at: indexPath) as! ChannelCollectionViewCell
         if selectedCell.isFlipped == false{
             UIView.transition(with: selectedCell, duration: 0.5, options: .transitionFlipFromRight, animations: {
@@ -92,7 +93,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
                 //Check current streams
                 let streams = self.appDelegate.streams!
                 if !streams.contains(where: { (Video) -> Bool in
-                    if Video.content.id == selected.content.id{
+                    if Video.content.id == self.selectedVideo.content.id{
                         return true
                     }else{
                         return false
@@ -172,6 +173,26 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
     //MARK: - Storyboard Actions
     @IBAction func profileBack(_ segue: UIStoryboardSegue){
         //do nothing
+    }
+    
+    @IBAction func watchTapped(_ sender: UIButton){
+        //Clears array and sets the selected channel to the only stream
+        appDelegate.streams = [selectedVideo]
+        if appDelegate.isPhone == true{
+            self.tabBarController?.selectedIndex = 2
+        }else{
+            performSegue(withIdentifier: "toDetail", sender: self)
+        }
+    }
+    
+    @IBAction func addTapped(_ sender: UIButton){
+        //Adds selected stream to array of streams
+        appDelegate.streams.append(selectedVideo)
+        if appDelegate.isPhone == true{
+            self.tabBarController?.selectedIndex = 2
+        }else{
+            performSegue(withIdentifier: "toDetail", sender: self)
+        }
     }
     
     //MARK: - Methods
