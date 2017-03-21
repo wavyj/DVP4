@@ -221,11 +221,15 @@ class WatchViewController: UIViewController, UIWebViewDelegate, UIGestureRecogni
     }
     
     func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
-        if shouldLoad{
-            return true
-        }else{
+        if navigationType == .linkClicked{
             return false
+//        if shouldLoad{
+//            return true
+//        }else{
+//            return false
+//        }
         }
+        return true
     }
     
     //MARK: - Methods
@@ -246,18 +250,23 @@ class WatchViewController: UIViewController, UIWebViewDelegate, UIGestureRecogni
                 let stream = "<html><head><style type='text/css'>html,body {margin: 0;padding: 0;width: 100%;height: 100%;}</style></head><body><iframe src=\"https://player.twitch.tv/?channel=\(currentChannel.content.username)&autoplay=false&client_id=\(appDelegate.consumerID)&\(appDelegate.apiVersion)&playsinline=1\"width=\"\(view.frame.width)\" height=\"\(streamView.frame.height)\" frameborder=\"0\" scrolling=\"yes\" allowfullscreen=\"false\" webkit-playsinline></iframe></body></html>"
                 webView.loadHTMLString(stream, baseURL: nil)
             }
+            
+            //Chat update
+            ChatVC.loadChat()
+            self.view.gestureRecognizers?.first?.isEnabled = true
+            
         }else if currentChannel.type == "video"{
             if appDelegate.isPhone == true{
-                let stream = ""
+                let stream = "<html><head><style type='text/css'>html,body {margin: 0;padding: 0;width: 100%;height: 100%;}</style></head><body><iframe src=\"https://player.twitch.tv/?video=\(currentChannel.content.id)&autoplay=false&client_id=\(appDelegate.consumerID)&\(appDelegate.apiVersion)&playsinline=1\"width=\"\(streamView.frame.width)\" height=\"\(streamView.frame.height)\" frameborder=\"0\" scrolling=\"yes\" allowfullscreen=\"false\" webkit-playsinline></iframe></body></html>"
                 webView.loadHTMLString(stream, baseURL: nil)
             }else{
-                let stream = ""
+                let stream = "<html><head><style type='text/css'>html,body {margin: 0;padding: 0;width: 100%;height: 100%;}</style></head><body><iframe src=\"https://player.twitch.tv/?channel=\(currentChannel.content.id)&autoplay=false&client_id=\(appDelegate.consumerID)&\(appDelegate.apiVersion)&playsinline=1\"width=\"\(view.frame.width)\" height=\"\(streamView.frame.height)\" frameborder=\"0\" scrolling=\"yes\" allowfullscreen=\"false\" webkit-playsinline></iframe></body></html>"
                 webView.loadHTMLString(stream, baseURL: nil)
             }
+            
+            //Disable Chat
+            self.view.gestureRecognizers?.first?.isEnabled = false
         }
-        
-        //Chat update
-        ChatVC.loadChat()
     }
     
     //MARK: - Container View Controller
