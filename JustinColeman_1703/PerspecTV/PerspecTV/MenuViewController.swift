@@ -18,7 +18,7 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     //MARK: - Variables
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
-    var streams = [Channel]()
+    var streams = [(type: String, content: Channel)]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -81,9 +81,9 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)as! StreamTableViewCell
         let currentChannel = streams[indexPath.row]
         
-        cell.username.text = currentChannel.username
-        cell.game.text = currentChannel.game
-        cell.preview.image = currentChannel.previewImage
+        cell.username.text = currentChannel.content.username
+        cell.game.text = currentChannel.content.game
+        cell.preview.image = currentChannel.content.previewImage
         
         return cell
     }

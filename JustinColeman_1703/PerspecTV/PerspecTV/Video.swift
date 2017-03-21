@@ -11,13 +11,15 @@ import UIKit
 
 class Video{
     let id: String
+    let username: String
     let title: String
     let previewUrl: String
     var previewImage: UIImage!
     let views: Int
     
-    init(id: String, title: String, previewUrl: String, views: Int){
+    init(id: String, username: String, title: String, previewUrl: String, views: Int){
         self.id = id
+        self.username = username
         self.title = title
         self.previewUrl = previewUrl
         self.views = views

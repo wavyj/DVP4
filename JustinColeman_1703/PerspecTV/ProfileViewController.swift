@@ -28,7 +28,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
     var currentUser: User!
     var currentID = ""
     var teams = [Team]()
-    var videos = [Video]()
+    var videos = [(type: String, content: Video)]()
     var offset = 0
 
     override func viewDidLoad() {
@@ -61,9 +61,9 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! ChannelCollectionViewCell
         let current = videos[indexPath.row]
-        cell.streamerName.text = current.title
-        cell.viewerCount.text = current.views.description
-        cell.previewImage.image = current.previewImage
+        cell.streamerName.text = current.content.title
+        cell.viewerCount.text = current.content.views.description
+        cell.previewImage.image = current.content.previewImage
         cell.layer.cornerRadius = 6
         cell.isFlipped = false
         
@@ -92,7 +92,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
                 //Check current streams
                 let streams = self.appDelegate.streams!
                 if !streams.contains(where: { (Video) -> Bool in
-                    if Video.id == selected.id{
+                    if Video.content.id == selected.content.id{
                         return true
                     }else{
                         return false

@@ -47,9 +47,9 @@ extension SelectedGameViewController{
                                     else{ print(object); continue }
                                 if let preview = object["preview"] as? [String: Any],
                                     let previewUrl = preview["large"] as? String{
-                                    self.channels.append(Channel(id: id.description, username: username, game: game, previewUrl: previewUrl, viewers: viewers))
+                                    self.channels.append((type: "stream", content: Channel(id: id.description, username: username, game: game, previewUrl: previewUrl, viewers: viewers)))
                                 }else{
-                                    self.channels.append(Channel(id: id.description, username: username, game: game,viewers: viewers))
+                                    self.channels.append((type: "stream", content: Channel(id: id.description, username: username, game: game,viewers: viewers)))
                                 }
                             }
                         }

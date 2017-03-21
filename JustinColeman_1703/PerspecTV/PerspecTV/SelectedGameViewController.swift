@@ -23,9 +23,9 @@ class SelectedGameViewController: UIViewController, UICollectionViewDelegate, UI
     //MARK: - Variables
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     var currentGame: Game!
-    var channels = [Channel]()
+    var channels = [(type: String, content: Channel)]()
     var offset = 0
-    var selectedChannel: Channel!
+    var selectedChannel: (type: String, content: Channel)!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -88,9 +88,9 @@ class SelectedGameViewController: UIViewController, UICollectionViewDelegate, UI
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! ChannelCollectionViewCell
         let current = channels[indexPath.row]
-        cell.streamerName.text = current.username
-        cell.viewerCount.text = current.viewers.description
-        cell.previewImage.image = current.previewImage
+        cell.streamerName.text = current.content.username
+        cell.viewerCount.text = current.content.viewers.description
+        cell.previewImage.image = current.content.previewImage
         cell.layer.cornerRadius = 6
         cell.isFlipped = false
         return cell
@@ -117,7 +117,7 @@ class SelectedGameViewController: UIViewController, UICollectionViewDelegate, UI
                 //Check current streams
                 let streams = self.appDelegate.streams!
                 if !streams.contains(where: { (Channel) -> Bool in
-                    if Channel.username == self.selectedChannel.username{
+                    if Channel.content.username == self.selectedChannel.content.username{
                         return true
                     }else{
                         return false

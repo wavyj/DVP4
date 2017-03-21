@@ -30,8 +30,8 @@ class WatchViewController: UIViewController, UIWebViewDelegate, UIGestureRecogni
     //MARK: - Variables
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     var webView: UIWebView!
-    var currentChannel: Channel!
-    var streams = [Channel]()
+    var currentChannel: (type: String, content: Channel)!
+    var streams = [(type: String, content: Channel)]()
     var selectedIndex = 0
     var shouldLoad = true
     var chatWebView: UIWebView!
@@ -107,7 +107,7 @@ class WatchViewController: UIViewController, UIWebViewDelegate, UIGestureRecogni
             streamName.text = "No Channel Selected"
             
         }else{
-            streamName.text = currentChannel.username
+            streamName.text = currentChannel.content.username
             streamView.isHidden = false
             menuBtn.isEnabled = true
             infoBtn.isEnabled = true
@@ -233,17 +233,27 @@ class WatchViewController: UIViewController, UIWebViewDelegate, UIGestureRecogni
         //Display Setup
         webView.isHidden = true
         activitySpinner.startAnimating()
-        streamName.text = currentChannel.username
+        streamName.text = currentChannel.content.username
         
         //Stream Setup
         webView.allowsInlineMediaPlayback = true
         webView.scrollView.isScrollEnabled = false
-        if appDelegate.isPhone == true{
-            let stream = "<html><head><style type='text/css'>html,body {margin: 0;padding: 0;width: 100%;height: 100%;}</style></head><body><iframe src=\"https://player.twitch.tv/?channel=\(currentChannel.username)&autoplay=false&client_id=\(appDelegate.consumerID)&\(appDelegate.apiVersion)&playsinline=1\"width=\"\(streamView.frame.width)\" height=\"\(streamView.frame.height)\" frameborder=\"0\" scrolling=\"yes\" allowfullscreen=\"false\" webkit-playsinline></iframe></body></html>"
-            webView.loadHTMLString(stream, baseURL: nil)
-        }else{
-            let stream = "<html><head><style type='text/css'>html,body {margin: 0;padding: 0;width: 100%;height: 100%;}</style></head><body><iframe src=\"https://player.twitch.tv/?channel=\(currentChannel.username)&autoplay=false&client_id=\(appDelegate.consumerID)&\(appDelegate.apiVersion)&playsinline=1\"width=\"\(view.frame.width)\" height=\"\(streamView.frame.height)\" frameborder=\"0\" scrolling=\"yes\" allowfullscreen=\"false\" webkit-playsinline></iframe></body></html>"
-            webView.loadHTMLString(stream, baseURL: nil)
+        if currentChannel.type == "stream"{
+            if appDelegate.isPhone == true{
+                let stream = "<html><head><style type='text/css'>html,body {margin: 0;padding: 0;width: 100%;height: 100%;}</style></head><body><iframe src=\"https://player.twitch.tv/?channel=\(currentChannel.content.username)&autoplay=false&client_id=\(appDelegate.consumerID)&\(appDelegate.apiVersion)&playsinline=1\"width=\"\(streamView.frame.width)\" height=\"\(streamView.frame.height)\" frameborder=\"0\" scrolling=\"yes\" allowfullscreen=\"false\" webkit-playsinline></iframe></body></html>"
+                webView.loadHTMLString(stream, baseURL: nil)
+            }else{
+                let stream = "<html><head><style type='text/css'>html,body {margin: 0;padding: 0;width: 100%;height: 100%;}</style></head><body><iframe src=\"https://player.twitch.tv/?channel=\(currentChannel.content.username)&autoplay=false&client_id=\(appDelegate.consumerID)&\(appDelegate.apiVersion)&playsinline=1\"width=\"\(view.frame.width)\" height=\"\(streamView.frame.height)\" frameborder=\"0\" scrolling=\"yes\" allowfullscreen=\"false\" webkit-playsinline></iframe></body></html>"
+                webView.loadHTMLString(stream, baseURL: nil)
+            }
+        }else if currentChannel.type == "video"{
+            if appDelegate.isPhone == true{
+                let stream = ""
+                webView.loadHTMLString(stream, baseURL: nil)
+            }else{
+                let stream = ""
+                webView.loadHTMLString(stream, baseURL: nil)
+            }
         }
         
         //Chat update
@@ -302,7 +312,7 @@ class WatchViewController: UIViewController, UIWebViewDelegate, UIGestureRecogni
         // Pass the selected object to the new view controller.
         if segue.identifier == "toProfile"{
             let PVC = segue.destination as! ProfileViewController
-            PVC.currentID = currentChannel.id
+            PVC.currentID = currentChannel.content.id
         }
     }
  

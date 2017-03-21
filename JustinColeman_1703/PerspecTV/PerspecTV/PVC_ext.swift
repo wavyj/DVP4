@@ -157,11 +157,13 @@ extension ProfileViewController{
                                     let title = object["title"] as? String,
                                     let views = object["views"] as? Int,
                                     let preview = object["preview"] as? [String: Any],
-                                    let previewUrl = preview["large"] as? String
+                                    let previewUrl = preview["large"] as? String,
+                                    let channel = object["channel"] as? [String: Any],
+                                    let username = channel["display_name"] as? String
                                 else{ print(object); continue }
                                 var trimID = id
                                 trimID = trimID.trimmingCharacters(in: CharacterSet.lowercaseLetters)
-                                self.videos.append(Video(id: trimID, title: title, previewUrl: previewUrl, views: views))
+                                self.videos.append((type: "video", content: Video(id: trimID, username: username, title: title, previewUrl: previewUrl, views: views)))
                             }
                         }
                     }

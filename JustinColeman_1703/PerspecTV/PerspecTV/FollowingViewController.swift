@@ -20,11 +20,11 @@ class FollowingViewController: UIViewController , UICollectionViewDelegate, UICo
     //MARK: - Variables
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     var currentUser: User!
-    var channels = [Channel]()
+    var channels = [(type: String, content: Channel)]()
     var userLoggedIn = false
     var channelsToDownload = [String]()
     var offset = 0
-    var selectedChannel: Channel!
+    var selectedChannel: (type: String, content: Channel)!
     var isMenuOpen = false
     
     override func viewDidLoad() {
@@ -114,10 +114,10 @@ class FollowingViewController: UIViewController , UICollectionViewDelegate, UICo
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath) as! ChannelCollectionViewCell
         let current = channels[indexPath.row]
-        cell.gameTitle.text = current.game
-        cell.streamerName.text = current.username
-        cell.viewerCount.text = current.viewers.description
-        cell.previewImage.image = current.previewImage
+        cell.gameTitle.text = current.content.game
+        cell.streamerName.text = current.content.username
+        cell.viewerCount.text = current.content.viewers.description
+        cell.previewImage.image = current.content.previewImage
         cell.layer.cornerRadius = 6
         cell.isFlipped = false
         
@@ -146,7 +146,7 @@ class FollowingViewController: UIViewController , UICollectionViewDelegate, UICo
                 //Check current streams
                 let streams = self.appDelegate.streams!
                 if !streams.contains(where: { (Channel) -> Bool in
-                    if Channel.username == self.selectedChannel.username{
+                    if Channel.content.username == self.selectedChannel.content.username{
                         return true
                     }else{
                         return false
