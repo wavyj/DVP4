@@ -28,6 +28,7 @@ class SearchViewController: UIViewController, UITextViewDelegate, UICollectionVi
     var isOpen = false
     var selectedScope = "Stream"
     var channels = [(type: String, content: Channel)]()
+    var channelsToDownload = [String]()
     var selectedChannel: (type: String, content: Channel)!
     var games = [Game]()
     var selectedGame: Game!
@@ -95,8 +96,10 @@ class SearchViewController: UIViewController, UITextViewDelegate, UICollectionVi
             activitySpinner.startAnimating()
             
             if selectedScope == "Stream"{
-                downloadAndParse(urlString: "https://api.twitch.tv/kraken/search/channels?query=\(textToSearch)&limit=10&offset=\(offset)&client_id=\(appDelegate.consumerID)&\(appDelegate.apiVersion)", downloadTask: "Stream")
+                channels.removeAll()
+                downloadAndParse(urlString: "https://api.twitch.tv/kraken/search/channels?query=\(textToSearch)&limit=50&offset=\(offset)&client_id=\(appDelegate.consumerID)&\(appDelegate.apiVersion)", downloadTask: "Stream")
             }else if selectedScope == "Game"{
+                games.removeAll()
                 downloadAndParse(urlString: "https://api.twitch.tv/kraken/search/games?query=\(textToSearch)&limit=10&offset=\(offset)&client_id=\(appDelegate.consumerID)&\(appDelegate.apiVersion)", downloadTask: "Game")
             }
         }else{
