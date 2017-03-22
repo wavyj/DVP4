@@ -59,7 +59,6 @@ extension SearchViewController{
                     print(error.localizedDescription)
                 }
                 DispatchQueue.main.async {
-                    
                     self.activitySpinner.stopAnimating()
                     self.streamCollectionView.reloadData()
                 }
@@ -109,7 +108,6 @@ extension SearchViewController{
                     print(error.localizedDescription)
                 }
                 DispatchQueue.main.async {
-                    
                     self.activitySpinner.stopAnimating()
                     self.gameCollectionView.reloadData()
                 }

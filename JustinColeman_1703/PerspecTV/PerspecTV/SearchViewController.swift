@@ -34,6 +34,7 @@ class SearchViewController: UIViewController, UITextViewDelegate, UICollectionVi
     var selectedChannel: (type: String, content: Channel)!
     var games = [Game]()
     var selectedGame: Game!
+    var offset = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,12 +56,15 @@ class SearchViewController: UIViewController, UITextViewDelegate, UICollectionVi
         gameIcon.image = tintImg
         gameIcon.tintColor = UIColor(white: 0, alpha: 0.5)
         
-        //CollctionView Setup
-        for i in [streamCollectionView, gameCollectionView]{
-            let layout = UICollectionViewFlowLayout()
-            layout.sectionInset = UIEdgeInsets(top: self.scopeView.frame.height + 10, left: 0, bottom: 0, right: 0)
-            i?.collectionViewLayout = layout
-        }
+        let layout = UICollectionViewFlowLayout()
+        layout.sectionInset = UIEdgeInsets(top: self.scopeView.frame.height + 10, left: 0, bottom: 0, right: 0)
+        layout.itemSize = CGSize(width: 350, height: 170)
+        layout.minimumInteritemSpacing = 10
+        layout.minimumLineSpacing = 15
+        streamCollectionView.collectionViewLayout = layout
+        
+        searchText.delegate = self
+    
         
     }
 
@@ -89,21 +93,21 @@ class SearchViewController: UIViewController, UITextViewDelegate, UICollectionVi
     //MARK: - TextView Callbacks
     func textViewDidChange(_ textView: UITextView) {
         textToSearch = textView.text
-        activitySpinner.startAnimating()
         
         //Search selected text based on selected search type
-        if selectedScope == "Stream"{
-            streamCollectionView.isHidden = false
-            gameCollectionView.isHidden = true
-            if textToSearch != ""{
-                downloadAndParse(urlString: "https://api.twitch.tv/kraken/search/streams?query=\(textToSearch)&client_id=\(appDelegate.consumerID)&\(appDelegate.apiVersion)", downloadTask: "Stream")
+        if textToSearch != ""{
+            activitySpinner.isHidden = false
+            activitySpinner.startAnimating()
+            
+            if selectedScope == "Stream"{
+                downloadAndParse(urlString: "https://api.twitch.tv/kraken/search/channels?query=\(textToSearch)&limit=10&offset=\(offset)&client_id=\(appDelegate.consumerID)&\(appDelegate.apiVersion)", downloadTask: "Stream")
+            }else if selectedScope == "Game"{
+                downloadAndParse(urlString: "https://api.twitch.tv/kraken/search/games?query=\(textToSearch)&limit=10&offset=\(offset)&client_id=\(appDelegate.consumerID)&\(appDelegate.apiVersion)", downloadTask: "Game")
             }
-        }else if selectedScope == "Game"{
-            gameCollectionView.isHidden = true
-            streamCollectionView.isHidden = false
-            if textToSearch != ""{
-                downloadAndParse(urlString: "https://api.twitch.tv/kraken/search/games?query=\(textToSearch)&client_id=\(appDelegate.consumerID)&\(appDelegate.apiVersion)", downloadTask: "Game")
-            }
+        }else{
+            channels.removeAll()
+            games.removeAll()
+            streamCollectionView.reloadData()
         }
         
     }
@@ -114,7 +118,7 @@ class SearchViewController: UIViewController, UITextViewDelegate, UICollectionVi
     
     //MARK: - Collection View Callbacks
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if selectedScope == "Stream"{
+        if section == 0{
             return channels.count
         }else{
             return games.count
@@ -122,9 +126,8 @@ class SearchViewController: UIViewController, UITextViewDelegate, UICollectionVi
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        switch collectionView.tag {
-        case 1:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! ChannelCollectionViewCell
+        if indexPath.section == 0{
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "stream", for: indexPath) as! ChannelCollectionViewCell
             let current = channels[indexPath.row]
             cell.gameTitle.text = current.content.game
             cell.streamerName.text = current.content.username
@@ -133,8 +136,8 @@ class SearchViewController: UIViewController, UITextViewDelegate, UICollectionVi
             cell.layer.cornerRadius = 6
             cell.isFlipped = false
             return cell
-        case 2:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! GameCollectionViewCell
+        }else if indexPath.section == 1{
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "game", for: indexPath) as! GameCollectionViewCell
             let currentGame = games[indexPath.row]
             if let image = currentGame.image{
                 cell.gameImage.image = image
@@ -143,16 +146,19 @@ class SearchViewController: UIViewController, UITextViewDelegate, UICollectionVi
                 cell.gameLabel.isHidden = false
             }
             return cell
-        default:
-            print("Mistakes were made.")
+        }else{
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
             return cell
         }
     }
     
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 2
+    }
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        switch collectionView.tag {
-        case 1:
+        switch indexPath.section{
+        case 0:
             selectedChannel = channels[indexPath.row]
             let selectedCell = collectionView.cellForItem(at: indexPath) as! ChannelCollectionViewCell
             if selectedCell.isFlipped == false{
@@ -210,7 +216,7 @@ class SearchViewController: UIViewController, UITextViewDelegate, UICollectionVi
                 })
                 
             }
-        case 2:
+        case 1:
             selectedGame = games[indexPath.row]
             performSegue(withIdentifier: "toSelectedGame", sender: self)
         default:
@@ -256,10 +262,26 @@ class SearchViewController: UIViewController, UITextViewDelegate, UICollectionVi
             selectedScope = "Stream"
             s.tintColor = UIColor(colorLiteralRed: 52/255, green: 67/255, blue: 84/255, alpha: 1)
             gameIcon.tintColor = UIColor(white: 0, alpha: 0.5)
+            streamCollectionView.isHidden = true
+            channels.removeAll()
+            let layout = UICollectionViewFlowLayout()
+            layout.sectionInset = UIEdgeInsets(top: self.scopeView.frame.height + 10, left: 0, bottom: 0, right: 0)
+            layout.itemSize = CGSize(width: 350, height: 170)
+            layout.minimumInteritemSpacing = 10
+            layout.minimumLineSpacing = 15
+            streamCollectionView.collectionViewLayout = layout
         case 2:
             selectedScope = "Game"
             s.tintColor = UIColor(colorLiteralRed: 52/255, green: 67/255, blue: 84/255, alpha: 1)
             gameIcon.tintColor = UIColor(white: 0, alpha: 0.5)
+            streamCollectionView.isHidden = true
+            games.removeAll()
+            let layout = UICollectionViewFlowLayout()
+            layout.sectionInset = UIEdgeInsets(top: self.scopeView.frame.height + 10, left: 0, bottom: 0, right: 0)
+            layout.itemSize = CGSize(width: 150, height: 200)
+            layout.minimumInteritemSpacing = 10
+            layout.minimumLineSpacing = 10
+            streamCollectionView.collectionViewLayout = layout
         default:
             print("Mistakes were made.")
         }
