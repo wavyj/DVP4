@@ -81,6 +81,10 @@ class SelectedGameViewController: UIViewController, UICollectionViewDelegate, UI
         }
     }
     
+    @IBAction func fromSearch(_ segue: UIStoryboardSegue){
+        //do nothing
+    }
+    
     //MARK: - Collection View Data Source
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return channels.count

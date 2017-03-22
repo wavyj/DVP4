@@ -47,7 +47,7 @@ class SelectedTeamViewController: UIViewController, UICollectionViewDelegate, UI
             bannerImage.backgroundColor = UIColor.black
         }
         
-        teamName.text = selectedTeam.name
+        teamName.text = selectedTeam.displayName
         channels = selectedTeam.members
         membersCount.text = channels.count.description
         
