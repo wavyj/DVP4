@@ -1277,7 +1277,7 @@
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="35w-wR-370">
-                                <rect key="frame" x="169" y="257.5" width="37" height="37"/>
+                                <rect key="frame" x="169" y="282" width="37" height="37"/>
                                 <color key="color" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </activityIndicatorView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="M6b-0t-qAT" userLabel="Control View">
@@ -2039,6 +2039,7 @@
                         <outlet property="teamName" destination="8Di-VA-pj0" id="OB3-Gd-9bO"/>
                         <outlet property="teamView" destination="fKB-oG-aWe" id="klb-Qg-wAq"/>
                         <segue destination="b6c-KL-aXf" kind="unwind" identifier="goBack" unwindAction="teamBack:" id="YM2-vf-5ly"/>
+                        <segue destination="b6c-KL-aXf" kind="unwind" identifier="toWatch" unwindAction="toWatch:" id="mDB-97-GJh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="co7-GJ-RIR" userLabel="First Responder" sceneMemberID="firstResponder"/>

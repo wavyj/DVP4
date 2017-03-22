@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SelectedTeamViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UIScrollViewDelegate {
+class SelectedTeamViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource{
 
     //MARK: - Outlets
     @IBOutlet weak var teamView: UIView!
@@ -24,7 +24,6 @@ class SelectedTeamViewController: UIViewController, UICollectionViewDelegate, UI
     var channels = [(type: String, content: Channel)]()
     var selectedChannel: (type: String, content: Channel)!
     var selectedTeam: Team!
-    var offset = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,11 +44,12 @@ class SelectedTeamViewController: UIViewController, UICollectionViewDelegate, UI
         if selectedTeam.bannerImage != nil{
             bannerImage.image = selectedTeam.bannerImage
         }else{
-            bannerImage.backgroundColor = UIColor.blue
+            bannerImage.backgroundColor = UIColor.black
         }
-        teamName.text = selectedTeam.name
         
+        teamName.text = selectedTeam.name
         channels = selectedTeam.members
+        membersCount.text = channels.count.description
         
     }
 
@@ -59,7 +59,25 @@ class SelectedTeamViewController: UIViewController, UICollectionViewDelegate, UI
     }
     
     //MARK: - Storyboard Actions
+    @IBAction func watchTapped(_ sender: UIButton){
+        //Clears array and sets the selected channel to the only stream
+        appDelegate.streams = [selectedChannel]
+        if appDelegate.isPhone == true{
+            performSegue(withIdentifier: "toWatch", sender: self)
+        }else{
+            performSegue(withIdentifier: "toDetail", sender: self)
+        }
+    }
     
+    @IBAction func addTapped(_ sender: UIButton){
+        //Adds selected stream to array of streams
+        appDelegate.streams.append(selectedChannel)
+        if appDelegate.isPhone == true{
+            performSegue(withIdentifier: "toWatch", sender: self)
+        }else{
+            performSegue(withIdentifier: "toDetail", sender: self)
+        }
+    }
     
     //MARK: - Collection View Callbacks
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -81,6 +99,88 @@ class SelectedTeamViewController: UIViewController, UICollectionViewDelegate, UI
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        selectedChannel = channels[indexPath.row]
+        let selectedCell = collectionView.cellForItem(at: indexPath) as! ChannelCollectionViewCell
+        if selectedCell.isFlipped == false{
+            UIView.transition(with: selectedCell, duration: 0.5, options: .transitionFlipFromRight, animations: {
+                collectionView.isUserInteractionEnabled = false
+                //selectedCell.previewImage.isHidden = true
+                selectedCell.gameTitle.isHidden = true
+                selectedCell.streamerName.isHidden = true
+                selectedCell.viewerCount.isHidden = true
+                selectedCell.addBtn.isHidden = false
+                selectedCell.watchBtn.isHidden = false
+                selectedCell.viewersIcon.isHidden = true
+                selectedCell.addLabel.isHidden = false
+                selectedCell.watchLabel.isHidden = false
+                
+                //Check current streams
+                let streams = self.appDelegate.streams!
+                if !streams.contains(where: { (Channel) -> Bool in
+                    if Channel.content.username == self.selectedChannel.content.username{
+                        return true
+                    }else{
+                        return false
+                    }
+                }){
+                    selectedCell.watchBtn.isEnabled = true
+                    selectedCell.addBtn.isEnabled = true
+                    if streams.count == 4{
+                        selectedCell.addBtn.isEnabled = false
+                        selectedCell.watchBtn.isEnabled = false
+                    }
+                }else{
+                    selectedCell.watchBtn.isEnabled = false
+                    selectedCell.addBtn.isEnabled = false
+                }
+                
+            }, completion: { (Bool) in
+                selectedCell.isFlipped = true
+                collectionView.isUserInteractionEnabled = true
+            })
+        }else{
+            UIView.transition(with: selectedCell, duration: 0.5, options: .transitionFlipFromLeft, animations: {
+                collectionView.isUserInteractionEnabled = false
+                //selectedCell.previewImage.isHidden = false
+                selectedCell.gameTitle.isHidden = false
+                selectedCell.streamerName.isHidden = false
+                selectedCell.viewerCount.isHidden = false
+                selectedCell.addBtn.isHidden = true
+                selectedCell.watchBtn.isHidden = true
+                selectedCell.viewersIcon.isHidden = false
+                selectedCell.addLabel.isHidden = true
+                selectedCell.watchLabel.isHidden = true
+            }, completion: { (Bool) in
+                selectedCell.isFlipped = false
+                collectionView.isUserInteractionEnabled = true
+            })
+            
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        //Unflip the cell
+        let selectedCell = collectionView.cellForItem(at: indexPath) as! ChannelCollectionViewCell
+        if selectedCell.isFlipped == true{
+            UIView.transition(with: selectedCell, duration: 0.5, options: .transitionFlipFromLeft, animations: {
+                collectionView.isUserInteractionEnabled = false
+                //selectedCell.previewImage.isHidden = false
+                selectedCell.gameTitle.isHidden = false
+                selectedCell.streamerName.isHidden = false
+                selectedCell.viewerCount.isHidden = false
+                selectedCell.addBtn.isHidden = true
+                selectedCell.watchBtn.isHidden = true
+                selectedCell.viewersIcon.isHidden = false
+                selectedCell.addLabel.isHidden = true
+                selectedCell.watchLabel.isHidden = true
+            }, completion: { (Bool) in
+                selectedCell.isFlipped = false
+                collectionView.isUserInteractionEnabled = true
+            })
+        }
     }
     
     //MARK: - Methods
