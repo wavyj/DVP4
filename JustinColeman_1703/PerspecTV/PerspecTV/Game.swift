@@ -13,11 +13,11 @@ class Game{
     let id: Int
     let name: String
     let channels: Int
-    let viewers: Int
+    var viewers: Int
     let imageUrl: String
     var image: UIImage!
     
-    init(id: Int, name: String, channels: Int, viewers: Int, imageUrl: String = ""){
+    init(id: Int, name: String, channels: Int = 0, viewers: Int = 0, imageUrl: String = ""){
         self.id = id
         self.name = name
         self.channels = channels

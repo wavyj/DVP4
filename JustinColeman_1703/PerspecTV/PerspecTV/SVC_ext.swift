@@ -86,19 +86,16 @@ extension SearchViewController{
                                 else{ continue }
                             
                             for object in objects{
-                                guard let game = object["game"] as? [String: Any],
-                                    let channels = object["channels"] as? Int,
-                                    let viewers = object["viewers"] as? Int,
-                                    let name = game["name"] as? String,
-                                    let id = game["_id"] as? Int
+                                guard let name = object["name"] as? String,
+                                    let id = object["_id"] as? Int
                                     else{ print(object); continue }
                                 
                                 //Seperate check for image url because it is possible it will be null
-                                if let images = game["box"] as? [String: Any],
+                                if let images = object["box"] as? [String: Any],
                                     let imageUrl = images["large"] as? String{
-                                    self.games.append(Game(id: id, name: name, channels: channels, viewers: viewers, imageUrl: imageUrl))
+                                    self.games.append(Game(id: id, name: name, imageUrl: imageUrl))
                                 }else{
-                                    self.games.append(Game(id: id, name: name, channels: channels, viewers: viewers))
+                                    self.games.append(Game(id: id, name: name))
                                 }
                             }
                         }
@@ -109,7 +106,7 @@ extension SearchViewController{
                 }
                 DispatchQueue.main.async {
                     self.activitySpinner.stopAnimating()
-                    self.gameCollectionView.reloadData()
+                    self.streamCollectionView.reloadData()
                 }
             })
             if downloadTask == "Stream"{

@@ -19,11 +19,8 @@ class SearchViewController: UIViewController, UITextViewDelegate, UICollectionVi
     @IBOutlet weak var streamIcon: UIImageView!
     @IBOutlet weak var gameIcon: UIImageView!
     @IBOutlet weak var sortBtn: UIButton!
-    @IBOutlet weak var scopeOriginY: NSLayoutConstraint!
-    @IBOutlet weak var scopeMovedY: NSLayoutConstraint!
     @IBOutlet weak var activitySpinner: UIActivityIndicatorView!
     @IBOutlet weak var streamCollectionView: UICollectionView!
-    @IBOutlet weak var gameCollectionView: UICollectionView!
     
     //MARK: - Variables
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -35,6 +32,7 @@ class SearchViewController: UIViewController, UITextViewDelegate, UICollectionVi
     var games = [Game]()
     var selectedGame: Game!
     var offset = 0
+    var origin: CGRect!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,7 +55,7 @@ class SearchViewController: UIViewController, UITextViewDelegate, UICollectionVi
         gameIcon.tintColor = UIColor(white: 0, alpha: 0.5)
         
         let layout = UICollectionViewFlowLayout()
-        layout.sectionInset = UIEdgeInsets(top: self.scopeView.frame.height + 10, left: 0, bottom: 0, right: 0)
+        layout.sectionInset = UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 0)
         layout.itemSize = CGSize(width: 350, height: 170)
         layout.minimumInteritemSpacing = 10
         layout.minimumLineSpacing = 15
@@ -75,18 +73,15 @@ class SearchViewController: UIViewController, UITextViewDelegate, UICollectionVi
     
     //MARK: - Storyboard Actions
     @IBAction func cancelTapped(_ sender: UIButton){
-        scopeMovedY.isActive = false
-        scopeOriginY.isActive = true
         UIView.animate(withDuration: 0.5, animations: {
-            self.searchBar.layoutIfNeeded()
-            self.scopeView.layoutIfNeeded()
+            self.scopeView.frame = self.scopeView.frame.offsetBy(dx: 0, dy: -self.searchBar.frame.height)
             self.searchText.text = "Search"
             self.cancelBtn.isHidden = true
+            self.scopeView.isHidden = true
+            self.searchText.resignFirstResponder()
         }, completion: { (Bool) in
             self.isOpen = false
-            self.searchText.resignFirstResponder()
-            self.searchText.layoutIfNeeded()
-            print("closed")
+            self.scopeView.frame = self.origin
         })
     }
     
@@ -227,45 +222,41 @@ class SearchViewController: UIViewController, UITextViewDelegate, UICollectionVi
     //MARK: - Methods
     func searchTapped(_ sender: UITapGestureRecognizer){
         if !isOpen{
-            self.scopeOriginY.isActive = false
-            self.scopeMovedY.isActive = true
+            origin = scopeView.frame
+            scopeView.frame = scopeView.frame.offsetBy(dx: 0, dy: -searchBar.frame.height)
+            scopeView.isHidden = false
             UIView.animate(withDuration: 0.5, animations: {
-                self.scopeView.layoutIfNeeded()
+                self.scopeView.frame = self.origin
                 self.searchText.text = ""
                 self.cancelBtn.isHidden = false
+                self.searchText.becomeFirstResponder()
             }, completion: { (Bool) in
                 self.isOpen = true
-                self.searchText.becomeFirstResponder()
-                self.searchText.layoutIfNeeded()
-                print("opened")
             })
         }else{
-            self.scopeMovedY.isActive = false
-            self.scopeOriginY.isActive = true
             UIView.animate(withDuration: 0.5, animations: {
-                self.scopeView.layoutIfNeeded()
+                self.scopeView.frame = self.scopeView.frame.offsetBy(dx: 0, dy: -self.searchBar.frame.height)
                 self.searchText.text = "Search"
                 self.cancelBtn.isHidden = true
+                self.scopeView.isHidden = true
+                self.searchText.resignFirstResponder()
             }, completion: { (Bool) in
                 self.isOpen = false
-                self.searchText.resignFirstResponder()
-                self.searchText.layoutIfNeeded()
-                print("closed")
+                self.scopeView.frame = self.origin
             })
         }
     }
     
     func scopeChanged(_ sender: UITapGestureRecognizer){
-        let s = sender.view as! UIButton
+        let s = sender.view as! UIImageView
         switch s.tag {
         case 1:
             selectedScope = "Stream"
             s.tintColor = UIColor(colorLiteralRed: 52/255, green: 67/255, blue: 84/255, alpha: 1)
             gameIcon.tintColor = UIColor(white: 0, alpha: 0.5)
-            streamCollectionView.isHidden = true
             channels.removeAll()
             let layout = UICollectionViewFlowLayout()
-            layout.sectionInset = UIEdgeInsets(top: self.scopeView.frame.height + 10, left: 0, bottom: 0, right: 0)
+            layout.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 0, right: 10)
             layout.itemSize = CGSize(width: 350, height: 170)
             layout.minimumInteritemSpacing = 10
             layout.minimumLineSpacing = 15
@@ -273,11 +264,10 @@ class SearchViewController: UIViewController, UITextViewDelegate, UICollectionVi
         case 2:
             selectedScope = "Game"
             s.tintColor = UIColor(colorLiteralRed: 52/255, green: 67/255, blue: 84/255, alpha: 1)
-            gameIcon.tintColor = UIColor(white: 0, alpha: 0.5)
-            streamCollectionView.isHidden = true
+            streamIcon.tintColor = UIColor(white: 0, alpha: 0.5)
             games.removeAll()
             let layout = UICollectionViewFlowLayout()
-            layout.sectionInset = UIEdgeInsets(top: self.scopeView.frame.height + 10, left: 0, bottom: 0, right: 0)
+            layout.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 0, right: 10)
             layout.itemSize = CGSize(width: 150, height: 200)
             layout.minimumInteritemSpacing = 10
             layout.minimumLineSpacing = 10

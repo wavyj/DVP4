@@ -737,31 +737,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xTk-tX-x03" userLabel="Scope View">
-                                <rect key="frame" x="0.0" y="20" width="375" height="66.5"/>
-                                <subviews>
-                                    <imageView tag="1" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="VideoCamIcon" translatesAutoresizingMaskIntoConstraints="NO" id="MUn-Bi-jaP" userLabel="Stream Btn">
-                                        <rect key="frame" x="25.5" y="21.5" width="24" height="24"/>
-                                    </imageView>
-                                    <imageView tag="2" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="GameIcon-Light" translatesAutoresizingMaskIntoConstraints="NO" id="iD3-cK-m6a" userLabel="Game Btn">
-                                        <rect key="frame" x="64.5" y="21" width="24" height="24"/>
-                                    </imageView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c27-Gb-ARl" userLabel="Sort Btn">
-                                        <rect key="frame" x="311" y="21" width="54" height="24"/>
-                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
-                                        <state key="normal" title="Sort" image="PlayIcon"/>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstItem="iD3-cK-m6a" firstAttribute="centerY" secondItem="MUn-Bi-jaP" secondAttribute="centerY" id="1Nn-lh-U1B"/>
-                                    <constraint firstItem="MUn-Bi-jaP" firstAttribute="centerY" secondItem="xTk-tX-x03" secondAttribute="centerY" id="962-O8-qEU"/>
-                                    <constraint firstItem="iD3-cK-m6a" firstAttribute="leading" secondItem="MUn-Bi-jaP" secondAttribute="trailing" constant="15" id="VOu-85-ItR"/>
-                                    <constraint firstItem="c27-Gb-ARl" firstAttribute="centerY" secondItem="iD3-cK-m6a" secondAttribute="centerY" id="YXt-Go-pgb"/>
-                                    <constraint firstAttribute="trailing" secondItem="c27-Gb-ARl" secondAttribute="trailing" constant="10" id="mza-uZ-iAA"/>
-                                    <constraint firstItem="MUn-Bi-jaP" firstAttribute="centerX" secondItem="xTk-tX-x03" secondAttribute="centerX" multiplier="0.2" id="w7X-KO-RjA"/>
-                                </constraints>
-                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mfy-VI-Aul" userLabel="SearchBar View">
                                 <rect key="frame" x="0.0" y="20" width="375" height="66.5"/>
                                 <subviews>
@@ -825,7 +800,7 @@
                                 </variation>
                             </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" tag="1" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="wH8-0u-kn8" userLabel="Stream Collection View">
-                                <rect key="frame" x="0.0" y="86" width="375" height="531.5"/>
+                                <rect key="frame" x="0.0" y="153" width="375" height="465"/>
                                 <color key="backgroundColor" red="0.20392156859999999" green="0.26274509800000001" blue="0.3294117647" alpha="1" colorSpace="calibratedRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="15" minimumInteritemSpacing="10" id="pEY-VT-xen">
                                     <size key="itemSize" width="350" height="170"/>
@@ -993,30 +968,49 @@
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="VZk-gD-IJF">
                                 <rect key="frame" x="169" y="315" width="37" height="37"/>
                             </activityIndicatorView>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xTk-tX-x03" userLabel="Scope View">
+                                <rect key="frame" x="0.0" y="86.5" width="375" height="66.5"/>
+                                <subviews>
+                                    <imageView tag="1" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="VideoCamIcon" translatesAutoresizingMaskIntoConstraints="NO" id="MUn-Bi-jaP" userLabel="Stream Btn">
+                                        <rect key="frame" x="25.5" y="21.5" width="24" height="24"/>
+                                    </imageView>
+                                    <imageView tag="2" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="GameIcon-Light" translatesAutoresizingMaskIntoConstraints="NO" id="iD3-cK-m6a" userLabel="Game Btn">
+                                        <rect key="frame" x="64.5" y="21" width="24" height="24"/>
+                                    </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c27-Gb-ARl" userLabel="Sort Btn">
+                                        <rect key="frame" x="311" y="21" width="54" height="24"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
+                                        <state key="normal" title="Sort" image="PlayIcon"/>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="iD3-cK-m6a" firstAttribute="centerY" secondItem="MUn-Bi-jaP" secondAttribute="centerY" id="1Nn-lh-U1B"/>
+                                    <constraint firstItem="MUn-Bi-jaP" firstAttribute="centerY" secondItem="xTk-tX-x03" secondAttribute="centerY" id="962-O8-qEU"/>
+                                    <constraint firstItem="iD3-cK-m6a" firstAttribute="leading" secondItem="MUn-Bi-jaP" secondAttribute="trailing" constant="15" id="VOu-85-ItR"/>
+                                    <constraint firstItem="c27-Gb-ARl" firstAttribute="centerY" secondItem="iD3-cK-m6a" secondAttribute="centerY" id="YXt-Go-pgb"/>
+                                    <constraint firstAttribute="trailing" secondItem="c27-Gb-ARl" secondAttribute="trailing" constant="10" id="mza-uZ-iAA"/>
+                                    <constraint firstItem="MUn-Bi-jaP" firstAttribute="centerX" secondItem="xTk-tX-x03" secondAttribute="centerX" multiplier="0.2" id="w7X-KO-RjA"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.20392156859999999" green="0.26274509800000001" blue="0.3294117647" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="CwU-R6-F0Z" firstAttribute="top" secondItem="wH8-0u-kn8" secondAttribute="bottom" id="AFQ-ki-FEf"/>
                             <constraint firstItem="mfy-VI-Aul" firstAttribute="top" secondItem="TYG-eG-3cg" secondAttribute="bottom" id="Ece-hh-nh8"/>
-                            <constraint firstItem="xTk-tX-x03" firstAttribute="centerX" secondItem="mfy-VI-Aul" secondAttribute="centerX" id="H3J-8o-GsV"/>
-                            <constraint firstItem="wH8-0u-kn8" firstAttribute="leading" secondItem="Idl-nP-sLW" secondAttribute="leading" id="H5n-er-ltA"/>
-                            <constraint firstItem="xTk-tX-x03" firstAttribute="height" secondItem="mfy-VI-Aul" secondAttribute="height" id="Kbf-ER-bHW"/>
-                            <constraint firstItem="xTk-tX-x03" firstAttribute="width" secondItem="mfy-VI-Aul" secondAttribute="width" id="UCU-hG-UTu"/>
+                            <constraint firstItem="xTk-tX-x03" firstAttribute="leading" secondItem="Idl-nP-sLW" secondAttribute="leading" id="GAf-Ty-Q0r"/>
+                            <constraint firstItem="wH8-0u-kn8" firstAttribute="leading" secondItem="Idl-nP-sLW" secondAttribute="leading" id="Sz7-Er-I7h"/>
                             <constraint firstItem="mfy-VI-Aul" firstAttribute="height" secondItem="Idl-nP-sLW" secondAttribute="height" multiplier="0.1" id="XVx-Ra-eHL"/>
+                            <constraint firstItem="CwU-R6-F0Z" firstAttribute="top" secondItem="wH8-0u-kn8" secondAttribute="bottom" id="Yp0-eq-o8A"/>
                             <constraint firstItem="mfy-VI-Aul" firstAttribute="leading" secondItem="Idl-nP-sLW" secondAttribute="leading" id="aVx-75-alm"/>
-                            <constraint firstAttribute="trailing" secondItem="wH8-0u-kn8" secondAttribute="trailing" id="aWu-23-rfe"/>
-                            <constraint firstItem="xTk-tX-x03" firstAttribute="centerY" secondItem="mfy-VI-Aul" secondAttribute="centerY" multiplier="2.2" id="esd-o0-Sd6" userLabel="MovedY"/>
-                            <constraint firstItem="xTk-tX-x03" firstAttribute="centerY" secondItem="mfy-VI-Aul" secondAttribute="centerY" id="gOT-WE-Wyc" userLabel="OriginY"/>
+                            <constraint firstItem="wH8-0u-kn8" firstAttribute="top" secondItem="xTk-tX-x03" secondAttribute="bottom" id="dQx-aA-hVC"/>
+                            <constraint firstAttribute="trailing" secondItem="wH8-0u-kn8" secondAttribute="trailing" id="hCF-kj-4rh"/>
+                            <constraint firstItem="xTk-tX-x03" firstAttribute="top" secondItem="mfy-VI-Aul" secondAttribute="bottom" id="kPS-fP-T8i"/>
                             <constraint firstItem="VZk-gD-IJF" firstAttribute="centerX" secondItem="Idl-nP-sLW" secondAttribute="centerX" id="rdK-de-evh"/>
-                            <constraint firstItem="wH8-0u-kn8" firstAttribute="top" secondItem="mfy-VI-Aul" secondAttribute="bottom" id="s6d-Kt-Vr4"/>
+                            <constraint firstAttribute="trailing" secondItem="xTk-tX-x03" secondAttribute="trailing" id="s0I-m0-hmi"/>
+                            <constraint firstItem="xTk-tX-x03" firstAttribute="height" secondItem="Idl-nP-sLW" secondAttribute="height" multiplier="0.1" id="vQz-Xw-t77"/>
                             <constraint firstItem="VZk-gD-IJF" firstAttribute="centerY" secondItem="Idl-nP-sLW" secondAttribute="centerY" id="wAl-dr-OD7"/>
                             <constraint firstAttribute="trailing" secondItem="mfy-VI-Aul" secondAttribute="trailing" id="x4c-eP-Td9"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="esd-o0-Sd6"/>
-                            </mask>
-                        </variation>
                     </view>
                     <tabBarItem key="tabBarItem" tag="3" title="" image="SearchIcon" selectedImage="SearchIcon" id="eq5-w4-CsY">
                         <inset key="imageInsets" minX="0.0" minY="9" maxX="0.0" maxY="-9"/>
@@ -1025,8 +1019,6 @@
                         <outlet property="activitySpinner" destination="VZk-gD-IJF" id="fie-cE-pvq"/>
                         <outlet property="cancelBtn" destination="T0w-5u-OcB" id="pOM-Bi-s4S"/>
                         <outlet property="gameIcon" destination="iD3-cK-m6a" id="7UL-lo-WB9"/>
-                        <outlet property="scopeMovedY" destination="esd-o0-Sd6" id="qu7-Ve-p8H"/>
-                        <outlet property="scopeOriginY" destination="gOT-WE-Wyc" id="7Ym-NG-6I4"/>
                         <outlet property="scopeView" destination="xTk-tX-x03" id="aDp-Ry-lmk"/>
                         <outlet property="searchBar" destination="7cl-2e-WgJ" id="8el-q1-TVq"/>
                         <outlet property="searchIcon" destination="CVM-ke-PY4" id="k2A-AU-pDH"/>
@@ -2015,7 +2007,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="8q0-NW-2un">
-                                <rect key="frame" x="0.0" y="66.5" width="375" height="551.5"/>
+                                <rect key="frame" x="0.0" y="66.5" width="375" height="600.5"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="5Vl-0x-7Sz">
                                     <size key="itemSize" width="331" height="200"/>
@@ -2590,12 +2582,12 @@
         <image name="WarningIcon" width="48" height="48"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="YFF-L5-Yif"/>
-        <segue reference="7xr-h1-HAM"/>
         <segue reference="Psm-ul-Fl7"/>
         <segue reference="FPN-iW-wql"/>
-        <segue reference="aX6-US-juq"/>
-        <segue reference="83Y-93-Hd7"/>
+        <segue reference="7xr-h1-HAM"/>
+        <segue reference="25p-Op-POj"/>
         <segue reference="SFp-xc-9OR"/>
+        <segue reference="83Y-93-Hd7"/>
+        <segue reference="nym-fO-jMg"/>
     </inferredMetricsTieBreakers>
 </document>
