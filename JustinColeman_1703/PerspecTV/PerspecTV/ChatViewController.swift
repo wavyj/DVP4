@@ -34,9 +34,14 @@ class ChatViewController: UIViewController, UIWebViewDelegate {
         if appDelegate.isPhone == false{
             let frame = self.view.frame.offsetBy(dx: 0, dy: controlView.frame.height)
             webView = UIWebView(frame: frame)
+            for i in appDelegate.streams{
+                if i.type == "stream"{
+                    channels.append(i)
+                }
+            }
+            currentChannel = channels[0]
         }else{
             webView = UIWebView(frame: self.view.frame)
-            channels = appDelegate.streams
         }
         self.view.addSubview(webView)
         webView.delegate = self
@@ -62,14 +67,15 @@ class ChatViewController: UIViewController, UIWebViewDelegate {
     }
     
     @IBAction func btnTapped(_ sender: UIButton){
-        switch sender.tag {
-        case 1:
-            print()
-        case -1:
-            print()
-        default:
-            print("Mistakes were made.")
+        selectedIndex += sender.tag
+        
+        if selectedIndex < 0 {
+            selectedIndex = channels.count - 1
+        }else if selectedIndex >= channels.count{
+            selectedIndex = 0
         }
+        currentChannel = channels[selectedIndex]
+        loadChat()
     }
     
     //MARK: - WebView Callbacks
@@ -84,7 +90,9 @@ class ChatViewController: UIViewController, UIWebViewDelegate {
     //MARK: - Methods
     func loadChat(){
         let parent = self.parent as! WatchViewController
-        currentChannel = parent.currentChannel
+        if appDelegate.isPhone == true{
+            currentChannel = parent.currentChannel
+        }
         webView.scrollView.isScrollEnabled = false
         webView.keyboardDisplayRequiresUserAction = true
         if appDelegate.isPhone == true{

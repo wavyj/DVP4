@@ -45,7 +45,7 @@ class WatchViewController: UIViewController, UIWebViewDelegate, UIGestureRecogni
         self.addChildAsViewController(viewController)
         return viewController
     }()
-    var iPadStreams: [(content: Channel, view: UIView, spinner: UIActivityIndicatorView)]!
+    var iPadStreams = [(content: Channel, view: UIView, spinner: UIActivityIndicatorView)]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -115,6 +115,13 @@ class WatchViewController: UIViewController, UIWebViewDelegate, UIGestureRecogni
                 }
                 if selectedIndex == streams.count - 1{
                     rightArrow.isHidden = true
+                }
+            }else{
+                //Load each stream into each ipad stream view
+                var index = 0
+                for i in streams{
+                    iPadStreams[index].content = i.content
+                    index += 1
                 }
             }
             shouldLoad = true
@@ -330,6 +337,7 @@ class WatchViewController: UIViewController, UIWebViewDelegate, UIGestureRecogni
         }else{
             for i in iPadStreams{
                 if i.content.username != ""{
+                    i.spinner.startAnimating()
                     if i.content.videoID == ""{
                         //Load Stream
                         let stream = "<html><head><style type='text/css'>html,body {margin: 0;padding: 0;width: 100%;height: 100%;}</style></head><body><iframe src=\"https://player.twitch.tv/?channel=\(i.content.username)&autoplay=false&client_id=\(appDelegate.consumerID)&\(appDelegate.apiVersion)&playsinline=1\"width=\"\(i.view.frame.width)\" height=\"\(i.view.frame.height)\" frameborder=\"0\" scrolling=\"yes\" allowfullscreen=\"false\" webkit-playsinline></iframe></body></html>"
