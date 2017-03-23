@@ -63,7 +63,6 @@ class SearchViewController: UIViewController, UITextViewDelegate, UICollectionVi
         streamCollectionView.collectionViewLayout = layout
         
         searchText.delegate = self
-        
     }
 
     override func didReceiveMemoryWarning() {
@@ -229,6 +228,7 @@ class SearchViewController: UIViewController, UITextViewDelegate, UICollectionVi
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        hideKeyboard()
         switch indexPath.section{
         case 0:
             selectedChannel = channels[indexPath.row]
@@ -296,7 +296,35 @@ class SearchViewController: UIViewController, UITextViewDelegate, UICollectionVi
         }
     }
     
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        //Unflip the cell
+        if indexPath.section == 0{
+            let selectedCell = collectionView.cellForItem(at: indexPath) as! ChannelCollectionViewCell
+            if selectedCell.isFlipped == true{
+                UIView.transition(with: selectedCell, duration: 0.5, options: .transitionFlipFromLeft, animations: {
+                    collectionView.isUserInteractionEnabled = false
+                    //selectedCell.previewImage.isHidden = false
+                    selectedCell.gameTitle.isHidden = false
+                    selectedCell.streamerName.isHidden = false
+                    selectedCell.viewerCount.isHidden = false
+                    selectedCell.addBtn.isHidden = true
+                    selectedCell.watchBtn.isHidden = true
+                    selectedCell.viewersIcon.isHidden = false
+                    selectedCell.addLabel.isHidden = true
+                    selectedCell.watchLabel.isHidden = true
+                }, completion: { (Bool) in
+                    selectedCell.isFlipped = false
+                    collectionView.isUserInteractionEnabled = true
+                })
+            }
+        }
+    }
+    
     //MARK: - Methods
+    func hideKeyboard(){
+        self.view.endEditing(true)
+    }
+    
     func searchTapped(_ sender: UITapGestureRecognizer){
         if !isOpen{
             origin = scopeView.frame
