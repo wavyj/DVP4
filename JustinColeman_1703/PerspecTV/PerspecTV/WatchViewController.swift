@@ -45,7 +45,7 @@ class WatchViewController: UIViewController, UIWebViewDelegate, UIGestureRecogni
         self.addChildAsViewController(viewController)
         return viewController
     }()
-    var iPadStreams: [(stream: String, view: UIView, spinner: UIActivityIndicatorView)]!
+    var iPadStreams: [(content: Channel, view: UIView, spinner: UIActivityIndicatorView)]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,12 +60,20 @@ class WatchViewController: UIViewController, UIWebViewDelegate, UIGestureRecogni
             //iPad Stream View Setup
             var index = 0
             for i in iPadStreamViews{
-                iPadStreams.append((stream: "", view: i, spinner: iPadActivitySpinners[index]))
+                iPadStreams.append((content: Channel(), view: i, spinner: iPadActivitySpinners[index]))
                 index += 1
             }
             
+            //Add a web view to each iPad Stream view
+            index = 2
             for i in iPadStreams{
-                
+                let webV = UIWebView(frame: i.view.frame)
+                i.view.addSubview(webV)
+                i.view.clipsToBounds = true
+                webV.clipsToBounds = true
+                webV.delegate = self
+                webV.tag = index
+                index += 1
             }
             
         }else{
@@ -101,11 +109,13 @@ class WatchViewController: UIViewController, UIWebViewDelegate, UIGestureRecogni
         if streams.count >= 1{
             //Load stream
             currentChannel = streams[0]
-            if streams.count > 1{
-                rightArrow.isHidden = false
-            }
-            if selectedIndex == streams.count - 1{
-                rightArrow.isHidden = true
+            if appDelegate.isPhone == true{
+                if streams.count > 1{
+                    rightArrow.isHidden = false
+                }
+                if selectedIndex == streams.count - 1{
+                    rightArrow.isHidden = true
+                }
             }
             shouldLoad = true
             if shouldLoad{
@@ -114,16 +124,37 @@ class WatchViewController: UIViewController, UIWebViewDelegate, UIGestureRecogni
         }
         
         if streams.count == 0{
-            
-            streamView.isHidden = true
+            if appDelegate.isPhone == true{
+                streamView.isHidden = true
+            }else{
+                for i in iPadStreams{
+                    i.view.isHidden = true
+                }
+            }
             menuBtn.isEnabled = false
             infoBtn.isEnabled = false
             self.view.gestureRecognizers?.first?.isEnabled = false
             streamName.text = "No Channel Selected"
             
         }else{
-            streamName.text = currentChannel.content.username
-            streamView.isHidden = false
+            if appDelegate.isPhone == true{
+                streamName.text = currentChannel.content.username
+                streamView.isHidden = false
+            }else{
+                var streams = ""
+                var index = 0
+                for i in iPadStreams{
+                    if i.content.username != ""{
+                        if index > iPadStreams.count - 1{
+                        streams += "\(i.content.username),"
+                        }else{
+                            streams += i.content.username
+                        }
+                    }
+                    index += 1
+                }
+                streamName.text = "Watching \(streams)"
+            }
             menuBtn.isEnabled = true
             infoBtn.isEnabled = true
             self.view.gestureRecognizers?.first?.isEnabled = true
@@ -202,8 +233,10 @@ class WatchViewController: UIViewController, UIWebViewDelegate, UIGestureRecogni
             chatView.gestureRecognizers?.first?.isEnabled = true
         }
         
-        leftArrow.isEnabled = !isOpened
-        rightArrow.isEnabled = !isOpened
+        if appDelegate.isPhone == true{
+            leftArrow.isEnabled = !isOpened
+            rightArrow.isEnabled = !isOpened
+        }
         updateChatDisplay()
     }
     
@@ -217,9 +250,8 @@ class WatchViewController: UIViewController, UIWebViewDelegate, UIGestureRecogni
             selectedIndex = 0
             let tempBtn = UIButton()
             tempBtn.tag = 2
+            //Calls this method to load streams and index selected index
             btnTapped(tempBtn)
-        }else{
-            
         }
     }
     
@@ -229,10 +261,35 @@ class WatchViewController: UIViewController, UIWebViewDelegate, UIGestureRecogni
 
     //MARK: - Webview Callbacks
     func webViewDidFinishLoad(_ webView: UIWebView) {
-        webView.isHidden = false
-        webView.frame = streamView.bounds
-        activitySpinner.stopAnimating()
-        shouldLoad = false
+        switch webView.tag {
+        case 1:
+            webView.isHidden = false
+            webView.frame = streamView.bounds
+            activitySpinner.stopAnimating()
+            shouldLoad = false
+        case 2:
+            webView.isHidden = false
+            webView.frame = iPadStreams[0].view.bounds
+            iPadStreams[0].spinner.stopAnimating()
+            shouldLoad = false
+        case 3:
+            webView.isHidden = false
+            webView.frame = iPadStreams[1].view.bounds
+            iPadStreams[1].spinner.stopAnimating()
+            shouldLoad = false
+        case 4:
+            webView.isHidden = false
+            webView.frame = iPadStreams[2].view.bounds
+            iPadStreams[2].spinner.stopAnimating()
+            shouldLoad = false
+        case 5:
+            webView.isHidden = false
+            webView.frame = iPadStreams[3].view.bounds
+            iPadStreams[3].spinner.stopAnimating()
+            shouldLoad = false
+        default:
+            print("Mistakes were made.")
+        }
     }
     
     func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
@@ -249,39 +306,55 @@ class WatchViewController: UIViewController, UIWebViewDelegate, UIGestureRecogni
     
     //MARK: - Methods
     func loadStream(){
-        //Display Setup
-        webView.isHidden = true
-        activitySpinner.startAnimating()
-        streamName.text = currentChannel.content.username
-        
-        //Stream Setup
-        webView.allowsInlineMediaPlayback = true
-        webView.scrollView.isScrollEnabled = false
-        if currentChannel.type == "stream"{
-            if appDelegate.isPhone == true{
+        if appDelegate.isPhone == true{
+            //Display Setup
+            webView.isHidden = true
+            activitySpinner.startAnimating()
+            streamName.text = currentChannel.content.username
+            
+            //Stream Setup
+            webView.allowsInlineMediaPlayback = true
+            webView.scrollView.isScrollEnabled = false
+            
+            if currentChannel.type == "stream"{
                 let stream = "<html><head><style type='text/css'>html,body {margin: 0;padding: 0;width: 100%;height: 100%;}</style></head><body><iframe src=\"https://player.twitch.tv/?channel=\(currentChannel.content.username)&autoplay=false&client_id=\(appDelegate.consumerID)&\(appDelegate.apiVersion)&playsinline=1\"width=\"\(streamView.frame.width)\" height=\"\(streamView.frame.height)\" frameborder=\"0\" scrolling=\"yes\" allowfullscreen=\"false\" webkit-playsinline></iframe></body></html>"
                 webView.loadHTMLString(stream, baseURL: nil)
+                self.view.gestureRecognizers?.first?.isEnabled = true
             }else{
-                let stream = "<html><head><style type='text/css'>html,body {margin: 0;padding: 0;width: 100%;height: 100%;}</style></head><body><iframe src=\"https://player.twitch.tv/?channel=\(currentChannel.content.username)&autoplay=false&client_id=\(appDelegate.consumerID)&\(appDelegate.apiVersion)&playsinline=1\"width=\"\(view.frame.width)\" height=\"\(streamView.frame.height)\" frameborder=\"0\" scrolling=\"yes\" allowfullscreen=\"false\" webkit-playsinline></iframe></body></html>"
-                webView.loadHTMLString(stream, baseURL: nil)
-            }
-            
-            //Chat update
-            ChatVC.loadChat()
-            self.view.gestureRecognizers?.first?.isEnabled = true
-            
-        }else if currentChannel.type == "video"{
-            if appDelegate.isPhone == true{
                 let stream = "<html><head><style type='text/css'>html,body {margin: 0;padding: 0;width: 100%;height: 100%;}</style></head><body><iframe src=\"https://player.twitch.tv/?video=\(currentChannel.content.id)&autoplay=false&client_id=\(appDelegate.consumerID)&\(appDelegate.apiVersion)&playsinline=1\"width=\"\(streamView.frame.width)\" height=\"\(streamView.frame.height)\" frameborder=\"0\" scrolling=\"yes\" allowfullscreen=\"false\" webkit-playsinline></iframe></body></html>"
                 webView.loadHTMLString(stream, baseURL: nil)
-            }else{
-                let stream = "<html><head><style type='text/css'>html,body {margin: 0;padding: 0;width: 100%;height: 100%;}</style></head><body><iframe src=\"https://player.twitch.tv/?channel=\(currentChannel.content.id)&autoplay=false&client_id=\(appDelegate.consumerID)&\(appDelegate.apiVersion)&playsinline=1\"width=\"\(view.frame.width)\" height=\"\(streamView.frame.height)\" frameborder=\"0\" scrolling=\"yes\" allowfullscreen=\"false\" webkit-playsinline></iframe></body></html>"
-                webView.loadHTMLString(stream, baseURL: nil)
+                
+                //Disable Chat
+                self.view.gestureRecognizers?.first?.isEnabled = false
             }
-            
-            //Disable Chat
-            self.view.gestureRecognizers?.first?.isEnabled = false
+        }else{
+            for i in iPadStreams{
+                if i.content.username != ""{
+                    if i.content.videoID == ""{
+                        //Load Stream
+                        let stream = "<html><head><style type='text/css'>html,body {margin: 0;padding: 0;width: 100%;height: 100%;}</style></head><body><iframe src=\"https://player.twitch.tv/?channel=\(i.content.username)&autoplay=false&client_id=\(appDelegate.consumerID)&\(appDelegate.apiVersion)&playsinline=1\"width=\"\(i.view.frame.width)\" height=\"\(i.view.frame.height)\" frameborder=\"0\" scrolling=\"yes\" allowfullscreen=\"false\" webkit-playsinline></iframe></body></html>"
+                        //Find webview and load
+                        for v in  i.view.subviews{
+                            if v.isKind(of: UIWebView.self){
+                                (v as! UIWebView).loadHTMLString(stream, baseURL: nil)
+                            }
+                        }
+                    }else{
+                        //Load Video
+                        let stream = "<html><head><style type='text/css'>html,body {margin: 0;padding: 0;width: 100%;height: 100%;}</style></head><body><iframe src=\"https://player.twitch.tv/?channel=\(i.content.id)&autoplay=false&client_id=\(appDelegate.consumerID)&\(appDelegate.apiVersion)&playsinline=1\"width=\"\(i.view.frame.width)\" height=\"\(i.view.frame.height)\" frameborder=\"0\" scrolling=\"yes\" allowfullscreen=\"false\" webkit-playsinline></iframe></body></html>"
+                        //Find webview and load
+                        for v in  i.view.subviews{
+                            if v.isKind(of: UIWebView.self){
+                                (v as! UIWebView).loadHTMLString(stream, baseURL: nil)
+                            }
+                        }
+                    }
+                }
+            }
         }
+        
+        //Chat update
+        ChatVC.loadChat()
     }
     
     //MARK: - Container View Controller

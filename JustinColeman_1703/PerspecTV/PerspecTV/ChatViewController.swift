@@ -22,6 +22,8 @@ class ChatViewController: UIViewController, UIWebViewDelegate {
     var webView: UIWebView!
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     var firstLoad: Bool!
+    var channels = [(type: String, content: Channel)]()
+    var selectedIndex = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,6 +36,7 @@ class ChatViewController: UIViewController, UIWebViewDelegate {
             webView = UIWebView(frame: frame)
         }else{
             webView = UIWebView(frame: self.view.frame)
+            channels = appDelegate.streams
         }
         self.view.addSubview(webView)
         webView.delegate = self
@@ -55,6 +58,17 @@ class ChatViewController: UIViewController, UIWebViewDelegate {
             performSegue(withIdentifier: "goBack", sender: self)
         }else{
             performSegue(withIdentifier: "toDetail", sender: self)
+        }
+    }
+    
+    @IBAction func btnTapped(_ sender: UIButton){
+        switch sender.tag {
+        case 1:
+            print()
+        case -1:
+            print()
+        default:
+            print("Mistakes were made.")
         }
     }
     

@@ -1776,14 +1776,14 @@
                                         <rect key="frame" x="340" y="19" width="24" height="24"/>
                                         <state key="normal" image="ArrowRightIcon"/>
                                         <connections>
-                                            <action selector="btnTapped:" destination="ZMs-L7-0az" eventType="touchUpInside" id="Lm7-hc-nEQ"/>
+                                            <action selector="btnTapped:" destination="9kG-Mw-6jC" eventType="touchUpInside" id="TKv-oW-iUK"/>
                                         </connections>
                                     </button>
-                                    <button hidden="YES" opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sY7-h6-0xZ" userLabel="LeftBtn">
+                                    <button hidden="YES" opaque="NO" tag="-1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sY7-h6-0xZ" userLabel="LeftBtn">
                                         <rect key="frame" x="20" y="19" width="24" height="24"/>
                                         <state key="normal" image="ArrowLeftIcon"/>
                                         <connections>
-                                            <action selector="btnTapped:" destination="ZMs-L7-0az" eventType="touchUpInside" id="ugr-g7-blM"/>
+                                            <action selector="btnTapped:" destination="9kG-Mw-6jC" eventType="touchUpInside" id="MwL-CE-yOQ"/>
                                         </connections>
                                     </button>
                                 </subviews>
