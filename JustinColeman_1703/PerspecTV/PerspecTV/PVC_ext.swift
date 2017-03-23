@@ -153,7 +153,12 @@ extension ProfileViewController{
                         
                         //Parse json data
                         guard let users = json["users"] as? [[String: Any]]
-                            else{self.tempTeams.remove(at: self.iterator); return}
+                            else{self.tempTeams.remove(at: self.iterator)
+                                DispatchQueue.main.async {
+                                    self.activitySpinner.stopAnimating()
+                                }
+                                return
+                        }
                         
                         for u in users{
                             guard let id = u["_id"] as? String

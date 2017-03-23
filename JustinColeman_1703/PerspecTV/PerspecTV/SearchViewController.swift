@@ -72,17 +72,39 @@ class SearchViewController: UIViewController, UITextViewDelegate, UICollectionVi
     }
     
     //MARK: - Storyboard Actions
+    @IBAction func watchTapped(_ sender: UIButton){
+        //Clears array and sets the selected channel to the only stream
+        appDelegate.streams = [selectedChannel]
+        if appDelegate.isPhone == true{
+            self.tabBarController?.selectedIndex = 2
+        }else{
+            performSegue(withIdentifier: "toDetail", sender: self)
+        }
+    }
+    
+    @IBAction func addTapped(_ sender: UIButton){
+        //Adds selected stream to array of streams
+        appDelegate.streams.append(selectedChannel)
+        if appDelegate.isPhone == true{
+            self.tabBarController?.selectedIndex = 2
+        }else{
+            performSegue(withIdentifier: "toDetail", sender: self)
+        }
+    }
+    
     @IBAction func cancelTapped(_ sender: UIButton){
-        UIView.animate(withDuration: 0.5, animations: {
-            self.scopeView.frame = self.scopeView.frame.offsetBy(dx: 0, dy: -self.searchBar.frame.height)
-            self.searchText.text = "Search"
-            self.cancelBtn.isHidden = true
-            self.searchText.resignFirstResponder()
-        }, completion: { (Bool) in
-            self.isOpen = false
-            self.scopeView.isHidden = true
-            self.scopeView.frame = self.origin
-        })
+        if isOpen{
+            UIView.animate(withDuration: 0.5, animations: {
+                self.scopeView.frame = self.scopeView.frame.offsetBy(dx: 0, dy: -self.searchBar.frame.height)
+                self.searchText.text = "Search"
+                self.cancelBtn.isHidden = true
+                self.searchText.resignFirstResponder()
+            }, completion: { (Bool) in
+                self.isOpen = false
+                self.scopeView.isHidden = true
+                self.scopeView.frame = self.origin
+            })
+        }
     }
     
     @IBAction func filterTapped(_ sender: UIButton){

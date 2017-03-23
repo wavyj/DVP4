@@ -25,7 +25,9 @@ class WatchViewController: UIViewController, UIWebViewDelegate, UIGestureRecogni
     @IBOutlet weak var chatView: UIView!
     @IBOutlet var swipeGesture: UISwipeGestureRecognizer!
     @IBOutlet weak var hamMenuBtn: UIButton!
-    
+    //Ipad Outlets
+    @IBOutlet var iPadStreamViews: [UIView]!
+    @IBOutlet var iPadActivitySpinners: [UIActivityIndicatorView]!
     
     //MARK: - Variables
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -43,6 +45,7 @@ class WatchViewController: UIViewController, UIWebViewDelegate, UIGestureRecogni
         self.addChildAsViewController(viewController)
         return viewController
     }()
+    var iPadStreams: [(stream: String, view: UIView, spinner: UIActivityIndicatorView)]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,6 +56,18 @@ class WatchViewController: UIViewController, UIWebViewDelegate, UIGestureRecogni
 //            var frame = chatView.frame
 //            frame.size.width = self.splitViewController!.primaryColumnWidth
 //            chatView.frame = frame
+            
+            //iPad Stream View Setup
+            var index = 0
+            for i in iPadStreamViews{
+                iPadStreams.append((stream: "", view: i, spinner: iPadActivitySpinners[index]))
+                index += 1
+            }
+            
+            for i in iPadStreams{
+                
+            }
+            
         }else{
             var frame = chatView.frame
             frame.size.height = frame.size.height - controlView.frame.height
