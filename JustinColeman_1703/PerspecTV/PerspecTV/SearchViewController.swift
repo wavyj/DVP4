@@ -85,6 +85,63 @@ class SearchViewController: UIViewController, UITextViewDelegate, UICollectionVi
         })
     }
     
+    @IBAction func filterTapped(_ sender: UIButton){
+        if selectedScope == "Stream"{
+            switch sender.tag {
+            case 1:
+                sortBtn.setImage(#imageLiteral(resourceName: "ArrowUpIcon"), for: .normal)
+                sortBtn.tag = 2
+                sortBtn.setTitle("A-Z", for: .normal)
+                
+                //Sort
+                if channels.count > 0{
+                    channels = channels.sorted(by: { (A, B) -> Bool in
+                        A.content.username.lowercased() < B.content.username.lowercased()   
+                    })
+                    streamCollectionView.reloadData()
+                }
+            case 2:
+                sortBtn.setImage(#imageLiteral(resourceName: "DownArrowIcon"), for: .normal)
+                sortBtn.tag = 3
+                sortBtn.setTitle("A-Z", for: .normal)
+                
+                //Sort
+                if channels.count > 0{
+                    channels = channels.sorted(by: { (A, B) -> Bool in
+                        A.content.username.lowercased() > B.content.username.lowercased()
+                    })
+                    streamCollectionView.reloadData()
+                }
+            case 3:
+                sortBtn.setImage(#imageLiteral(resourceName: "ArrowUpIcon"), for: .normal)
+                sortBtn.tag = 4
+                sortBtn.setTitle("Viewers", for: .normal)
+                
+                //Sort
+                if channels.count > 0{
+                    channels = channels.sorted(by: { (A, B) -> Bool in
+                        A.content.viewers > B.content.viewers
+                    })
+                    streamCollectionView.reloadData()
+                }
+            case 4:
+                sortBtn.setImage(#imageLiteral(resourceName: "DownArrowIcon"), for: .normal)
+                sortBtn.tag = 1
+                sortBtn.setTitle("Viewers", for: .normal)
+                
+                //Sort
+                if channels.count > 0{
+                    channels = channels.sorted(by: { (A, B) -> Bool in
+                        A.content.viewers < B.content.viewers
+                    })
+                    streamCollectionView.reloadData()
+                }
+            default:
+                print("Mistakes were made.")
+            }
+        }
+    }
+    
     //MARK: - TextView Callbacks
     func textViewDidChange(_ textView: UITextView) {
         textToSearch = textView.text
@@ -108,10 +165,6 @@ class SearchViewController: UIViewController, UITextViewDelegate, UICollectionVi
         }
         
     }
-    
-//    func textViewDidBeginEditing(_ textView: UITextView) {
-//        
-//    }
     
     //MARK: - Collection View Callbacks
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -259,6 +312,7 @@ class SearchViewController: UIViewController, UITextViewDelegate, UICollectionVi
             gameIcon.tintColor = UIColor(white: 0, alpha: 0.5)
             channels.removeAll()
             games.removeAll()
+            sortBtn.isEnabled = true
             streamCollectionView.reloadData()
             let layout = UICollectionViewFlowLayout()
             layout.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 0, right: 10)
@@ -272,6 +326,7 @@ class SearchViewController: UIViewController, UITextViewDelegate, UICollectionVi
             streamIcon.tintColor = UIColor(white: 0, alpha: 0.5)
             channels.removeAll()
             games.removeAll()
+            sortBtn.isEnabled = false
             streamCollectionView.reloadData()
             let layout = UICollectionViewFlowLayout()
             layout.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 0, right: 10)

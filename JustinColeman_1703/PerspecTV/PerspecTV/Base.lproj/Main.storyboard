@@ -746,10 +746,15 @@
                                     <imageView tag="2" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="GameIcon-Light" translatesAutoresizingMaskIntoConstraints="NO" id="iD3-cK-m6a" userLabel="Game Btn">
                                         <rect key="frame" x="64.5" y="21" width="24" height="24"/>
                                     </imageView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c27-Gb-ARl" userLabel="Sort Btn">
-                                        <rect key="frame" x="311" y="21" width="54" height="24"/>
-                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
-                                        <state key="normal" title="Sort" image="PlayIcon"/>
+                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c27-Gb-ARl" userLabel="A-Z Up">
+                                        <rect key="frame" x="313" y="21" width="52" height="24"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <state key="normal" title="A-Z" image="ArrowUpIcon">
+                                            <color key="titleColor" red="0.20392156859999999" green="0.26274509800000001" blue="0.3294117647" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="filterTapped:" destination="8me-px-KmB" eventType="touchUpInside" id="LRP-5F-LBb"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -2561,6 +2566,7 @@
         <image name="AddIcon" width="48" height="48"/>
         <image name="ArrowLeftIcon" width="24" height="24"/>
         <image name="ArrowRightIcon" width="24" height="24"/>
+        <image name="ArrowUpIcon" width="24" height="24"/>
         <image name="CurrentViewersIcon" width="24" height="24"/>
         <image name="DeleteIcon" width="24" height="24"/>
         <image name="DoneIcon" width="24" height="24"/>
