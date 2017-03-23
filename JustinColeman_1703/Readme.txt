@@ -5,5 +5,7 @@ username: apptestlogin
 password: testpass
 
 Features Not Working:
-- iPad Watch view not completed
+- iPad navigation
+- Chat might not be displaying properly on iPad
+- Selecting Game in search
 
