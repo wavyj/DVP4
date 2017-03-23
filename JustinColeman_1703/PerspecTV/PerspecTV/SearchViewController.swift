@@ -63,7 +63,6 @@ class SearchViewController: UIViewController, UITextViewDelegate, UICollectionVi
         streamCollectionView.collectionViewLayout = layout
         
         searchText.delegate = self
-    
         
     }
 
@@ -78,10 +77,10 @@ class SearchViewController: UIViewController, UITextViewDelegate, UICollectionVi
             self.scopeView.frame = self.scopeView.frame.offsetBy(dx: 0, dy: -self.searchBar.frame.height)
             self.searchText.text = "Search"
             self.cancelBtn.isHidden = true
-            self.scopeView.isHidden = true
             self.searchText.resignFirstResponder()
         }, completion: { (Bool) in
             self.isOpen = false
+            self.scopeView.isHidden = true
             self.scopeView.frame = self.origin
         })
     }
@@ -241,10 +240,11 @@ class SearchViewController: UIViewController, UITextViewDelegate, UICollectionVi
                 self.scopeView.frame = self.scopeView.frame.offsetBy(dx: 0, dy: -self.searchBar.frame.height)
                 self.searchText.text = "Search"
                 self.cancelBtn.isHidden = true
-                self.scopeView.isHidden = true
+                
                 self.searchText.resignFirstResponder()
             }, completion: { (Bool) in
                 self.isOpen = false
+                self.scopeView.isHidden = true
                 self.scopeView.frame = self.origin
             })
         }
@@ -258,6 +258,8 @@ class SearchViewController: UIViewController, UITextViewDelegate, UICollectionVi
             s.tintColor = UIColor(colorLiteralRed: 52/255, green: 67/255, blue: 84/255, alpha: 1)
             gameIcon.tintColor = UIColor(white: 0, alpha: 0.5)
             channels.removeAll()
+            games.removeAll()
+            streamCollectionView.reloadData()
             let layout = UICollectionViewFlowLayout()
             layout.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 0, right: 10)
             layout.itemSize = CGSize(width: 350, height: 170)
@@ -268,7 +270,9 @@ class SearchViewController: UIViewController, UITextViewDelegate, UICollectionVi
             selectedScope = "Game"
             s.tintColor = UIColor(colorLiteralRed: 52/255, green: 67/255, blue: 84/255, alpha: 1)
             streamIcon.tintColor = UIColor(white: 0, alpha: 0.5)
+            channels.removeAll()
             games.removeAll()
+            streamCollectionView.reloadData()
             let layout = UICollectionViewFlowLayout()
             layout.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 0, right: 10)
             layout.itemSize = CGSize(width: 150, height: 200)

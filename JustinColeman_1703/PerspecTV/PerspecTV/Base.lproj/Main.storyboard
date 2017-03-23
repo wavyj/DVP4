@@ -737,6 +737,31 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xTk-tX-x03" userLabel="Scope View">
+                                <rect key="frame" x="0.0" y="86" width="375" height="66.5"/>
+                                <subviews>
+                                    <imageView tag="1" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="VideoCamIcon" translatesAutoresizingMaskIntoConstraints="NO" id="MUn-Bi-jaP" userLabel="Stream Btn">
+                                        <rect key="frame" x="25.5" y="21.5" width="24" height="24"/>
+                                    </imageView>
+                                    <imageView tag="2" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="GameIcon-Light" translatesAutoresizingMaskIntoConstraints="NO" id="iD3-cK-m6a" userLabel="Game Btn">
+                                        <rect key="frame" x="64.5" y="21" width="24" height="24"/>
+                                    </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c27-Gb-ARl" userLabel="Sort Btn">
+                                        <rect key="frame" x="311" y="21" width="54" height="24"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
+                                        <state key="normal" title="Sort" image="PlayIcon"/>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="iD3-cK-m6a" firstAttribute="centerY" secondItem="MUn-Bi-jaP" secondAttribute="centerY" id="1Nn-lh-U1B"/>
+                                    <constraint firstItem="MUn-Bi-jaP" firstAttribute="centerY" secondItem="xTk-tX-x03" secondAttribute="centerY" id="962-O8-qEU"/>
+                                    <constraint firstItem="iD3-cK-m6a" firstAttribute="leading" secondItem="MUn-Bi-jaP" secondAttribute="trailing" constant="15" id="VOu-85-ItR"/>
+                                    <constraint firstItem="c27-Gb-ARl" firstAttribute="centerY" secondItem="iD3-cK-m6a" secondAttribute="centerY" id="YXt-Go-pgb"/>
+                                    <constraint firstAttribute="trailing" secondItem="c27-Gb-ARl" secondAttribute="trailing" constant="10" id="mza-uZ-iAA"/>
+                                    <constraint firstItem="MUn-Bi-jaP" firstAttribute="centerX" secondItem="xTk-tX-x03" secondAttribute="centerX" multiplier="0.2" id="w7X-KO-RjA"/>
+                                </constraints>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mfy-VI-Aul" userLabel="SearchBar View">
                                 <rect key="frame" x="0.0" y="20" width="375" height="66.5"/>
                                 <subviews>
@@ -750,7 +775,7 @@
                                             <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SearchIcon-Light" translatesAutoresizingMaskIntoConstraints="NO" id="CVM-ke-PY4">
                                                 <rect key="frame" x="14.5" y="22" width="24" height="24"/>
                                             </imageView>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" text="Search" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ja9-SH-Tf8">
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" delaysContentTouches="NO" canCancelContentTouches="NO" text="Search" translatesAutoresizingMaskIntoConstraints="NO" id="Ja9-SH-Tf8">
                                                 <rect key="frame" x="39.5" y="12.5" width="256" height="31.5"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
@@ -968,31 +993,6 @@
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="VZk-gD-IJF">
                                 <rect key="frame" x="169" y="315" width="37" height="37"/>
                             </activityIndicatorView>
-                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xTk-tX-x03" userLabel="Scope View">
-                                <rect key="frame" x="0.0" y="86.5" width="375" height="66.5"/>
-                                <subviews>
-                                    <imageView tag="1" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="VideoCamIcon" translatesAutoresizingMaskIntoConstraints="NO" id="MUn-Bi-jaP" userLabel="Stream Btn">
-                                        <rect key="frame" x="25.5" y="21.5" width="24" height="24"/>
-                                    </imageView>
-                                    <imageView tag="2" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="GameIcon-Light" translatesAutoresizingMaskIntoConstraints="NO" id="iD3-cK-m6a" userLabel="Game Btn">
-                                        <rect key="frame" x="64.5" y="21" width="24" height="24"/>
-                                    </imageView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c27-Gb-ARl" userLabel="Sort Btn">
-                                        <rect key="frame" x="311" y="21" width="54" height="24"/>
-                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
-                                        <state key="normal" title="Sort" image="PlayIcon"/>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstItem="iD3-cK-m6a" firstAttribute="centerY" secondItem="MUn-Bi-jaP" secondAttribute="centerY" id="1Nn-lh-U1B"/>
-                                    <constraint firstItem="MUn-Bi-jaP" firstAttribute="centerY" secondItem="xTk-tX-x03" secondAttribute="centerY" id="962-O8-qEU"/>
-                                    <constraint firstItem="iD3-cK-m6a" firstAttribute="leading" secondItem="MUn-Bi-jaP" secondAttribute="trailing" constant="15" id="VOu-85-ItR"/>
-                                    <constraint firstItem="c27-Gb-ARl" firstAttribute="centerY" secondItem="iD3-cK-m6a" secondAttribute="centerY" id="YXt-Go-pgb"/>
-                                    <constraint firstAttribute="trailing" secondItem="c27-Gb-ARl" secondAttribute="trailing" constant="10" id="mza-uZ-iAA"/>
-                                    <constraint firstItem="MUn-Bi-jaP" firstAttribute="centerX" secondItem="xTk-tX-x03" secondAttribute="centerX" multiplier="0.2" id="w7X-KO-RjA"/>
-                                </constraints>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.20392156859999999" green="0.26274509800000001" blue="0.3294117647" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
