@@ -35,6 +35,13 @@ class GamesViewController: UIViewController, UICollectionViewDelegate, UICollect
             layout.minimumInteritemSpacing = 5
             layout.minimumLineSpacing = 10
             collectionView.collectionViewLayout = layout
+        }else{
+            layout = UICollectionViewFlowLayout()
+            layout.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 0, right: 10)
+            layout.itemSize = CGSize(width: collectionView.frame.width / 2 - 20, height: collectionView.frame.height / 3)
+            layout.minimumInteritemSpacing = 2
+            layout.minimumLineSpacing = 10
+            collectionView.collectionViewLayout = layout
         }
         downloadAndParse(urlString: "https://api.twitch.tv/kraken/games/top?limit=10&offset=\(offset)&client_id=\(appDelegate.consumerID)&\(appDelegate.apiVersion)")
     }

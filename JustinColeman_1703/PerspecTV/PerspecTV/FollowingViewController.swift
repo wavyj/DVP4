@@ -34,7 +34,21 @@ class FollowingViewController: UIViewController , UICollectionViewDelegate, UICo
         currentUser = appDelegate.currentUser
         if appDelegate.isPhone == false{
             self.splitViewController?.preferredDisplayMode = .primaryHidden
+            let layout = UICollectionViewFlowLayout()
+            layout.itemSize = CGSize(width: (self.view.frame.width / 2 - 20), height: self.collectionView.frame.height / 3.5)
+            layout.minimumInteritemSpacing = 2
+            layout.minimumLineSpacing = 10
+            layout.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 0, right: 10)
+            collectionView.collectionViewLayout = layout
+        }else{
+            let layout = UICollectionViewFlowLayout()
+            layout.itemSize = CGSize(width: (self.view.frame.width - 20), height: self.collectionView.frame.height / 3.5)
+            layout.minimumInteritemSpacing = 10
+            layout.minimumLineSpacing = 15
+            layout.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 0, right: 10)
+            collectionView.collectionViewLayout = layout
         }
+        
         if userLoggedIn == true{
             downloadandParse(urlString: "https://api.twitch.tv/kraken/users/\(currentUser.id)/follows/channels?limit=10&offset=\(offset)&client_id=\(appDelegate.consumerID)&\(appDelegate.apiVersion)", downloadTask: "User Followed")
         }else{

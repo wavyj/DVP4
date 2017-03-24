@@ -39,6 +39,21 @@ class SearchViewController: UIViewController, UITextViewDelegate, UICollectionVi
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        if appDelegate.isPhone == false{
+            let layout = UICollectionViewFlowLayout()
+            layout.itemSize = CGSize(width: (self.streamCollectionView.frame.width / 1 - 20), height: self.streamCollectionView.frame.height / 3)
+            layout.minimumInteritemSpacing = 10
+            layout.minimumLineSpacing = 15
+            layout.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 0, right: 10)
+            streamCollectionView.collectionViewLayout = layout
+        }else{
+            let layout = UICollectionViewFlowLayout()
+            layout.itemSize = CGSize(width: (self.view.frame.width - 20), height: self.streamCollectionView.frame.height / 3)
+            layout.minimumInteritemSpacing = 10
+            layout.minimumLineSpacing = 15
+            layout.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 0, right: 10)
+            streamCollectionView.collectionViewLayout = layout
+        }
         
         searchIcon.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.searchTapped(_:))))
         searchText.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.searchTapped(_:))))
@@ -55,19 +70,35 @@ class SearchViewController: UIViewController, UITextViewDelegate, UICollectionVi
         gameIcon.image = tintImg
         gameIcon.tintColor = UIColor(white: 0, alpha: 0.5)
         
-        let layout = UICollectionViewFlowLayout()
-        layout.sectionInset = UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 0)
-        layout.itemSize = CGSize(width: 350, height: 170)
-        layout.minimumInteritemSpacing = 10
-        layout.minimumLineSpacing = 15
-        streamCollectionView.collectionViewLayout = layout
-        
         searchText.delegate = self
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        //Unflip selected
+        if selectedScope == "Stream"{
+            if let selected = streamCollectionView.indexPathsForSelectedItems?.first{
+                streamCollectionView.deselectItem(at: selected, animated: false)
+                let selectedCell = streamCollectionView.cellForItem(at: selected) as! ChannelCollectionViewCell
+                UIView.transition(with: selectedCell, duration: 0.5, options: .transitionFlipFromLeft, animations: {
+                    //selectedCell.previewImage.isHidden = false
+                    selectedCell.gameTitle.isHidden = false
+                    selectedCell.streamerName.isHidden = false
+                    selectedCell.viewerCount.isHidden = false
+                    selectedCell.addBtn.isHidden = true
+                    selectedCell.watchBtn.isHidden = true
+                    selectedCell.viewersIcon.isHidden = false
+                    selectedCell.addLabel.isHidden = true
+                    selectedCell.watchLabel.isHidden = true
+                }, completion: { (Bool) in
+                    selectedCell.isFlipped = false
+                })
+            }
+        }
     }
     
     //MARK: - Storyboard Actions
@@ -124,7 +155,7 @@ class SearchViewController: UIViewController, UITextViewDelegate, UICollectionVi
             case 2:
                 sortBtn.setImage(#imageLiteral(resourceName: "DownArrowIcon"), for: .normal)
                 sortBtn.tag = 3
-                sortBtn.setTitle("A-Z", for: .normal)
+                sortBtn.setTitle("Z-A", for: .normal)
                 
                 //Sort
                 if channels.count > 0{
@@ -228,65 +259,65 @@ class SearchViewController: UIViewController, UITextViewDelegate, UICollectionVi
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        hideKeyboard()
         switch indexPath.section{
         case 0:
             selectedChannel = channels[indexPath.row]
-            let selectedCell = collectionView.cellForItem(at: indexPath) as! ChannelCollectionViewCell
-            if selectedCell.isFlipped == false{
-                UIView.transition(with: selectedCell, duration: 0.5, options: .transitionFlipFromRight, animations: {
-                    collectionView.isUserInteractionEnabled = false
-                    //selectedCell.previewImage.isHidden = true
-                    selectedCell.gameTitle.isHidden = true
-                    selectedCell.streamerName.isHidden = true
-                    selectedCell.viewerCount.isHidden = true
-                    selectedCell.addBtn.isHidden = false
-                    selectedCell.watchBtn.isHidden = false
-                    selectedCell.viewersIcon.isHidden = true
-                    selectedCell.addLabel.isHidden = false
-                    selectedCell.watchLabel.isHidden = false
-                    
-                    //Check current streams
-                    let streams = self.appDelegate.streams!
-                    if !streams.contains(where: { (Channel) -> Bool in
-                        if Channel.content.username == self.selectedChannel.content.username{
-                            return true
+            if let selectedCell = collectionView.cellForItem(at: indexPath) as? ChannelCollectionViewCell{
+                if selectedCell.isFlipped == false{
+                    UIView.transition(with: selectedCell, duration: 0.5, options: .transitionFlipFromRight, animations: {
+                        collectionView.isUserInteractionEnabled = false
+                        //selectedCell.previewImage.isHidden = true
+                        selectedCell.gameTitle.isHidden = true
+                        selectedCell.streamerName.isHidden = true
+                        selectedCell.viewerCount.isHidden = true
+                        selectedCell.addBtn.isHidden = false
+                        selectedCell.watchBtn.isHidden = false
+                        selectedCell.viewersIcon.isHidden = true
+                        selectedCell.addLabel.isHidden = false
+                        selectedCell.watchLabel.isHidden = false
+                        
+                        //Check current streams
+                        let streams = self.appDelegate.streams!
+                        if !streams.contains(where: { (Channel) -> Bool in
+                            if Channel.content.username == self.selectedChannel.content.username{
+                                return true
+                            }else{
+                                return false
+                            }
+                        }){
+                            selectedCell.watchBtn.isEnabled = true
+                            selectedCell.addBtn.isEnabled = true
+                            if streams.count == 4{
+                                selectedCell.addBtn.isEnabled = false
+                                selectedCell.watchBtn.isEnabled = false
+                            }
                         }else{
-                            return false
-                        }
-                    }){
-                        selectedCell.watchBtn.isEnabled = true
-                        selectedCell.addBtn.isEnabled = true
-                        if streams.count == 4{
-                            selectedCell.addBtn.isEnabled = false
                             selectedCell.watchBtn.isEnabled = false
+                            selectedCell.addBtn.isEnabled = false
                         }
-                    }else{
-                        selectedCell.watchBtn.isEnabled = false
-                        selectedCell.addBtn.isEnabled = false
-                    }
+                        
+                    }, completion: { (Bool) in
+                        selectedCell.isFlipped = true
+                        collectionView.isUserInteractionEnabled = true
+                    })
+                }else{
+                    UIView.transition(with: selectedCell, duration: 0.5, options: .transitionFlipFromLeft, animations: {
+                        collectionView.isUserInteractionEnabled = false
+                        //selectedCell.previewImage.isHidden = false
+                        selectedCell.gameTitle.isHidden = false
+                        selectedCell.streamerName.isHidden = false
+                        selectedCell.viewerCount.isHidden = false
+                        selectedCell.addBtn.isHidden = true
+                        selectedCell.watchBtn.isHidden = true
+                        selectedCell.viewersIcon.isHidden = false
+                        selectedCell.addLabel.isHidden = true
+                        selectedCell.watchLabel.isHidden = true
+                    }, completion: { (Bool) in
+                        selectedCell.isFlipped = false
+                        collectionView.isUserInteractionEnabled = true
+                    })
                     
-                }, completion: { (Bool) in
-                    selectedCell.isFlipped = true
-                    collectionView.isUserInteractionEnabled = true
-                })
-            }else{
-                UIView.transition(with: selectedCell, duration: 0.5, options: .transitionFlipFromLeft, animations: {
-                    collectionView.isUserInteractionEnabled = false
-                    //selectedCell.previewImage.isHidden = false
-                    selectedCell.gameTitle.isHidden = false
-                    selectedCell.streamerName.isHidden = false
-                    selectedCell.viewerCount.isHidden = false
-                    selectedCell.addBtn.isHidden = true
-                    selectedCell.watchBtn.isHidden = true
-                    selectedCell.viewersIcon.isHidden = false
-                    selectedCell.addLabel.isHidden = true
-                    selectedCell.watchLabel.isHidden = true
-                }, completion: { (Bool) in
-                    selectedCell.isFlipped = false
-                    collectionView.isUserInteractionEnabled = true
-                })
-                
+                }
             }
         case 1:
             selectedGame = games[indexPath.row]
@@ -299,23 +330,24 @@ class SearchViewController: UIViewController, UITextViewDelegate, UICollectionVi
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         //Unflip the cell
         if indexPath.section == 0{
-            let selectedCell = collectionView.cellForItem(at: indexPath) as! ChannelCollectionViewCell
-            if selectedCell.isFlipped == true{
-                UIView.transition(with: selectedCell, duration: 0.5, options: .transitionFlipFromLeft, animations: {
-                    collectionView.isUserInteractionEnabled = false
-                    //selectedCell.previewImage.isHidden = false
-                    selectedCell.gameTitle.isHidden = false
-                    selectedCell.streamerName.isHidden = false
-                    selectedCell.viewerCount.isHidden = false
-                    selectedCell.addBtn.isHidden = true
-                    selectedCell.watchBtn.isHidden = true
-                    selectedCell.viewersIcon.isHidden = false
-                    selectedCell.addLabel.isHidden = true
-                    selectedCell.watchLabel.isHidden = true
-                }, completion: { (Bool) in
-                    selectedCell.isFlipped = false
-                    collectionView.isUserInteractionEnabled = true
-                })
+            if let selectedCell = collectionView.cellForItem(at: indexPath) as? ChannelCollectionViewCell{
+                if selectedCell.isFlipped == true{
+                    UIView.transition(with: selectedCell, duration: 0.5, options: .transitionFlipFromLeft, animations: {
+                        collectionView.isUserInteractionEnabled = false
+                        //selectedCell.previewImage.isHidden = false
+                        selectedCell.gameTitle.isHidden = false
+                        selectedCell.streamerName.isHidden = false
+                        selectedCell.viewerCount.isHidden = false
+                        selectedCell.addBtn.isHidden = true
+                        selectedCell.watchBtn.isHidden = true
+                        selectedCell.viewersIcon.isHidden = false
+                        selectedCell.addLabel.isHidden = true
+                        selectedCell.watchLabel.isHidden = true
+                    }, completion: { (Bool) in
+                        selectedCell.isFlipped = false
+                        collectionView.isUserInteractionEnabled = true
+                    })
+                }
             }
         }
     }

@@ -37,7 +37,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         
         currentUser = appDelegate.currentUser
         if appDelegate.isPhone == false{
-            self.splitViewController?.preferredDisplayMode = .primaryHidden
+            self.splitViewController?.preferredDisplayMode = .allVisible
         }
         //Profile View Setup
         profilePic.image = currentUser.image

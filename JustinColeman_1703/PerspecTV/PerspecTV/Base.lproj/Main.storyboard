@@ -34,7 +34,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="rUk-qN-11R">
-                                        <rect key="frame" x="86" y="4" width="171.5" height="108.5"/>
+                                        <rect key="frame" x="86" y="3.5" width="171.5" height="109"/>
                                     </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -64,7 +64,7 @@
                                 </connections>
                             </button>
                             <textView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Dont miss out on the action, watch more than one stream at once, get every perspective" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ARP-1n-bYc" userLabel="Tagline">
-                                <rect key="frame" x="10" y="317" width="355" height="66.5"/>
+                                <rect key="frame" x="10" y="316.5" width="355" height="66"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
@@ -403,14 +403,14 @@
                                 <rect key="frame" x="0.0" y="400" width="375" height="218"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8jP-Sy-Ygn" userLabel="Menu Btn">
-                                        <rect key="frame" x="220.5" y="85.5" width="48" height="48"/>
+                                        <rect key="frame" x="220" y="85.5" width="48" height="48"/>
                                         <state key="normal" image="MenuIcon"/>
                                         <connections>
                                             <action selector="menuTapped:" destination="ZMs-L7-0az" eventType="touchUpInside" id="TjR-oQ-tyl"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nNm-W7-gcm" userLabel="Info Btn">
-                                        <rect key="frame" x="109.5" y="85.5" width="48" height="48"/>
+                                        <rect key="frame" x="109" y="85.5" width="48" height="48"/>
                                         <state key="normal" image="InfoIcon"/>
                                         <connections>
                                             <action selector="infoTapped:" destination="ZMs-L7-0az" eventType="touchUpInside" id="6LT-sY-Yv1"/>
@@ -657,6 +657,10 @@
                                 <exclude reference="UcQ-19-VgD"/>
                                 <exclude reference="heU-M9-3OF"/>
                                 <exclude reference="iln-K9-GYl"/>
+                                <exclude reference="8eP-8C-NdQ"/>
+                                <exclude reference="Dhv-uk-17w"/>
+                                <exclude reference="apx-Vs-b56"/>
+                                <exclude reference="u1W-W2-JBU"/>
                                 <exclude reference="H5g-Wh-2KA"/>
                                 <exclude reference="M7a-aE-wTg"/>
                                 <exclude reference="Y8p-6h-qK9"/>
@@ -667,10 +671,6 @@
                                 <exclude reference="Obu-19-G1G"/>
                                 <exclude reference="dRJ-py-km8"/>
                                 <exclude reference="xJo-Cu-hsG"/>
-                                <exclude reference="8eP-8C-NdQ"/>
-                                <exclude reference="Dhv-uk-17w"/>
-                                <exclude reference="apx-Vs-b56"/>
-                                <exclude reference="u1W-W2-JBU"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=regular">
@@ -690,6 +690,12 @@
                                 <include reference="UcQ-19-VgD"/>
                                 <include reference="heU-M9-3OF"/>
                                 <include reference="iln-K9-GYl"/>
+                                <include reference="8eP-8C-NdQ"/>
+                                <exclude reference="9bR-OV-xO9"/>
+                                <include reference="Dhv-uk-17w"/>
+                                <include reference="apx-Vs-b56"/>
+                                <exclude reference="XCU-va-qX3"/>
+                                <include reference="u1W-W2-JBU"/>
                                 <include reference="H5g-Wh-2KA"/>
                                 <include reference="M7a-aE-wTg"/>
                                 <include reference="Y8p-6h-qK9"/>
@@ -700,12 +706,6 @@
                                 <include reference="Obu-19-G1G"/>
                                 <include reference="dRJ-py-km8"/>
                                 <include reference="xJo-Cu-hsG"/>
-                                <include reference="8eP-8C-NdQ"/>
-                                <exclude reference="9bR-OV-xO9"/>
-                                <include reference="Dhv-uk-17w"/>
-                                <include reference="apx-Vs-b56"/>
-                                <exclude reference="XCU-va-qX3"/>
-                                <include reference="u1W-W2-JBU"/>
                             </mask>
                         </variation>
                         <connections>
@@ -802,10 +802,10 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="200"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="omL-4q-VSb">
-                                        <rect key="frame" x="137" y="30" width="101" height="100"/>
+                                        <rect key="frame" x="137" y="30" width="101" height="100.5"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w6G-8I-T3s">
-                                        <rect key="frame" x="0.0" y="140" width="375" height="30"/>
+                                        <rect key="frame" x="0.0" y="140.5" width="375" height="30"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
@@ -981,10 +981,10 @@
                                         <rect key="frame" x="0.0" y="0.0" width="301" height="63"/>
                                         <subviews>
                                             <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SearchIcon-Light" translatesAutoresizingMaskIntoConstraints="NO" id="CVM-ke-PY4">
-                                                <rect key="frame" x="15" y="22" width="24" height="24"/>
+                                                <rect key="frame" x="15.5" y="22" width="24" height="24"/>
                                             </imageView>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" delaysContentTouches="NO" canCancelContentTouches="NO" text="Search" translatesAutoresizingMaskIntoConstraints="NO" id="Ja9-SH-Tf8">
-                                                <rect key="frame" x="40" y="12.5" width="255.5" height="31.5"/>
+                                                <rect key="frame" x="40.5" y="12.5" width="255" height="31.5"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -1382,10 +1382,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="mem-dZ-wFW">
-                                <rect key="frame" x="169" y="315" width="37" height="37"/>
-                                <color key="color" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                            </activityIndicatorView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="NfR-Gm-XDj" userLabel="Game Image">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="167"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1394,10 +1390,10 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="167"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CurrentViewersIcon" translatesAutoresizingMaskIntoConstraints="NO" id="evx-eK-ryX">
-                                        <rect key="frame" x="241" y="100.5" width="24" height="24"/>
+                                        <rect key="frame" x="241" y="100" width="24" height="24"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CrK-Th-m9q">
-                                        <rect key="frame" x="197.5" y="127.5" width="113" height="21"/>
+                                        <rect key="frame" x="197" y="127" width="112" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="0.70352632709999996" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
@@ -1412,10 +1408,10 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="VideoCamIcon" translatesAutoresizingMaskIntoConstraints="NO" id="scZ-dk-WgW">
-                                        <rect key="frame" x="118" y="100.5" width="24" height="24"/>
+                                        <rect key="frame" x="118" y="100" width="24" height="24"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cKW-KE-62a">
-                                        <rect key="frame" x="74" y="127.5" width="112" height="21"/>
+                                        <rect key="frame" x="74" y="127" width="112" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="0.70352632709999996" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
@@ -1553,6 +1549,10 @@
                                     <outlet property="delegate" destination="18s-Qy-giX" id="bbw-OL-z5k"/>
                                 </connections>
                             </collectionView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="mem-dZ-wFW">
+                                <rect key="frame" x="169" y="315" width="37" height="37"/>
+                                <color key="color" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="0.20392156859999999" green="0.26274509800000001" blue="0.3294117647" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -1768,14 +1768,14 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="M6b-0t-qAT" userLabel="Control View">
                                 <rect key="frame" x="0.0" y="0.0" width="384" height="62"/>
                                 <subviews>
-                                    <button hidden="YES" opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lBx-83-biy" userLabel="RightBtn">
+                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lBx-83-biy" userLabel="RightBtn">
                                         <rect key="frame" x="340" y="19" width="24" height="24"/>
                                         <state key="normal" image="ArrowRightIcon"/>
                                         <connections>
                                             <action selector="btnTapped:" destination="9kG-Mw-6jC" eventType="touchUpInside" id="TKv-oW-iUK"/>
                                         </connections>
                                     </button>
-                                    <button hidden="YES" opaque="NO" tag="-1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sY7-h6-0xZ" userLabel="LeftBtn">
+                                    <button opaque="NO" tag="-1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sY7-h6-0xZ" userLabel="LeftBtn">
                                         <rect key="frame" x="20" y="19" width="24" height="24"/>
                                         <state key="normal" image="ArrowLeftIcon"/>
                                         <connections>
@@ -2123,7 +2123,7 @@
                                 <rect key="frame" x="169" y="115" width="37" height="37"/>
                             </activityIndicatorView>
                             <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="VideoIcon" translatesAutoresizingMaskIntoConstraints="NO" id="aZj-ng-WYv">
-                                <rect key="frame" x="169" y="272" width="37.5" height="33"/>
+                                <rect key="frame" x="169.5" y="272" width="37.5" height="33"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.20392156859999999" green="0.26274509800000001" blue="0.3294117647" alpha="1" colorSpace="calibratedRGB"/>
@@ -2325,22 +2325,22 @@
                                         <rect key="frame" x="5" y="20" width="24" height="24"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Team" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Di-VA-pj0">
-                                        <rect key="frame" x="47.5" y="136.5" width="281" height="30"/>
+                                        <rect key="frame" x="47.5" y="136" width="281" height="30"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C73-VY-m9B">
-                                        <rect key="frame" x="132.5" y="201.5" width="112" height="21"/>
+                                        <rect key="frame" x="133" y="201" width="112" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="0.70352632709999996" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="VideoCamIcon" translatesAutoresizingMaskIntoConstraints="NO" id="Cto-g2-aEL">
-                                        <rect key="frame" x="176" y="174.5" width="24" height="24"/>
+                                        <rect key="frame" x="176" y="174" width="24" height="24"/>
                                     </imageView>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="KTx-Bp-4G3" userLabel="Profile Pic">
-                                        <rect key="frame" x="141" y="34" width="94" height="93.5"/>
+                                        <rect key="frame" x="141" y="35" width="94" height="93.5"/>
                                     </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.14999999999999999" alpha="0.40606271399999999" colorSpace="calibratedWhite"/>

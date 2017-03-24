@@ -38,8 +38,9 @@ class ChatViewController: UIViewController, UIWebViewDelegate {
                 if i.type == "stream"{
                     channels.append(i)
                 }
+                currentChannel = channels[0]
             }
-            currentChannel = channels[0]
+            
         }else{
             webView = UIWebView(frame: self.view.frame)
         }

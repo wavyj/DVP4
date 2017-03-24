@@ -38,7 +38,21 @@ class SelectedGameViewController: UIViewController, UICollectionViewDelegate, UI
         gameTitle.text = currentGame.name
 
         if appDelegate.isPhone == false{
-            self.splitViewController?.preferredDisplayMode = .allVisible
+            self.splitViewController?.preferredDisplayMode = .primaryHidden
+            
+            let layout = UICollectionViewFlowLayout()
+            layout.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 0, right: 10)
+            layout.itemSize = CGSize(width: collectionView.frame.width / 1 - 20, height: collectionView.frame.height / 2.5)
+            layout.minimumInteritemSpacing = 2
+            layout.minimumLineSpacing = 10
+            collectionView.collectionViewLayout = layout
+        }else{
+            let layout = UICollectionViewFlowLayout()
+            layout.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 0, right: 10)
+            layout.itemSize = CGSize(width: collectionView.frame.width - 20, height: collectionView.frame.height / 3)
+            layout.minimumInteritemSpacing = 5
+            layout.minimumLineSpacing = 10
+            collectionView.collectionViewLayout = layout
         }
         
         //Game View Setup
